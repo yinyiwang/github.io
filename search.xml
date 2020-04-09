@@ -166,6 +166,8 @@
     <content><![CDATA[<p>解决同一台电脑生成两份或多份ssh密钥、公钥映射两个或多个GitHub账号</p>
 <p>需求描述</p>
 <p>本人注册一个GitHub账户，用来分享本人自己的开源项目或者代码，同时，公司注册了一个GitHub账户，用来分享公司的开源项目。如果按照单个ssh公钥生成的方法则会把之前的公钥覆盖掉，这样将导致其中一方在下一次上传代码，本机和GitHub无法映射成功。</p>
+<a id="more"></a>
+
 <p>需求分析</p>
 <p>解决这个问题首先要明确如何生成单个ssh公钥。<br>ssh生成单个公钥命令：ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com">your_email@example.com</a>“。如何生成ssh公钥<br>上述命令会在当前~/.ssh目录下生成id_rsa和id_rsa.pub两个文件。其中id_rsa是私钥文件，id_rsa_.pub是公钥文件。<br>id_rsa和id_rsa_.pub文件都是通过一个邮箱号生成的，同一个公钥文件不可以配置两个不同GitHub账户（已测试）。<br>那么两个GitHub账户就需要两个不同的邮箱号，来生成两组不同的公钥文件。</p>
 <p>解决方案</p>
