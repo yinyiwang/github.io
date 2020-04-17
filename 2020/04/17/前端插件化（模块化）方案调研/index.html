@@ -20,23 +20,28 @@
     var CONFIG = {"hostname":"yinyiwang.github.io","root":"/yinyiwang/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="隐逸王的博客">
-<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/index.html">
+  <meta name="description" content="背景随着前端功能越来越复杂，前端代码日益膨胀，为了减少维护成本，提高代码的可复用性，前端模块化势在必行。 所有js文件都在一个html中引入，造成以下不良影响：  请求过多。首先我们要依赖多个模块，那样就会发送多个请求，导致请求过多 依赖模糊。我们不知道他们的具体依赖关系是什么，也就是说很容易因为不了解他们之间的依赖关系导致加载先后顺序出错。 难以维护。以上两种原因就导致了很难维护，很可能出现牵一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端插件化（模块化）方案调研">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/04/17/%E5%89%8D%E7%AB%AF%E6%8F%92%E4%BB%B6%E5%8C%96%EF%BC%88%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%89%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/index.html">
 <meta property="og:site_name" content="隐逸王的博客">
+<meta property="og:description" content="背景随着前端功能越来越复杂，前端代码日益膨胀，为了减少维护成本，提高代码的可复用性，前端模块化势在必行。 所有js文件都在一个html中引入，造成以下不良影响：  请求过多。首先我们要依赖多个模块，那样就会发送多个请求，导致请求过多 依赖模糊。我们不知道他们的具体依赖关系是什么，也就是说很容易因为不了解他们之间的依赖关系导致加载先后顺序出错。 难以维护。以上两种原因就导致了很难维护，很可能出现牵一">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-17T01:12:24.000Z">
+<meta property="article:modified_time" content="2020-04-17T07:21:24.785Z">
 <meta property="article:author" content="yinyiwang">
+<meta property="article:tag" content="前端模块化">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/">
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/04/17/%E5%89%8D%E7%AB%AF%E6%8F%92%E4%BB%B6%E5%8C%96%EF%BC%88%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%89%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
@@ -67,7 +72,7 @@
   padding: 0 10px 0 14px;
 }
 </style>
-  <title>隐逸王的博客</title>
+  <title>前端插件化（模块化）方案调研 | 隐逸王的博客</title>
   
 
 
@@ -213,9 +218,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -231,10 +237,9 @@
       <meta itemprop="name" content="隐逸王的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yinyiwang/2020/04/17/%E5%89%8D%E7%AB%AF%E6%8F%92%E4%BB%B6%E5%8C%96%EF%BC%88%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%89%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94/" class="post-title-link" itemprop="url">前端插件化（模块化）方案调研</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          前端插件化（模块化）方案调研
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -257,6 +262,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -267,7 +279,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着前端功能越来越复杂，前端代码日益膨胀，为了减少维护成本，提高代码的可复用性，前端模块化势在必行。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着前端功能越来越复杂，前端代码日益膨胀，为了减少维护成本，提高代码的可复用性，前端模块化势在必行。</p>
 <p>所有js文件都在一个html中引入，造成以下不良影响：</p>
 <ol>
 <li><strong>请求过多</strong>。首先我们要依赖多个模块，那样就会发送多个请求，导致请求过多</li>
@@ -432,254 +444,46 @@
 
 <p>ES6 模块的运行机制与 CommonJS 不一样。<strong>ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块</strong>。</p>
 
-      
     </div>
 
     
     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/peixun%E5%9F%B9%E8%AE%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
-      <meta itemprop="name" content="yinyiwang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="隐逸王的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yinyiwang/2020/04/09/peixun%E5%9F%B9%E8%AE%AD/" class="post-title-link" itemprop="url">peixun培训</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-09 19:12:21 / 修改时间：19:14:55" itemprop="dateCreated datePublished" datetime="2020-04-09T19:12:21+08:00">2020-04-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/yinyiwang/categories/%E5%9F%B9%E8%AE%AD/" itemprop="url" rel="index"><span itemprop="name">培训</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="今天是搭建个人博客的培训"><a href="#今天是搭建个人博客的培训" class="headerlink" title="今天是搭建个人博客的培训"></a>今天是搭建个人博客的培训</h1>
-      
+    <div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
     </div>
 
-    
-    
-    
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/yinyiwang/tags/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" rel="tag"># 前端模块化</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
-      <meta itemprop="name" content="yinyiwang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="隐逸王的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yinyiwang/2020/04/09/%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决同一台电脑生成过个SSH的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-09 13:04:23 / 修改时间：18:19:46" itemprop="dateCreated datePublished" datetime="2020-04-09T13:04:23+08:00">2020-04-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/yinyiwang/categories/HEXO/" itemprop="url" rel="index"><span itemprop="name">HEXO</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>解决同一台电脑生成两份或多份ssh密钥、公钥映射两个或多个GitHub账号</p>
-<p>需求描述</p>
-<p>本人注册一个GitHub账户，用来分享本人自己的开源项目或者代码，同时，公司注册了一个GitHub账户，用来分享公司的开源项目。如果按照单个ssh公钥生成的方法则会把之前的公钥覆盖掉，这样将导致其中一方在下一次上传代码，本机和GitHub无法映射成功。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/yinyiwang/2020/04/09/%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
-      <meta itemprop="name" content="yinyiwang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="隐逸王的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">使用Github和HEXO搭建个人博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-09 11:08:32 / 修改时间：18:50:26" itemprop="dateCreated datePublished" datetime="2020-04-09T11:08:32+08:00">2020-04-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/yinyiwang/categories/HEXO/" itemprop="url" rel="index"><span itemprop="name">HEXO</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用github pages服务搭建博客的好处有：</p>
-<ol>
-<li>全是静态文件，访问速度快；</li>
-<li>免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；</li>
-<li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li>
-<li>数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；</li>
-<li>博客内容可以轻松打包、转移、发布到其它平台；</li>
-<li>等等；</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/yinyiwang/2020/04/09/peixun%E5%9F%B9%E8%AE%AD/" rel="prev" title="peixun培训">
+      <i class="fa fa-chevron-left"></i> peixun培训
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -726,6 +530,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块的概念"><span class="nav-number">2.</span> <span class="nav-text">模块的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化的概念"><span class="nav-number">3.</span> <span class="nav-text">模块化的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要模块化"><span class="nav-number">4.</span> <span class="nav-text">为什么需要模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化的好处"><span class="nav-number">5.</span> <span class="nav-text">模块化的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化简史"><span class="nav-number">6.</span> <span class="nav-text">模块化简史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-最简单粗暴的方式"><span class="nav-number">6.1.</span> <span class="nav-text">1. 最简单粗暴的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-用对象来模拟命名空间"><span class="nav-number">6.2.</span> <span class="nav-text">2. 用对象来模拟命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-闭包"><span class="nav-number">6.3.</span> <span class="nav-text">3. 闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-更多"><span class="nav-number">6.4.</span> <span class="nav-text">4. 更多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现模块化的方案规范总览"><span class="nav-number">7.</span> <span class="nav-text">实现模块化的方案规范总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonJS（）"><span class="nav-number">8.</span> <span class="nav-text">CommonJS（）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS主要用于服务端的模块化，不适用于前端模块化的原因在于："><span class="nav-number">8.1.</span> <span class="nav-text">CommonJS主要用于服务端的模块化，不适用于前端模块化的原因在于：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS在浏览器端实现的步骤："><span class="nav-number">8.2.</span> <span class="nav-text">CommonJS在浏览器端实现的步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建项目结构"><span class="nav-number">8.2.1.</span> <span class="nav-text">1. 创建项目结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-下载browserify"><span class="nav-number">8.2.2.</span> <span class="nav-text">2. 下载browserify</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-定义模块代码-同服务器端"><span class="nav-number">8.2.3.</span> <span class="nav-text">3. 定义模块代码(同服务器端)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-打包处理js"><span class="nav-number">8.2.4.</span> <span class="nav-text">4. 打包处理js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-页面使用引入"><span class="nav-number">8.2.5.</span> <span class="nav-text">5. 页面使用引入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AMD（Asynchronous-Module-Definition）"><span class="nav-number">9.</span> <span class="nav-text">AMD（Asynchronous Module Definition）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#define-函数："><span class="nav-number">9.1.</span> <span class="nav-text">define() 函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#require-函数"><span class="nav-number">9.2.</span> <span class="nav-text">require() 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD的优缺点"><span class="nav-number">9.3.</span> <span class="nav-text">AMD的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD在浏览器端的实现步骤"><span class="nav-number">9.4.</span> <span class="nav-text">AMD在浏览器端的实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-下载require-js-并引入"><span class="nav-number">9.4.1.</span> <span class="nav-text">1. 下载require.js, 并引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建项目结构"><span class="nav-number">9.4.2.</span> <span class="nav-text">2. 创建项目结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-定义require-js的模块代"><span class="nav-number">9.4.3.</span> <span class="nav-text">3. 定义require.js的模块代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-页面引入require-js模块"><span class="nav-number">9.4.4.</span> <span class="nav-text">4. 页面引入require.js模块:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、UMD规范"><span class="nav-number">10.</span> <span class="nav-text">3、UMD规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、CMD（Common-Module-Definition）"><span class="nav-number">11.</span> <span class="nav-text">4、CMD（Common Module Definition）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD语法"><span class="nav-number">11.1.</span> <span class="nav-text">CMD语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义暴露模块："><span class="nav-number">11.1.1.</span> <span class="nav-text">定义暴露模块：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入使用模块："><span class="nav-number">11.1.2.</span> <span class="nav-text">引入使用模块：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD的优缺点"><span class="nav-number">11.2.</span> <span class="nav-text">CMD的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sea-js使用步骤"><span class="nav-number">11.3.</span> <span class="nav-text">sea.js使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-下载sea-js-并引入"><span class="nav-number">11.3.1.</span> <span class="nav-text">1. 下载sea.js, 并引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建项目结构-1"><span class="nav-number">11.3.2.</span> <span class="nav-text">2. 创建项目结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-定义sea-js的模块代码"><span class="nav-number">11.3.3.</span> <span class="nav-text">3. 定义sea.js的模块代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-在index-html中引入"><span class="nav-number">11.3.4.</span> <span class="nav-text">4. 在index.html中引入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、ES6模块化（-重点介绍-）"><span class="nav-number">12.</span> <span class="nav-text">5、ES6模块化（&#x3D;&#x3D;重点介绍&#x3D;&#x3D;）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">12.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#export"><span class="nav-number">12.1.1.</span> <span class="nav-text">export</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import"><span class="nav-number">12.1.2.</span> <span class="nav-text">import</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-模块与-CommonJS-模块的差异"><span class="nav-number">12.2.</span> <span class="nav-text">ES6 模块与 CommonJS 模块的差异</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -917,6 +722,25 @@ if (document.querySelectorAll('pre.mermaid').length) {
         flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
       new needShareButton('#needsharebutton-float', flOptions);
   </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0dafc87fa9a1c9ac348d',
+      clientSecret: '3fa722fe21fa90a79306e64d3993aee995b60f3b',
+      repo        : 'gitalk',
+      owner       : 'yinyiwang',
+      admin       : ['yinyiwang'],
+      id          : '1fe9d5af02a9a26d7f20347a4abec435',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
