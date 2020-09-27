@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/yinyiwang/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/yinyiwang/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/yinyiwang/images/favicon.ico">
+  <link rel="mask-icon" href="/yinyiwang/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/yinyiwang/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/yinyiwang/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yinyiwang.github.io","root":"/yinyiwang/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="完整阅读本文大约需要二十分钟时间，可根据文章结构图直接阅读自己需要的部分。  1. Cookie 产生的背景 所有新技术的出现都是为了解决某一痛点。 ——《前端三昧》  我们都知道，HTTP 协议是&#x3D;&#x3D;无状态的&#x3D;&#x3D;，服务器无法知道两个请求是否来自同一个浏览器，也不知道用户上一次做了什么，每次请求都是完全相互独立，这严重阻碍了交互式 Web 应用程序的实现。例子：  购物车：在典型的网上购物场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最全面的Cookie知识点总结">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/09/25/%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Cookie%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="隐逸王的博客">
+<meta property="og:description" content="完整阅读本文大约需要二十分钟时间，可根据文章结构图直接阅读自己需要的部分。  1. Cookie 产生的背景 所有新技术的出现都是为了解决某一痛点。 ——《前端三昧》  我们都知道，HTTP 协议是&#x3D;&#x3D;无状态的&#x3D;&#x3D;，服务器无法知道两个请求是否来自同一个浏览器，也不知道用户上一次做了什么，每次请求都是完全相互独立，这严重阻碍了交互式 Web 应用程序的实现。例子：  购物车：在典型的网上购物场景">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%9F%A5%E7%9C%8BCookie%E7%9A%84%E6%AD%A5%E9%AA%A4%E5%92%8C%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E7%9A%84%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E5%B1%9E%E6%80%A7%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/HTTP%E8%AE%BE%E7%BD%AECookie.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E6%90%BA%E5%B8%A6Cookie.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Document%E8%8E%B7%E5%8F%96Cookie.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/document.cookie%E8%AE%BE%E7%BD%AE.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%9F%A5%E7%9C%8B%E8%AE%BE%E7%BD%AE%E7%9A%84Cookie.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie_people.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie.png">
+<meta property="og:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88.png">
+<meta property="article:published_time" content="2020-09-25T11:06:31.000Z">
+<meta property="article:modified_time" content="2020-09-27T07:35:13.123Z">
+<meta property="article:author" content="yinyiwang">
+<meta property="article:tag" content="Cookie">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yinyiwang.github.io/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/09/25/%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Cookie%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style><style>
+#needsharebutton-float {
+  bottom: 88px;
+  cursor: pointer;
+  left: -8px;
+  position: fixed;
+  z-index: 9999;
+}
+#needsharebutton-float .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 4px;
+  padding: 0 10px 0 14px;
+}
+</style>
+  <title>最全面的Cookie知识点总结 | 隐逸王的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://your-url" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/yinyiwang/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">隐逸王的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/yinyiwang/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/yinyiwang/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/yinyiwang/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/yinyiwang/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/yinyiwang/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/yinyiwang/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/09/25/%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Cookie%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
+      <meta itemprop="name" content="yinyiwang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="隐逸王的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最全面的Cookie知识点总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-25 19:06:31" itemprop="dateCreated datePublished" datetime="2020-09-25T19:06:31+08:00">2020-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-27 15:35:13" itemprop="dateModified" datetime="2020-09-27T15:35:13+08:00">2020-09-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/JavaScript/Cookie/" itemprop="url" rel="index"><span itemprop="name">Cookie</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="文章架构图"></p>
+<blockquote>
+<p>完整阅读本文大约需要二十分钟时间，可根据文章结构图直接阅读自己需要的部分。</p>
+</blockquote>
+<h2 id="1-Cookie-产生的背景"><a href="#1-Cookie-产生的背景" class="headerlink" title="1. Cookie 产生的背景"></a>1. Cookie 产生的背景</h2><blockquote>
+<p>所有新技术的出现都是为了解决某一痛点。 ——《前端三昧》</p>
+</blockquote>
+<p>我们都知道，<code>HTTP 协议</code>是==无状态的==，服务器无法知道两个请求是否来自同一个浏览器，也不知道用户上一次做了什么，每次请求都是完全相互独立，这严重阻碍了<code>交互式 Web</code> 应用程序的实现。例子：</p>
+<ul>
+<li>购物车：在典型的网上购物场景中，用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于 <code>HTTP</code> 的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。</li>
+<li>登录状态：我们常用的“记住密码”功能，在以前如果不是用 <code>Cookie</code> 记住了登录凭据，想要实现该功能将会很复杂。</li>
+</ul>
+<p>正是为了解决这些交互方面存在的痛点，<code>Cookie</code> 应运而生。</p>
+<h2 id="2-Cookie-概述"><a href="#2-Cookie-概述" class="headerlink" title="2. Cookie 概述"></a>2. Cookie 概述</h2><blockquote>
+<p> <code>Cookie</code>（ 也叫 <code>Web Cookie</code> 或<code>浏览器  Cookie</code> ）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。</p>
+</blockquote>
+<p>存储 <code>Cookie</code> 是浏览器提供的功能。<code>Cookie</code>  其实是存储在浏览器中的纯文本，浏览器的安装目录下会专门有一个  <code>Cookie</code>  文件夹来存放各个域下设置的 <code>Cookie</code>（非内存 <code>Cookie</code>）。</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE.png" alt="Cookie存放的位置"></p>
+<p>通常，它用于==告知服务端两个请求是否来自同一浏览器==，或者用来==保存一些状态信息==，<code>Cookie</code>  使基于无状态的 <code>HTTP</code> 协议记录稳定的状态信息成为了可能。常用的有以下方面：</p>
+<ul>
+<li>对话（<code>session</code>）管理：保存登录、购物车等需要记录的信息。</li>
+<li>简单的缓存：存储一些简单的业务数据，比如购物车等需要记录的信息。</li>
+<li>个性化：保存用户的偏好，比如网页的字体大小、背景色等等。</li>
+<li>追踪：记录和分析用户行为。</li>
+</ul>
+<blockquote>
+<p><code>Cookie</code> 主要是用来存储状态的。</p>
+</blockquote>
+<p><code>Cookie</code> 曾一度用于客户端数据的存储，因当时并没有其它合适的存储办法而作为唯一的存储手段。现在来说，这样做虽然可行，但是并不推荐，因为 <code>Cookie</code> 的设计目标并不是这个，它:</p>
+<ul>
+<li>容量很小（ 4KB ）</li>
+<li>缺乏数据操作接口</li>
+<li>影响性能</li>
+</ul>
+<p>客户端储存应该更多的考虑使用 <code>localStorage</code> 、<code>sesseionStorage</code> 和 <code>IndexedDB</code>。</p>
+<p>查看浏览器上存储的 <code>Cookie</code> 的方法如下图：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%9F%A5%E7%9C%8BCookie%E7%9A%84%E6%AD%A5%E9%AA%A4%E5%92%8C%E6%96%B9%E6%B3%95.png" alt="查看Cookie的步骤和方法"></p>
+<p>当然，浏览器可以设置不接受 <code>Cookie</code>，也可以设置不向服务器发送 <code>Cookie</code>。<code>window.navigator.cookieEnabled</code>属性返回一个布尔值，表示浏览器是否打开 <code>Cookie</code> 功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器是否打开 Cookie 功能</span></span><br><span class="line"><span class="built_in">window</span>.navigator.cookieEnabled <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>本文所有的讨论都是在浏览器的 <code>window.navigator.cookieEnabled</code> 为 ==true== 的前提下进行的。</p>
+</blockquote>
+<h2 id="3-Cookie-的工作流程"><a href="#3-Cookie-的工作流程" class="headerlink" title="3. Cookie 的工作流程"></a>3. <code>Cookie</code> 的工作流程</h2><p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="Cookie的工作原理"></p>
+<h2 id="4-Cookie-的限制"><a href="#4-Cookie-的限制" class="headerlink" title="4. Cookie 的限制"></a>4. Cookie 的限制</h2><h3 id="4-1-格式限制"><a href="#4-1-格式限制" class="headerlink" title="4.1 格式限制"></a>4.1 格式限制</h3><p><code>Cookie</code> 只能存储纯文本格式，因为：</p>
+<ul>
+<li>每条 <code>Cookie</code> 的大小有限制</li>
+<li>为用户信息安全考虑，<code>Cookie</code> 中存储的是不可执行语句</li>
+</ul>
+<h3 id="4-2-大小和条数限制"><a href="#4-2-大小和条数限制" class="headerlink" title="4.2 大小和条数限制"></a>4.2 大小和条数限制</h3><p>由于 <code>Cookie</code> 是保存在客户端上的，所以浏览器加入了一些限制确保 <code>Cookie</code> 不会被恶意使用，同时不会占据太多磁盘空间，所以 <code>Cookie</code> 的数量和大小是有限的。</p>
+<p>不同浏览器对 <code>Cookie</code> 数量和大小的限制，是不一样的。一般来说，单个域设置的 <code>Cookie</code> 不应超过 ==50个==，每个 Cookie 的大小不能超过 ==4KB== 。超过限制以后，<code>Cookie</code> 将被==忽略==，不会被设置。</p>
+<blockquote>
+<p>其限制的原因，主要在于阻止 <code>Cookie</code> 的滥用，而且 <code>Cookie</code> 会被发送到服务器端，如果数量太大的话，会严重影响请求的性能。以上这两个限制条件，就是 <code>Cookie</code> 为什么会被浏览器自动删除的原因了。</p>
+</blockquote>
+<h3 id="4-3-域限制"><a href="#4-3-域限制" class="headerlink" title="4.3 域限制"></a>4.3 域限制</h3><p>不可跨域读取，<code>Cookie</code> 是被哪个域写入的，就只能被这个域及其子域读取。比如：</p>
+<p>由 <code>test.com</code> 写入的 <code>Cookie</code> 可以被 <code>test.com</code> 和 <code>test.com/child</code> 读取，而不能被 <code>example.com</code> 读取。</p>
+<h3 id="4-4-路径限制"><a href="#4-4-路径限制" class="headerlink" title="4.4 路径限制"></a>4.4 路径限制</h3><p>存储 <code>Cookie</code> 时会指定路径，该路径的子级可以读取该 <code>Cookie</code>，但是它的父级却读取不到——==子可以读取父，但父不能拿到子==，例如：</p>
+<p>由 <code>test.com/parent/child</code> 存储下的 <code>Cookie</code>，可以被 <code>test.com/parent/child/child</code> 读取，但不能被 <code>test.com/parent</code> 读取。</p>
+<blockquote>
+<p>一般会将 <code>Cookie</code> 存在根路径下，可以避免这种情况的发生。</p>
+</blockquote>
+<h3 id="4-5-时效限制"><a href="#4-5-时效限制" class="headerlink" title="4.5 时效限制"></a>4.5 时效限制</h3><p>每个 <code>Cookie</code> 都有时效性，默认的有效期是==会话级别==（ <code>Seesion Cookie</code> ）：就是当浏览器关闭，那么 <code>Cookie</code> 立即销毁，但是我们也可以在存储的时候手动设置  <code>Cookie</code> 的过期时间，具体设置方法会在下文讲到。</p>
+<h2 id="5-Cookie-的属性"><a href="#5-Cookie-的属性" class="headerlink" title="5.  Cookie 的属性"></a>5.  Cookie 的属性</h2><p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E7%9A%84%E5%B1%9E%E6%80%A7.png" alt="Cookie的属性"></p>
+<h3 id="5-1-Name-Value"><a href="#5-1-Name-Value" class="headerlink" title="5.1 Name/Value"></a>5.1 Name/Value</h3><p>设置 <code>Cookie</code> 的名称及相对应的值，对于认证 <code>Cookie</code>，<code>Value</code> 值包括 <code>Web</code> 服务器所提供的访问令牌 。</p>
+<h3 id="5-2-Domain"><a href="#5-2-Domain" class="headerlink" title="5.2 Domain"></a>5.2 Domain</h3><p>指定了可以访问该 <code>Cookie</code> 的 Web 站点或域。</p>
+<p><code>Cookie</code> 机制并未遵循严格的同源策略，允许一个子域可以设置或获取其父域的 <code>Cookie</code>。</p>
+<p>当需要实现单点登录方案时，<code>Cookie</code> 的上述特性非常有用，然而也增加了 <code>Cookie</code> 受攻击的危险，比如攻击者可以借此发动会话定置攻击。因而，浏览器禁止在 <code>Domain</code> 属性中设置 .org、.com 等通用顶级域名、以及在国家及地区顶级域下注册的二级域名，以减小攻击发生的范围。</p>
+<h3 id="5-3-Path"><a href="#5-3-Path" class="headerlink" title="5.3 Path"></a>5.3 Path</h3><p><code>Path</code> 标识指定了主机下的哪些路径可以接受 <code>Cookie</code>（该 URL 路径必须存在于请求 URL 中）。以字符 <code>%x2F (&quot;/&quot;)</code>  作为路径分隔符，子路径也会被匹配。</p>
+<h3 id="5-4-Expires-Max-Age"><a href="#5-4-Expires-Max-Age" class="headerlink" title="5.4 Expires/Max-Age"></a>5.4 Expires/Max-Age</h3><p>设置 <code>Cookie</code> 的生存期。有两种存储类型的 <code>Cookie</code> ：会话性与持久性。</p>
+<p><code>Expires</code> 属性指定一个具体的到期时间，到了这个指定的时间之后，浏览器就不再保留这个 <code>Cookie</code> ,它的值是 UTC 格式，可以使用 <code>Date.prototype.toUTCString()</code>  格式进行转换。</p>
+<p><code>Max-Age</code> 属性制定了从现在开始 <code>Cookie</code> 存在的秒数，比如 60 * 60 * 24 * 365（即一年）。过了这个时间以后，浏览器就不再保留这个 <code>Cookie</code></p>
+<blockquote>
+<p>如果没有设置这两个选项，则会使用默认值。 <code>domain</code> 的默认值为设置该 <code>Cookie</code> 的网页所在的域名， <code>path</code> 默认值为设置该 <code>Cookie</code> 的网页所在的目录。</p>
+</blockquote>
+<ul>
+<li><code>Expires</code> 属性缺省时，为会话性 <code>Cookie(Session Cookie)</code> ，仅保存在客户端内存中，并在用户关闭浏览器时失效。</li>
+<li>持久性 <code>Cookie</code> 会保存在用户的硬盘中，直至生存期到或用户直接在网页中单击“注销”等按钮结束会话时才会失效。</li>
+</ul>
+<blockquote>
+<p>当 <code>Cookie</code> 的过期时间被设定时，设定的日期和时间只与客户端相关，而不是服务端。</p>
+</blockquote>
+<h3 id="5-5-HTTPOnly"><a href="#5-5-HTTPOnly" class="headerlink" title="5.5 HTTPOnly"></a>5.5 HTTPOnly</h3><p>这个选项用来设置 <code>Cookie</code> 是否能通过 <code>JavaScript</code> 去访问。默认情况下， <code>Cookie</code> 不会带 <code>HTTPOnly</code> 选项(即为空)，所以默认情况下，客户端是可以通过 <code>JavaScript</code> 代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 的。当 <code>Cookie</code> 带 <code>HTTPOnly</code> 选项时，客户端则无法通过js代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 。</p>
+<p>用于防止客户端脚本通过 <code>document.cookie</code> 属性访问 <code>Cookie</code> ，有助于保护 <code>Cookie</code> 不被跨站脚本攻击窃取或篡改。但是，<code>HTTPOnly</code> 的应用仍存在局限性，一些浏览器可以阻止客户端脚本对 <code>Cookie</code> 的读操作，但允许写操作；此外大多数浏览器仍允许通过 <code>XMLHTTP</code> 对象读取 <code>HTTP</code> 响应中的 <code>Set-Cookie</code> 头  。</p>
+<blockquote>
+<p>在客户端是不能通过 <code>JAvaScript</code> 代码去设置一个 <code>httpOnly</code> 类型的 <code>Cookie</code> 的，这种类型的 <code>Cookie</code> 只能通过服务端来设置。</p>
+</blockquote>
+<h3 id="5-6-Secure"><a href="#5-6-Secure" class="headerlink" title="5.6 Secure"></a>5.6 Secure</h3><p>指定是否使用 <code>HTTPS</code> 安全协议发送 <code>Cookie</code> 。</p>
+<p>使用 <code>HTTPS</code> 安全协议，可以保护 <code>Cookie</code> 在浏览器和 <code>Web</code> 服务器间的传输过程中不被窃取和篡改。该方法也可用于 <code>Web</code> 站点的身份鉴别，即在 <code>HTTPS</code> 的连接建立阶段，浏览器会检查 <code>Web</code> 网站的 <code>SSL</code> 证书的有效性。</p>
+<p>但是基于兼容性的原因（比如有些网站使用自签署的证书）在检测到 <code>SSL</code> 证书无效时，浏览器并不会立即终止用户的连接请求，而是显示安全风险信息，用户仍可以选择继续访问该站点。由于许多用户缺乏安全意识，因而仍可能连接到 <code>Pharming</code> 攻击所伪造的网站 。</p>
+<blockquote>
+<p>如果当前协议是 HTTP，浏览器会自动忽略服务器发来的 Secure。</p>
+</blockquote>
+<h3 id="5-7-SameSite"><a href="#5-7-SameSite" class="headerlink" title="5.7 SameSite"></a>5.7 SameSite</h3><p><code>Cookie</code> 允许服务器要求某个 <code>Cookie</code> 在跨站请求时不会被发送，（其中 <code>Site</code> 由可注册域定义），从而可以阻止跨站请求伪造攻击（<code>CSRF</code>）。</p>
+<p><code>SameSite cookies</code> 是相对较新的一个字段，所有主流浏览器都已经得到支持。下面是例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: key=value; SameSite=Strict</span><br></pre></td></tr></table></figure>
+
+<p><code>SameSite</code> 可以有下面三种值：</p>
+<ul>
+<li><strong><code>None</code></strong>。浏览器会在同站请求、跨站请求下继续发送 <code>Cookies</code>，不区分大小写。</li>
+<li><strong><code>Strict</code>。</strong>浏览器将只在访问相同站点时发送 <code>Cookie</code>。（在原有 <code>Cookies</code> 的限制条件上的加强）。</li>
+<li><strong><code>Lax</code>。</strong>与 <strong><code>Strict</code></strong> 类似，但用户从外部站点导航至URL时（例如通过链接）除外。 在新版本浏览器中，为默认选项，<code>Same-site cookies</code> 将会为一些跨站子请求保留，如图片加载或者 <code>frames</code> 的调用，但只有当用户从外部站点导航到 <code>URL</code> 时才会发送。如 link 链接。</li>
+</ul>
+<blockquote>
+<p>以前，如果 <code>SameSite</code> 属性没有设置，或者没有得到运行浏览器的支持，那么它的行为等同于 <code>None</code>，<code>Cookies</code> 会被包含在任何请求中——包括跨站请求。</p>
+<p>大多数主流浏览器正在将 <code>SameSite</code> 的默认值迁移至 <code>Lax</code>。如果想要指定 <code>Cookies</code> 在同站、跨站请求都被发送，现在需要明确指定 <code>SameSite</code>  为 <code>None</code>。</p>
+</blockquote>
+<h3 id="5-8-Cookie-prefixes"><a href="#5-8-Cookie-prefixes" class="headerlink" title="5.8 Cookie prefixes"></a>5.8 Cookie prefixes</h3><p><code>Cookie</code> 机制的使得服务器无法确认  <code>Cookie</code>  是在安全来源上设置的，甚至无法确定   <code>Cookie</code>   最初是在哪里设置的。</p>
+<p>子域上的易受攻击的应用程序可以使用 <code>Domain</code> 属性设置  <code>Cookie</code>  ，从而可以访问所有其他子域上的该   <code>Cookie</code>  。会话定置攻击中可能会滥用此机制。</p>
+<p>但是，作为 <code>深度防御措施</code>，可以使用 <code>Cookie</code> 前缀来断言有关  <code>Cookie</code>  的特定事实。有两个前缀可用：</p>
+<ul>
+<li><p><strong><code>__Host-</code></strong></p>
+<p>  如果    <code>Cookie</code>  名称具有此前缀，则仅当它也用 <code>Secure</code> 属性标记，是从安全来源发送的，不包括 <code>Domain</code> 属性，并将 <code>Path</code> 属性设置为 <code>/</code> 时，它才在 <code>Set-Cookie</code> 标头中接受。这样，这些 <code>Cookie</code> 可以被视为 “<code>domain-locked</code>”。</p>
+</li>
+<li><p><strong><code>__Secure-</code></strong></p>
+<p>  如果 <code>Cookie</code> 名称具有此前缀，则仅当它也用 <code>Secure</code> 属性标记，是从安全来源发送的，它才在 <code>Set-Cookie</code> 标头中接受。该前缀限制要弱于 <code>__Host-</code> 前缀。</p>
+</li>
+</ul>
+<p>带有这些前缀点 <code>Cookie</code>， 如果不符合其限制的会被浏览器拒绝。请注意，这确保了如果子域要创建带有前缀的  <code>Cookie</code>，那么它将要么局限于该子域，要么被完全忽略。由于应用服务器仅在确定用户是否已通过身份验证或 CSRF 令牌正确时才检查特定的  <code>Cookie</code>  名称，因此，这有效地充当了针对会话劫持的防御措施。</p>
+<p><code>Cookie</code> 各个属性的兼容性如下图所示：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E5%B1%9E%E6%80%A7%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.png" alt="Cookie属性的兼容性"></p>
+<h2 id="6-HTTP-Cookie-和-document-cookie"><a href="#6-HTTP-Cookie-和-document-cookie" class="headerlink" title="6. HTTP Cookie 和 document.cookie"></a>6. HTTP Cookie 和 document.cookie</h2><h3 id="6-1-HTTP-Cookie"><a href="#6-1-HTTP-Cookie" class="headerlink" title="6.1 HTTP Cookie"></a>6.1 HTTP Cookie</h3><p>服务器如果希望在浏览器保存 <code>Cookie</code>，就要在 <code>HTTP</code> 回应的头信息里面，放置一个<code>Set-Cookie</code>字段。</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/HTTP%E8%AE%BE%E7%BD%AECookie.png" alt="HTTP设置Cookie"></p>
+<p>浏览器收到响应后通常会保存下 <code>Cookie</code>，之后对该服务器每一次请求中都通过  <code>Cookie</code> 请求头部将 <code>Cookie</code> 信息发送给服务器。另外，<code>Cookie</code> 的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。</p>
+<p><code>HTTP</code> 回应可以包含多个 <code>Set-Cookie</code> 字段，即在浏览器生成多个 <code>Cookie</code>。下面是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.0</span> <span class="number">200</span> OK</span><br><span class="line">Content-type: text/html</span><br><span class="line"><span class="built_in">Set</span>-Cookie: yummy_cookie=choco</span><br><span class="line"><span class="built_in">Set</span>-Cookie: tasty_cookie=strawberry</span><br><span class="line"></span><br><span class="line">[page content]</span><br></pre></td></tr></table></figure>
+
+<p>除了 <code>Cookie</code> 的值，<code>Set-Cookie</code>字段还可以附加 <code>Cookie</code> 的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Expires=&lt;date&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Max-Age=&lt;non-zero-digit&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Domain=&lt;domain-value&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Path=&lt;path-value&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Secure</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; HttpOnly</span><br></pre></td></tr></table></figure>
+
+<p>一个 <code>Set-Cookie</code> 字段里面，可以同时包括多个属性，没有次序的要求。</p>
+<blockquote>
+<p>如果服务器想改变一个早先设置的 <code>Cookie</code>，必须同时满足四个条件：<code>Cookie</code> 的 <code>key</code>、<code>domain</code>、<code>path</code> 和 <code>secure</code> 都匹配。否则，会创建一个新的 <code>Cookie</code>。</p>
+</blockquote>
+<p>浏览器接收了响应头提供的 <code>Cookie</code> 之后，每一次访问该域时，都会携带该 <code>Cookie</code> 值：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E6%90%BA%E5%B8%A6Cookie.png" alt="HTTP的请求头中携带Cookie"></p>
+<p><code>Cookie</code> 字段可以包含多个 Cookie，使用分号（<code>;</code>）分隔。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /sample_page.html HTTP/<span class="number">1.1</span></span><br><span class="line">Host: www.example.org</span><br><span class="line">Cookie: yummy_cookie=choco; tasty_cookie=strawberry</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-document-cookie"><a href="#6-2-document-cookie" class="headerlink" title="6.2 document.cookie"></a>6.2 document.cookie</h3><p>通过 <code>document.cookie</code> 属性可创建新的 <code>Cookie</code>，也可通过该属性访问==非 HttpOnly== 标记的 <code>Cookie</code>。</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Document%E8%8E%B7%E5%8F%96Cookie.png" alt="Document获取Cookie"></p>
+<p>上图从 <code>document.cookie</code> 一次性读出多个 <code>Cookie</code>，它们之间使用分号分隔。必须手动还原，才能取出每一个 <code>Cookie</code> 的值。</p>
+<p>写入的时候，<code>Cookie</code> 的值必须写成 <code>key=value</code> 的形式。注意，等号两边不能有空格。另外，写入 <code>Cookie</code> 的时候，必须对分号、逗号和空格进行转义（它们都不允许作为 <code>Cookie</code> 的值），这可以用 <code>encodeURIComponent</code> 方法达到。比如，我们要存储一个对象到 <code>Cookie</code>中，可以通过下面代码实现：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/document.cookie%E8%AE%BE%E7%BD%AE.png" alt="document.cookie设置"></p>
+<p>设置完成后，在浏览器查看：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E6%9F%A5%E7%9C%8B%E8%AE%BE%E7%BD%AE%E7%9A%84Cookie.png" alt="查看设置的Cookie"></p>
+<p>那要怎么才能读取到这次设置的 <code>Cookie</code> 呢？方法如下：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie_people.png" alt="读取设置的cookie_people"></p>
+<p>读取到的结果如下：</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie.png" alt="读取设置的cookie"></p>
+<blockquote>
+<p><code>document.cookie</code> 一次只能写入一个 <code>Cookie</code>，而且写入并不是覆盖，而是添加。</p>
+</blockquote>
+<h2 id="7-Cookie-的安全隐患"><a href="#7-Cookie-的安全隐患" class="headerlink" title="7. Cookie 的安全隐患"></a>7. Cookie 的安全隐患</h2><blockquote>
+<p>信息被存在 <code>Cookie</code> 中时，需要明白 <code>Cookie</code> 的值时可以被访问，且可以被终端用户所修改的。根据应用程序的不同，可能需要使用服务器查找的不透明标识符，或者研究诸如 <code>JSON Web Tokens</code> 之类的替代身份验证/机密机制。</p>
+<p>当机器处于不安全环境时，切记<em>不能</em>通过 <code>HTTP Cookie</code> 存储、传输敏感信息。</p>
+</blockquote>
+<h3 id="7-1-Cookie-捕获-重放"><a href="#7-1-Cookie-捕获-重放" class="headerlink" title="7.1 Cookie 捕获/重放"></a>7.1 Cookie 捕获/重放</h3><p>攻击者可以通过木马等恶意程序，或使用跨站脚本攻击等手段偷窃存放在用户硬盘或内存中的 <code>Cookie</code>。借助网络攻击手段，包括：</p>
+<ul>
+<li>在不安全的局域网中被动地监听网络通信；</li>
+<li>通过攻击网络用户的路由器，或通过搭建恶意的无线路由器等手法，控制路由基础设施，将网络流量重定向到攻击者控制的主机；</li>
+<li>发动 <code>DNSPharming</code> (域欺骗)攻击，通过 <code>DNS 缓存中毒</code>、<code>DNS 应答欺骗</code>、或修改用户端的本地域名解析文件等方法攻击 <code>DNS</code> 系统，导致用户对合法网站的访问请求被重定向到恶意网站等等，同样可能窃取 <code>Cookie</code>。</li>
+</ul>
+<p>对于捕获到的认证 <code>Cookie</code>，攻击者往往会猜测其中的访问令牌，试图获取会话ID、用户名与口令、用户角色、时间戳等敏感信息；或者直接重放该 <code>Cookie</code>，假冒受害者的身份发动攻击  。</p>
+<h3 id="7-2-恶意-Cookies"><a href="#7-2-恶意-Cookies" class="headerlink" title="7.2 恶意 Cookies"></a>7.2 恶意 Cookies</h3><p><code>Cookies</code> 是文本文件， 一般情况下认为它不会造成安全威胁。 但是，如果在 <code>Cookies</code> 中通过特殊标记语言，引入可执行代码，就很可能给用户造成严重的安全隐患。<code>HTML</code> 为区别普通文本和标记语言，用符号 <code>“&lt;&gt;”</code> 来指示 <code>HTML</code> 代码。 这些 <code>HTML</code> 代码或者定义 <code>Web</code> 网页格式，或者引入 <code>Web</code> 浏览器可执行代码段。 <code>Web</code> 服务 器可以使用 <code>Cookies</code> 信息创建动态网页。假使 <code>Cookies</code> 包含可执行恶意代码段，那么在显示合成有该 <code>Cookies</code> 的网页时，就会自动执行这段恶意代码。当然，恶意代码能否真正造成危害，还取决于 <code>Web</code> 站点的安全配置策略 。</p>
+<h3 id="7-3-会话定置"><a href="#7-3-会话定置" class="headerlink" title="7.3 会话定置"></a>7.3 会话定置</h3><p>会话定置(<code>Session Fixation</code>)攻击是指，攻击者向受害者主机注入自己控制的认证 <code>Cookie</code> 等信息，使得受害者以攻击者的身份登录网站，从而窃取受害者的会话信息。</p>
+<p>注入 <code>Cookie</code> 的方法包括：</p>
+<ul>
+<li>使用跨站脚本或木马等恶意程序；</li>
+<li>或伪造与合法网站同域的站点，并利用各种方法欺骗用户访问该仿冒网站，从而通过HTTP响应中的Set-Cookie头将攻击者拥有的该域Cookie发送给用户等。</li>
+</ul>
+<h3 id="7-4-CSRF-攻击"><a href="#7-4-CSRF-攻击" class="headerlink" title="7.4 CSRF 攻击"></a>7.4 CSRF 攻击</h3><p>跨站请求伪造（<code>Cross-Site Request Forgery</code>，简称<code>CSRF</code>）是指：</p>
+<p>攻击者可能利用网页中的恶意代码强迫受害者浏览器向被攻击的 <code>Web</code> 站点发送伪造的请求，篡夺受害者的认证 <code>Cookie</code> 等身份信息，从而假冒受害者对目标站点执行指定的操作。</p>
+<p>Firefox、Opera 等浏览器使用单进程机制，多个窗口或标签使用同一个进程，共享 <code>Cookie</code> 等会话数据。IE 则混合使用单进程与多进程模式，一个窗口中的多个标签，以及使用 “CTRL+N”  或单击网页中的链接打开的新窗口使用同一进程，共享会话数据；只有直接运行IE可执行程序打开窗口时，才会创建新的进程。Chrome 虽然使用多进程机制，然而经测试发现，其不同的窗口或标签之间仍会共享会话数据，除非使用隐身访问方式。</p>
+<p>因而，用户同时打开多个浏览器窗口或标签访问互联网资源时，就为 <code>CSRF</code> 攻击篡夺用户的会话 <code>Cookie</code> 创造了条件。另外，如果一个Web 站点提供持久化 <code>Cookie</code>，则 <code>CSRF</code> 攻击将更直接、更容易。</p>
+<blockquote>
+<p>缓解 Cookie 攻击的方法如下：</p>
+<ul>
+<li>对用户输入进行过滤来阻止 XSS；</li>
+<li>任何敏感操作都需要确认；</li>
+<li>用于敏感信息的 Cookie 只能拥有较短的生命周期；</li>
+</ul>
+</blockquote>
+<h2 id="8-安全使用-Cookie"><a href="#8-安全使用-Cookie" class="headerlink" title="8. 安全使用 Cookie"></a>8. 安全使用 Cookie</h2><p>有两种方法可以确保 <code>Cookie</code> 被安全发送，并且不会被意外的参与者或脚本访问：<code>Secure</code> 属性和 <code>HttpOnly</code> 属性。</p>
+<p>标记为 <code>Secure</code> 的 <code>Cookie</code> 只应通过被 <code>HTTPS</code> 协议加密过的请求发送给服务端，因此可以预防 <code>man-in-the-middle</code> 攻击者的攻击。但即便设置了 <code>Secure</code> 标记，敏感信息也不应该通过 <code>Cookie</code> 传输，因为 <code>Cookie</code> 有其固有的不安全性，<code>Secure</code> 标记也无法提供确实的安全保障, 例如，可以访问客户端硬盘的人可以读取它。</p>
+<p><code>JavaScript Document.cookie API</code> 无法访问带有 <code>HttpOnly</code> 属性的 <code>Cookie</code>；此类 <code>Cookie</code> 仅作用于服务器。例如，例如，持久化服务器端会话的 <code>Cookie</code> 不需要对 <code>JavaScript</code> 可用，而应具有 <code>HttpOnly</code> 属性。此预防措施有助于缓解跨站点脚本（<code>XSS</code>）攻击。</p>
+<h2 id="9-Cookie-的替代方案"><a href="#9-Cookie-的替代方案" class="headerlink" title="9. Cookie 的替代方案"></a>9. Cookie 的替代方案</h2><p>由于 <code>Cookie</code>  在使用上存在较多限制，近年来，随着技术的发展成熟，出现了几种可替代 <code>Cookie</code> 的方案，且已被大多数主流浏览器支持。</p>
+<p><img src="/Users/wangzhijie/Public/%E5%B7%A5%E4%BD%9C/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/Cookie%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/images/Cookie%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88.png" alt="Cookie的替代方案"></p>
+<ul>
+<li><strong>Web Storage、window.localStorage</strong> </li>
+</ul>
+<p>在浏览器中存储数据的另一种方法是 ==Web Storage API==。<code>window.sessionStorage</code> 和 <code>window.localStorage</code> 属性与持续时间中的会话和永久 <code>Cookie</code> 相对应，但是存储限制比 <code>Cookie</code>大，并且永远不会发送到服务器。</p>
+<ul>
+<li><strong>IndexedDB</strong></li>
+</ul>
+<p>可以使用 <code>IndexedDB API</code> 或基于它构建的库来存储更多结构化的数据。</p>
+<ul>
+<li><strong>Web SQL</strong></li>
+</ul>
+<p><code>Web SQL</code> 是一种利用数据库进行数据存储并利用 SQL 处理检索任务的 API。</p>
+<blockquote>
+<p>欢迎大家来到我的「山头」，我是「前端三昧」的作者 <em>隐逸王</em>  ——  一个想要做山大王的男人！</p>
+<p>愿和你一起领略前端三昧，发现前端之美！</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/yinyiwang/tags/Cookie/" rel="tag"># Cookie</a>
+              <a href="/yinyiwang/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/yinyiwang/2020/05/30/1/" rel="prev" title="1">
+      <i class="fa fa-chevron-left"></i> 1
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Cookie-产生的背景"><span class="nav-number">1.</span> <span class="nav-text">1. Cookie 产生的背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Cookie-概述"><span class="nav-number">2.</span> <span class="nav-text">2. Cookie 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Cookie-的工作流程"><span class="nav-number">3.</span> <span class="nav-text">3. Cookie 的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Cookie-的限制"><span class="nav-number">4.</span> <span class="nav-text">4. Cookie 的限制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-格式限制"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 格式限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-大小和条数限制"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 大小和条数限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-域限制"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 域限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-路径限制"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 路径限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-时效限制"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 时效限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Cookie-的属性"><span class="nav-number">5.</span> <span class="nav-text">5.  Cookie 的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Name-Value"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Name&#x2F;Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Domain"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Path"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Expires-Max-Age"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Expires&#x2F;Max-Age</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-HTTPOnly"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 HTTPOnly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-Secure"><span class="nav-number">5.6.</span> <span class="nav-text">5.6 Secure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-SameSite"><span class="nav-number">5.7.</span> <span class="nav-text">5.7 SameSite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-Cookie-prefixes"><span class="nav-number">5.8.</span> <span class="nav-text">5.8 Cookie prefixes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-HTTP-Cookie-和-document-cookie"><span class="nav-number">6.</span> <span class="nav-text">6. HTTP Cookie 和 document.cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-HTTP-Cookie"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 HTTP Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-document-cookie"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 document.cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Cookie-的安全隐患"><span class="nav-number">7.</span> <span class="nav-text">7. Cookie 的安全隐患</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-Cookie-捕获-重放"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 Cookie 捕获&#x2F;重放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-恶意-Cookies"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 恶意 Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-会话定置"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 会话定置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-CSRF-攻击"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 CSRF 攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-安全使用-Cookie"><span class="nav-number">8.</span> <span class="nav-text">8. 安全使用 Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Cookie-的替代方案"><span class="nav-number">9.</span> <span class="nav-text">9. Cookie 的替代方案</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yinyiwang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/yinyiwang/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/yinyiwang/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/yinyiwang/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yinyiwang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yinyiwang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/63445e24e8bf" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;63445e24e8bf" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>简书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5a371ae551882512d0607108" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5a371ae551882512d0607108" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>掘金</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yinyiwang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共22.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.5" zIndex="2" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+  <script src="/yinyiwang/lib/anime.min.js"></script>
+  <script src="/yinyiwang/lib/velocity/velocity.min.js"></script>
+  <script src="/yinyiwang/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/yinyiwang/js/utils.js"></script>
+
+<script src="/yinyiwang/js/motion.js"></script>
+
+
+<script src="/yinyiwang/js/schemes/pisces.js"></script>
+
+
+<script src="/yinyiwang/js/next-boot.js"></script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/yinyiwang/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+<div id="needsharebutton-float">
+      <span class="btn">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </span>
+    </div>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+      flOptions = {};
+        flOptions.iconStyle = "box";
+        flOptions.boxForm = "vertical";
+        flOptions.position = "middleRight";
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
+      new needShareButton('#needsharebutton-float', flOptions);
+  </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0dafc87fa9a1c9ac348d',
+      clientSecret: '3fa722fe21fa90a79306e64d3993aee995b60f3b',
+      repo        : 'gitalk',
+      owner       : 'yinyiwang',
+      admin       : ['yinyiwang'],
+      id          : '20782fb8ad37f83bd18e6a4f7ff3f748',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
