@@ -708,11 +708,11 @@ module.exports = function (app) {
   <entry>
     <title>最全面的Cookie知识点总结</title>
     <url>/yinyiwang/2020/09/25/%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Cookie%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p><img src="/yinyiwang/images/20200927/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="文章架构图"></p>
+    <content><![CDATA[<p><img src="images/20200927/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="文章架构图"></p>
 <blockquote>
 <p>完整阅读本文大约需要二十分钟时间，可根据文章结构图直接阅读自己需要的部分。</p>
 </blockquote>
-<h2 id="1-Cookie-产生的背景"><a href="#1-Cookie-产生的背景" class="headerlink" title="1. Cookie 产生的背景"></a>1. Cookie 产生的背景</h2><blockquote>
+<h2 id="Cookie-产生的背景"><a href="#Cookie-产生的背景" class="headerlink" title="Cookie 产生的背景"></a>Cookie 产生的背景</h2><blockquote>
 <p>所有新技术的出现都是为了解决某一痛点。 ——《前端三昧》</p>
 </blockquote>
 <p>我们都知道，<code>HTTP 协议</code>是==无状态的==，服务器无法知道两个请求是否来自同一个浏览器，也不知道用户上一次做了什么，每次请求都是完全相互独立，这严重阻碍了<code>交互式 Web</code> 应用程序的实现。例子：</p>
@@ -721,11 +721,11 @@ module.exports = function (app) {
 <li>登录状态：我们常用的“记住密码”功能，在以前如果不是用 <code>Cookie</code> 记住了登录凭据，想要实现该功能将会很复杂。</li>
 </ul>
 <p>正是为了解决这些交互方面存在的痛点，<code>Cookie</code> 应运而生。</p>
-<h2 id="2-Cookie-概述"><a href="#2-Cookie-概述" class="headerlink" title="2. Cookie 概述"></a>2. Cookie 概述</h2><blockquote>
+<h2 id="Cookie-概述"><a href="#Cookie-概述" class="headerlink" title="Cookie 概述"></a>Cookie 概述</h2><blockquote>
 <p> <code>Cookie</code>（ 也叫 <code>Web Cookie</code> 或<code>浏览器  Cookie</code> ）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。</p>
 </blockquote>
 <p>存储 <code>Cookie</code> 是浏览器提供的功能。<code>Cookie</code>  其实是存储在浏览器中的纯文本，浏览器的安装目录下会专门有一个  <code>Cookie</code>  文件夹来存放各个域下设置的 <code>Cookie</code>（非内存 <code>Cookie</code>）。</p>
-<p><img src="/yinyiwang/images/20200927/Cookie%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE.png" alt="Cookie存放的位置"></p>
+<p><img src="images/20200927/Cookie%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE.png" alt="Cookie存放的位置"></p>
 <p>通常，它用于==告知服务端两个请求是否来自同一浏览器==，或者用来==保存一些状态信息==，<code>Cookie</code>  使基于无状态的 <code>HTTP</code> 协议记录稳定的状态信息成为了可能。常用的有以下方面：</p>
 <ul>
 <li>对话（<code>session</code>）管理：保存登录、购物车等需要记录的信息。</li>
@@ -751,32 +751,32 @@ module.exports = function (app) {
 <blockquote>
 <p>本文所有的讨论都是在浏览器的 <code>window.navigator.cookieEnabled</code> 为 ==true== 的前提下进行的。</p>
 </blockquote>
-<h2 id="3-Cookie-的工作流程"><a href="#3-Cookie-的工作流程" class="headerlink" title="3. Cookie 的工作流程"></a>3. <code>Cookie</code> 的工作流程</h2><p><img src="/yinyiwang/images/20200927/Cookie%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="Cookie的工作原理"></p>
-<h2 id="4-Cookie-的限制"><a href="#4-Cookie-的限制" class="headerlink" title="4. Cookie 的限制"></a>4. Cookie 的限制</h2><h3 id="4-1-格式限制"><a href="#4-1-格式限制" class="headerlink" title="4.1 格式限制"></a>4.1 格式限制</h3><p><code>Cookie</code> 只能存储纯文本格式，因为：</p>
+<h2 id="Cookie-的工作流程"><a href="#Cookie-的工作流程" class="headerlink" title="Cookie 的工作流程"></a>Cookie 的工作流程</h2><p><img src="/yinyiwang/images/20200927/Cookie%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="Cookie的工作原理"></p>
+<h2 id="Cookie-的限制"><a href="#Cookie-的限制" class="headerlink" title="Cookie 的限制"></a>Cookie 的限制</h2><h3 id="格式限制"><a href="#格式限制" class="headerlink" title="格式限制"></a>格式限制</h3><p><code>Cookie</code> 只能存储纯文本格式，因为：</p>
 <ul>
 <li>每条 <code>Cookie</code> 的大小有限制</li>
 <li>为用户信息安全考虑，<code>Cookie</code> 中存储的是不可执行语句</li>
 </ul>
-<h3 id="4-2-大小和条数限制"><a href="#4-2-大小和条数限制" class="headerlink" title="4.2 大小和条数限制"></a>4.2 大小和条数限制</h3><p>由于 <code>Cookie</code> 是保存在客户端上的，所以浏览器加入了一些限制确保 <code>Cookie</code> 不会被恶意使用，同时不会占据太多磁盘空间，所以 <code>Cookie</code> 的数量和大小是有限的。</p>
+<h3 id="大小和条数限制"><a href="#大小和条数限制" class="headerlink" title="大小和条数限制"></a>大小和条数限制</h3><p>由于 <code>Cookie</code> 是保存在客户端上的，所以浏览器加入了一些限制确保 <code>Cookie</code> 不会被恶意使用，同时不会占据太多磁盘空间，所以 <code>Cookie</code> 的数量和大小是有限的。</p>
 <p>不同浏览器对 <code>Cookie</code> 数量和大小的限制，是不一样的。一般来说，单个域设置的 <code>Cookie</code> 不应超过 ==50个==，每个 Cookie 的大小不能超过 ==4KB== 。超过限制以后，<code>Cookie</code> 将被==忽略==，不会被设置。</p>
 <blockquote>
 <p>其限制的原因，主要在于阻止 <code>Cookie</code> 的滥用，而且 <code>Cookie</code> 会被发送到服务器端，如果数量太大的话，会严重影响请求的性能。以上这两个限制条件，就是 <code>Cookie</code> 为什么会被浏览器自动删除的原因了。</p>
 </blockquote>
-<h3 id="4-3-域限制"><a href="#4-3-域限制" class="headerlink" title="4.3 域限制"></a>4.3 域限制</h3><p>不可跨域读取，<code>Cookie</code> 是被哪个域写入的，就只能被这个域及其子域读取。比如：</p>
+<h3 id="域限制"><a href="#域限制" class="headerlink" title="域限制"></a>域限制</h3><p>不可跨域读取，<code>Cookie</code> 是被哪个域写入的，就只能被这个域及其子域读取。比如：</p>
 <p>由 <code>test.com</code> 写入的 <code>Cookie</code> 可以被 <code>test.com</code> 和 <code>test.com/child</code> 读取，而不能被 <code>example.com</code> 读取。</p>
-<h3 id="4-4-路径限制"><a href="#4-4-路径限制" class="headerlink" title="4.4 路径限制"></a>4.4 路径限制</h3><p>存储 <code>Cookie</code> 时会指定路径，该路径的子级可以读取该 <code>Cookie</code>，但是它的父级却读取不到——==子可以读取父，但父不能拿到子==，例如：</p>
+<h3 id="路径限制"><a href="#路径限制" class="headerlink" title="路径限制"></a>路径限制</h3><p>存储 <code>Cookie</code> 时会指定路径，该路径的子级可以读取该 <code>Cookie</code>，但是它的父级却读取不到——==子可以读取父，但父不能拿到子==，例如：</p>
 <p>由 <code>test.com/parent/child</code> 存储下的 <code>Cookie</code>，可以被 <code>test.com/parent/child/child</code> 读取，但不能被 <code>test.com/parent</code> 读取。</p>
 <blockquote>
 <p>一般会将 <code>Cookie</code> 存在根路径下，可以避免这种情况的发生。</p>
 </blockquote>
-<h3 id="4-5-时效限制"><a href="#4-5-时效限制" class="headerlink" title="4.5 时效限制"></a>4.5 时效限制</h3><p>每个 <code>Cookie</code> 都有时效性，默认的有效期是==会话级别==（ <code>Seesion Cookie</code> ）：就是当浏览器关闭，那么 <code>Cookie</code> 立即销毁，但是我们也可以在存储的时候手动设置  <code>Cookie</code> 的过期时间，具体设置方法会在下文讲到。</p>
-<h2 id="5-Cookie-的属性"><a href="#5-Cookie-的属性" class="headerlink" title="5.  Cookie 的属性"></a>5.  Cookie 的属性</h2><p><img src="/yinyiwang/images/20200927/Cookie%E7%9A%84%E5%B1%9E%E6%80%A7.png" alt="Cookie的属性"></p>
-<h3 id="5-1-Name-Value"><a href="#5-1-Name-Value" class="headerlink" title="5.1 Name/Value"></a>5.1 Name/Value</h3><p>设置 <code>Cookie</code> 的名称及相对应的值，对于认证 <code>Cookie</code>，<code>Value</code> 值包括 <code>Web</code> 服务器所提供的访问令牌 。</p>
-<h3 id="5-2-Domain"><a href="#5-2-Domain" class="headerlink" title="5.2 Domain"></a>5.2 Domain</h3><p>指定了可以访问该 <code>Cookie</code> 的 Web 站点或域。</p>
+<h3 id="时效限制"><a href="#时效限制" class="headerlink" title="时效限制"></a>时效限制</h3><p>每个 <code>Cookie</code> 都有时效性，默认的有效期是==会话级别==（ <code>Seesion Cookie</code> ）：就是当浏览器关闭，那么 <code>Cookie</code> 立即销毁，但是我们也可以在存储的时候手动设置  <code>Cookie</code> 的过期时间，具体设置方法会在下文讲到。</p>
+<h2 id="Cookie-的属性"><a href="#Cookie-的属性" class="headerlink" title="Cookie 的属性"></a>Cookie 的属性</h2><p><img src="/yinyiwang/images/20200927/Cookie%E7%9A%84%E5%B1%9E%E6%80%A7.png" alt="Cookie的属性"></p>
+<h3 id="Name-Value"><a href="#Name-Value" class="headerlink" title="Name/Value"></a>Name/Value</h3><p>设置 <code>Cookie</code> 的名称及相对应的值，对于认证 <code>Cookie</code>，<code>Value</code> 值包括 <code>Web</code> 服务器所提供的访问令牌 。</p>
+<h3 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h3><p>指定了可以访问该 <code>Cookie</code> 的 Web 站点或域。</p>
 <p><code>Cookie</code> 机制并未遵循严格的同源策略，允许一个子域可以设置或获取其父域的 <code>Cookie</code>。</p>
 <p>当需要实现单点登录方案时，<code>Cookie</code> 的上述特性非常有用，然而也增加了 <code>Cookie</code> 受攻击的危险，比如攻击者可以借此发动会话定置攻击。因而，浏览器禁止在 <code>Domain</code> 属性中设置 .org、.com 等通用顶级域名、以及在国家及地区顶级域下注册的二级域名，以减小攻击发生的范围。</p>
-<h3 id="5-3-Path"><a href="#5-3-Path" class="headerlink" title="5.3 Path"></a>5.3 Path</h3><p><code>Path</code> 标识指定了主机下的哪些路径可以接受 <code>Cookie</code>（该 URL 路径必须存在于请求 URL 中）。以字符 <code>%x2F (&quot;/&quot;)</code>  作为路径分隔符，子路径也会被匹配。</p>
-<h3 id="5-4-Expires-Max-Age"><a href="#5-4-Expires-Max-Age" class="headerlink" title="5.4 Expires/Max-Age"></a>5.4 Expires/Max-Age</h3><p>设置 <code>Cookie</code> 的生存期。有两种存储类型的 <code>Cookie</code> ：会话性与持久性。</p>
+<h3 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h3><p><code>Path</code> 标识指定了主机下的哪些路径可以接受 <code>Cookie</code>（该 URL 路径必须存在于请求 URL 中）。以字符 <code>%x2F (&quot;/&quot;)</code>  作为路径分隔符，子路径也会被匹配。</p>
+<h3 id="Expires-Max-Age"><a href="#Expires-Max-Age" class="headerlink" title="Expires/Max-Age"></a>Expires/Max-Age</h3><p>设置 <code>Cookie</code> 的生存期。有两种存储类型的 <code>Cookie</code> ：会话性与持久性。</p>
 <p><code>Expires</code> 属性指定一个具体的到期时间，到了这个指定的时间之后，浏览器就不再保留这个 <code>Cookie</code> ,它的值是 UTC 格式，可以使用 <code>Date.prototype.toUTCString()</code>  格式进行转换。</p>
 <p><code>Max-Age</code> 属性制定了从现在开始 <code>Cookie</code> 存在的秒数，比如 60 * 60 * 24 * 365（即一年）。过了这个时间以后，浏览器就不再保留这个 <code>Cookie</code></p>
 <blockquote>
@@ -789,18 +789,18 @@ module.exports = function (app) {
 <blockquote>
 <p>当 <code>Cookie</code> 的过期时间被设定时，设定的日期和时间只与客户端相关，而不是服务端。</p>
 </blockquote>
-<h3 id="5-5-HTTPOnly"><a href="#5-5-HTTPOnly" class="headerlink" title="5.5 HTTPOnly"></a>5.5 HTTPOnly</h3><p>这个选项用来设置 <code>Cookie</code> 是否能通过 <code>JavaScript</code> 去访问。默认情况下， <code>Cookie</code> 不会带 <code>HTTPOnly</code> 选项(即为空)，所以默认情况下，客户端是可以通过 <code>JavaScript</code> 代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 的。当 <code>Cookie</code> 带 <code>HTTPOnly</code> 选项时，客户端则无法通过js代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 。</p>
+<h3 id="HTTPOnly"><a href="#HTTPOnly" class="headerlink" title="HTTPOnly"></a>HTTPOnly</h3><p>这个选项用来设置 <code>Cookie</code> 是否能通过 <code>JavaScript</code> 去访问。默认情况下， <code>Cookie</code> 不会带 <code>HTTPOnly</code> 选项(即为空)，所以默认情况下，客户端是可以通过 <code>JavaScript</code> 代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 的。当 <code>Cookie</code> 带 <code>HTTPOnly</code> 选项时，客户端则无法通过js代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 。</p>
 <p>用于防止客户端脚本通过 <code>document.cookie</code> 属性访问 <code>Cookie</code> ，有助于保护 <code>Cookie</code> 不被跨站脚本攻击窃取或篡改。但是，<code>HTTPOnly</code> 的应用仍存在局限性，一些浏览器可以阻止客户端脚本对 <code>Cookie</code> 的读操作，但允许写操作；此外大多数浏览器仍允许通过 <code>XMLHTTP</code> 对象读取 <code>HTTP</code> 响应中的 <code>Set-Cookie</code> 头  。</p>
 <blockquote>
 <p>在客户端是不能通过 <code>JAvaScript</code> 代码去设置一个 <code>httpOnly</code> 类型的 <code>Cookie</code> 的，这种类型的 <code>Cookie</code> 只能通过服务端来设置。</p>
 </blockquote>
-<h3 id="5-6-Secure"><a href="#5-6-Secure" class="headerlink" title="5.6 Secure"></a>5.6 Secure</h3><p>指定是否使用 <code>HTTPS</code> 安全协议发送 <code>Cookie</code> 。</p>
+<h3 id="Secure"><a href="#Secure" class="headerlink" title="Secure"></a>Secure</h3><p>指定是否使用 <code>HTTPS</code> 安全协议发送 <code>Cookie</code> 。</p>
 <p>使用 <code>HTTPS</code> 安全协议，可以保护 <code>Cookie</code> 在浏览器和 <code>Web</code> 服务器间的传输过程中不被窃取和篡改。该方法也可用于 <code>Web</code> 站点的身份鉴别，即在 <code>HTTPS</code> 的连接建立阶段，浏览器会检查 <code>Web</code> 网站的 <code>SSL</code> 证书的有效性。</p>
 <p>但是基于兼容性的原因（比如有些网站使用自签署的证书）在检测到 <code>SSL</code> 证书无效时，浏览器并不会立即终止用户的连接请求，而是显示安全风险信息，用户仍可以选择继续访问该站点。由于许多用户缺乏安全意识，因而仍可能连接到 <code>Pharming</code> 攻击所伪造的网站 。</p>
 <blockquote>
 <p>如果当前协议是 HTTP，浏览器会自动忽略服务器发来的 Secure。</p>
 </blockquote>
-<h3 id="5-7-SameSite"><a href="#5-7-SameSite" class="headerlink" title="5.7 SameSite"></a>5.7 SameSite</h3><p><code>Cookie</code> 允许服务器要求某个 <code>Cookie</code> 在跨站请求时不会被发送，（其中 <code>Site</code> 由可注册域定义），从而可以阻止跨站请求伪造攻击（<code>CSRF</code>）。</p>
+<h3 id="SameSite"><a href="#SameSite" class="headerlink" title="SameSite"></a>SameSite</h3><p><code>Cookie</code> 允许服务器要求某个 <code>Cookie</code> 在跨站请求时不会被发送，（其中 <code>Site</code> 由可注册域定义），从而可以阻止跨站请求伪造攻击（<code>CSRF</code>）。</p>
 <p><code>SameSite cookies</code> 是相对较新的一个字段，所有主流浏览器都已经得到支持。下面是例子：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: key=value; SameSite=Strict</span><br></pre></td></tr></table></figure>
 
@@ -814,7 +814,7 @@ module.exports = function (app) {
 <p>以前，如果 <code>SameSite</code> 属性没有设置，或者没有得到运行浏览器的支持，那么它的行为等同于 <code>None</code>，<code>Cookies</code> 会被包含在任何请求中——包括跨站请求。</p>
 <p>大多数主流浏览器正在将 <code>SameSite</code> 的默认值迁移至 <code>Lax</code>。如果想要指定 <code>Cookies</code> 在同站、跨站请求都被发送，现在需要明确指定 <code>SameSite</code>  为 <code>None</code>。</p>
 </blockquote>
-<h3 id="5-8-Cookie-prefixes"><a href="#5-8-Cookie-prefixes" class="headerlink" title="5.8 Cookie prefixes"></a>5.8 Cookie prefixes</h3><p><code>Cookie</code> 机制的使得服务器无法确认  <code>Cookie</code>  是在安全来源上设置的，甚至无法确定   <code>Cookie</code>   最初是在哪里设置的。</p>
+<h3 id="Cookie-prefixes"><a href="#Cookie-prefixes" class="headerlink" title="Cookie prefixes"></a>Cookie prefixes</h3><p><code>Cookie</code> 机制的使得服务器无法确认  <code>Cookie</code>  是在安全来源上设置的，甚至无法确定   <code>Cookie</code>   最初是在哪里设置的。</p>
 <p>子域上的易受攻击的应用程序可以使用 <code>Domain</code> 属性设置  <code>Cookie</code>  ，从而可以访问所有其他子域上的该   <code>Cookie</code>  。会话定置攻击中可能会滥用此机制。</p>
 <p>但是，作为 <code>深度防御措施</code>，可以使用 <code>Cookie</code> 前缀来断言有关  <code>Cookie</code>  的特定事实。有两个前缀可用：</p>
 <ul>
@@ -828,7 +828,7 @@ module.exports = function (app) {
 <p>带有这些前缀点 <code>Cookie</code>， 如果不符合其限制的会被浏览器拒绝。请注意，这确保了如果子域要创建带有前缀的  <code>Cookie</code>，那么它将要么局限于该子域，要么被完全忽略。由于应用服务器仅在确定用户是否已通过身份验证或 CSRF 令牌正确时才检查特定的  <code>Cookie</code>  名称，因此，这有效地充当了针对会话劫持的防御措施。</p>
 <p><code>Cookie</code> 各个属性的兼容性如下图所示：</p>
 <p><img src="/yinyiwang/images/20200927/Cookie%E5%B1%9E%E6%80%A7%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.png" alt="Cookie属性的兼容性"></p>
-<h2 id="6-HTTP-Cookie-和-document-cookie"><a href="#6-HTTP-Cookie-和-document-cookie" class="headerlink" title="6. HTTP Cookie 和 document.cookie"></a>6. HTTP Cookie 和 document.cookie</h2><h3 id="6-1-HTTP-Cookie"><a href="#6-1-HTTP-Cookie" class="headerlink" title="6.1 HTTP Cookie"></a>6.1 HTTP Cookie</h3><p>服务器如果希望在浏览器保存 <code>Cookie</code>，就要在 <code>HTTP</code> 回应的头信息里面，放置一个<code>Set-Cookie</code>字段。</p>
+<h2 id="HTTP-Cookie-和-document-cookie"><a href="#HTTP-Cookie-和-document-cookie" class="headerlink" title="HTTP Cookie 和 document.cookie"></a>HTTP Cookie 和 document.cookie</h2><h3 id="HTTP-Cookie"><a href="#HTTP-Cookie" class="headerlink" title="HTTP Cookie"></a>HTTP Cookie</h3><p>服务器如果希望在浏览器保存 <code>Cookie</code>，就要在 <code>HTTP</code> 回应的头信息里面，放置一个<code>Set-Cookie</code>字段。</p>
 <p><img src="/yinyiwang/images/20200927/HTTP%E8%AE%BE%E7%BD%AECookie.png" alt="HTTP设置Cookie"></p>
 <p>浏览器收到响应后通常会保存下 <code>Cookie</code>，之后对该服务器每一次请求中都通过  <code>Cookie</code> 请求头部将 <code>Cookie</code> 信息发送给服务器。另外，<code>Cookie</code> 的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。</p>
 <p><code>HTTP</code> 回应可以包含多个 <code>Set-Cookie</code> 字段，即在浏览器生成多个 <code>Cookie</code>。下面是一个例子。</p>
@@ -846,7 +846,7 @@ module.exports = function (app) {
 <p><code>Cookie</code> 字段可以包含多个 Cookie，使用分号（<code>;</code>）分隔。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">GET /sample_page.html HTTP/<span class="number">1.1</span></span><br><span class="line">Host: www.example.org</span><br><span class="line">Cookie: yummy_cookie=choco; tasty_cookie=strawberry</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-2-document-cookie"><a href="#6-2-document-cookie" class="headerlink" title="6.2 document.cookie"></a>6.2 document.cookie</h3><p>通过 <code>document.cookie</code> 属性可创建新的 <code>Cookie</code>，也可通过该属性访问==非 HttpOnly== 标记的 <code>Cookie</code>。</p>
+<h3 id="document-cookie"><a href="#document-cookie" class="headerlink" title="document.cookie"></a>document.cookie</h3><p>通过 <code>document.cookie</code> 属性可创建新的 <code>Cookie</code>，也可通过该属性访问==非 HttpOnly== 标记的 <code>Cookie</code>。</p>
 <p><img src="/yinyiwang/images/20200927/Document%E8%8E%B7%E5%8F%96Cookie.png" alt="Document获取Cookie"></p>
 <p>上图从 <code>document.cookie</code> 一次性读出多个 <code>Cookie</code>，它们之间使用分号分隔。必须手动还原，才能取出每一个 <code>Cookie</code> 的值。</p>
 <p>写入的时候，<code>Cookie</code> 的值必须写成 <code>key=value</code> 的形式。注意，等号两边不能有空格。另外，写入 <code>Cookie</code> 的时候，必须对分号、逗号和空格进行转义（它们都不允许作为 <code>Cookie</code> 的值），这可以用 <code>encodeURIComponent</code> 方法达到。比如，我们要存储一个对象到 <code>Cookie</code>中，可以通过下面代码实现：</p>
@@ -860,25 +860,25 @@ module.exports = function (app) {
 <blockquote>
 <p><code>document.cookie</code> 一次只能写入一个 <code>Cookie</code>，而且写入并不是覆盖，而是添加。</p>
 </blockquote>
-<h2 id="7-Cookie-的安全隐患"><a href="#7-Cookie-的安全隐患" class="headerlink" title="7. Cookie 的安全隐患"></a>7. Cookie 的安全隐患</h2><blockquote>
+<h2 id="Cookie-的安全隐患"><a href="#Cookie-的安全隐患" class="headerlink" title="Cookie 的安全隐患"></a>Cookie 的安全隐患</h2><blockquote>
 <p>信息被存在 <code>Cookie</code> 中时，需要明白 <code>Cookie</code> 的值时可以被访问，且可以被终端用户所修改的。根据应用程序的不同，可能需要使用服务器查找的不透明标识符，或者研究诸如 <code>JSON Web Tokens</code> 之类的替代身份验证/机密机制。</p>
 <p>当机器处于不安全环境时，切记<em>不能</em>通过 <code>HTTP Cookie</code> 存储、传输敏感信息。</p>
 </blockquote>
-<h3 id="7-1-Cookie-捕获-重放"><a href="#7-1-Cookie-捕获-重放" class="headerlink" title="7.1 Cookie 捕获/重放"></a>7.1 Cookie 捕获/重放</h3><p>攻击者可以通过木马等恶意程序，或使用跨站脚本攻击等手段偷窃存放在用户硬盘或内存中的 <code>Cookie</code>。借助网络攻击手段，包括：</p>
+<h3 id="Cookie-捕获-重放"><a href="#Cookie-捕获-重放" class="headerlink" title="Cookie 捕获/重放"></a>Cookie 捕获/重放</h3><p>攻击者可以通过木马等恶意程序，或使用跨站脚本攻击等手段偷窃存放在用户硬盘或内存中的 <code>Cookie</code>。借助网络攻击手段，包括：</p>
 <ul>
 <li>在不安全的局域网中被动地监听网络通信；</li>
 <li>通过攻击网络用户的路由器，或通过搭建恶意的无线路由器等手法，控制路由基础设施，将网络流量重定向到攻击者控制的主机；</li>
 <li>发动 <code>DNSPharming</code> (域欺骗)攻击，通过 <code>DNS 缓存中毒</code>、<code>DNS 应答欺骗</code>、或修改用户端的本地域名解析文件等方法攻击 <code>DNS</code> 系统，导致用户对合法网站的访问请求被重定向到恶意网站等等，同样可能窃取 <code>Cookie</code>。</li>
 </ul>
 <p>对于捕获到的认证 <code>Cookie</code>，攻击者往往会猜测其中的访问令牌，试图获取会话ID、用户名与口令、用户角色、时间戳等敏感信息；或者直接重放该 <code>Cookie</code>，假冒受害者的身份发动攻击  。</p>
-<h3 id="7-2-恶意-Cookies"><a href="#7-2-恶意-Cookies" class="headerlink" title="7.2 恶意 Cookies"></a>7.2 恶意 Cookies</h3><p><code>Cookies</code> 是文本文件， 一般情况下认为它不会造成安全威胁。 但是，如果在 <code>Cookies</code> 中通过特殊标记语言，引入可执行代码，就很可能给用户造成严重的安全隐患。<code>HTML</code> 为区别普通文本和标记语言，用符号 <code>“&lt;&gt;”</code> 来指示 <code>HTML</code> 代码。 这些 <code>HTML</code> 代码或者定义 <code>Web</code> 网页格式，或者引入 <code>Web</code> 浏览器可执行代码段。 <code>Web</code> 服务 器可以使用 <code>Cookies</code> 信息创建动态网页。假使 <code>Cookies</code> 包含可执行恶意代码段，那么在显示合成有该 <code>Cookies</code> 的网页时，就会自动执行这段恶意代码。当然，恶意代码能否真正造成危害，还取决于 <code>Web</code> 站点的安全配置策略 。</p>
-<h3 id="7-3-会话定置"><a href="#7-3-会话定置" class="headerlink" title="7.3 会话定置"></a>7.3 会话定置</h3><p>会话定置(<code>Session Fixation</code>)攻击是指，攻击者向受害者主机注入自己控制的认证 <code>Cookie</code> 等信息，使得受害者以攻击者的身份登录网站，从而窃取受害者的会话信息。</p>
+<h3 id="恶意-Cookies"><a href="#恶意-Cookies" class="headerlink" title="恶意 Cookies"></a>恶意 Cookies</h3><p><code>Cookies</code> 是文本文件， 一般情况下认为它不会造成安全威胁。 但是，如果在 <code>Cookies</code> 中通过特殊标记语言，引入可执行代码，就很可能给用户造成严重的安全隐患。<code>HTML</code> 为区别普通文本和标记语言，用符号 <code>“&lt;&gt;”</code> 来指示 <code>HTML</code> 代码。 这些 <code>HTML</code> 代码或者定义 <code>Web</code> 网页格式，或者引入 <code>Web</code> 浏览器可执行代码段。 <code>Web</code> 服务 器可以使用 <code>Cookies</code> 信息创建动态网页。假使 <code>Cookies</code> 包含可执行恶意代码段，那么在显示合成有该 <code>Cookies</code> 的网页时，就会自动执行这段恶意代码。当然，恶意代码能否真正造成危害，还取决于 <code>Web</code> 站点的安全配置策略 。</p>
+<h3 id="会话定置"><a href="#会话定置" class="headerlink" title="会话定置"></a>会话定置</h3><p>会话定置(<code>Session Fixation</code>)攻击是指，攻击者向受害者主机注入自己控制的认证 <code>Cookie</code> 等信息，使得受害者以攻击者的身份登录网站，从而窃取受害者的会话信息。</p>
 <p>注入 <code>Cookie</code> 的方法包括：</p>
 <ul>
 <li>使用跨站脚本或木马等恶意程序；</li>
 <li>或伪造与合法网站同域的站点，并利用各种方法欺骗用户访问该仿冒网站，从而通过HTTP响应中的Set-Cookie头将攻击者拥有的该域Cookie发送给用户等。</li>
 </ul>
-<h3 id="7-4-CSRF-攻击"><a href="#7-4-CSRF-攻击" class="headerlink" title="7.4 CSRF 攻击"></a>7.4 CSRF 攻击</h3><p>跨站请求伪造（<code>Cross-Site Request Forgery</code>，简称<code>CSRF</code>）是指：</p>
+<h3 id="CSRF-攻击"><a href="#CSRF-攻击" class="headerlink" title="CSRF 攻击"></a>CSRF 攻击</h3><p>跨站请求伪造（<code>Cross-Site Request Forgery</code>，简称<code>CSRF</code>）是指：</p>
 <p>攻击者可能利用网页中的恶意代码强迫受害者浏览器向被攻击的 <code>Web</code> 站点发送伪造的请求，篡夺受害者的认证 <code>Cookie</code> 等身份信息，从而假冒受害者对目标站点执行指定的操作。</p>
 <p>Firefox、Opera 等浏览器使用单进程机制，多个窗口或标签使用同一个进程，共享 <code>Cookie</code> 等会话数据。IE 则混合使用单进程与多进程模式，一个窗口中的多个标签，以及使用 “CTRL+N”  或单击网页中的链接打开的新窗口使用同一进程，共享会话数据；只有直接运行IE可执行程序打开窗口时，才会创建新的进程。Chrome 虽然使用多进程机制，然而经测试发现，其不同的窗口或标签之间仍会共享会话数据，除非使用隐身访问方式。</p>
 <p>因而，用户同时打开多个浏览器窗口或标签访问互联网资源时，就为 <code>CSRF</code> 攻击篡夺用户的会话 <code>Cookie</code> 创造了条件。另外，如果一个Web 站点提供持久化 <code>Cookie</code>，则 <code>CSRF</code> 攻击将更直接、更容易。</p>
@@ -890,10 +890,10 @@ module.exports = function (app) {
 <li>用于敏感信息的 Cookie 只能拥有较短的生命周期；</li>
 </ul>
 </blockquote>
-<h2 id="8-安全使用-Cookie"><a href="#8-安全使用-Cookie" class="headerlink" title="8. 安全使用 Cookie"></a>8. 安全使用 Cookie</h2><p>有两种方法可以确保 <code>Cookie</code> 被安全发送，并且不会被意外的参与者或脚本访问：<code>Secure</code> 属性和 <code>HttpOnly</code> 属性。</p>
+<h2 id="安全使用-Cookie"><a href="#安全使用-Cookie" class="headerlink" title="安全使用 Cookie"></a>安全使用 Cookie</h2><p>有两种方法可以确保 <code>Cookie</code> 被安全发送，并且不会被意外的参与者或脚本访问：<code>Secure</code> 属性和 <code>HttpOnly</code> 属性。</p>
 <p>标记为 <code>Secure</code> 的 <code>Cookie</code> 只应通过被 <code>HTTPS</code> 协议加密过的请求发送给服务端，因此可以预防 <code>man-in-the-middle</code> 攻击者的攻击。但即便设置了 <code>Secure</code> 标记，敏感信息也不应该通过 <code>Cookie</code> 传输，因为 <code>Cookie</code> 有其固有的不安全性，<code>Secure</code> 标记也无法提供确实的安全保障, 例如，可以访问客户端硬盘的人可以读取它。</p>
 <p><code>JavaScript Document.cookie API</code> 无法访问带有 <code>HttpOnly</code> 属性的 <code>Cookie</code>；此类 <code>Cookie</code> 仅作用于服务器。例如，例如，持久化服务器端会话的 <code>Cookie</code> 不需要对 <code>JavaScript</code> 可用，而应具有 <code>HttpOnly</code> 属性。此预防措施有助于缓解跨站点脚本（<code>XSS</code>）攻击。</p>
-<h2 id="9-Cookie-的替代方案"><a href="#9-Cookie-的替代方案" class="headerlink" title="9. Cookie 的替代方案"></a>9. Cookie 的替代方案</h2><p>由于 <code>Cookie</code>  在使用上存在较多限制，近年来，随着技术的发展成熟，出现了几种可替代 <code>Cookie</code> 的方案，且已被大多数主流浏览器支持。</p>
+<h2 id="Cookie-的替代方案"><a href="#Cookie-的替代方案" class="headerlink" title="Cookie 的替代方案"></a>Cookie 的替代方案</h2><p>由于 <code>Cookie</code>  在使用上存在较多限制，近年来，随着技术的发展成熟，出现了几种可替代 <code>Cookie</code> 的方案，且已被大多数主流浏览器支持。</p>
 <p><img src="/yinyiwang/images/20200927/Cookie%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88.png" alt="Cookie的替代方案"></p>
 <ul>
 <li><strong>Web Storage、window.localStorage</strong> </li>
@@ -907,10 +907,12 @@ module.exports = function (app) {
 <li><strong>Web SQL</strong></li>
 </ul>
 <p><code>Web SQL</code> 是一种利用数据库进行数据存储并利用 SQL 处理检索任务的 API。</p>
+<hr>
 <blockquote>
 <p>欢迎大家来到我的「山头」，我是「前端三昧」的作者 <em>隐逸王</em>  ——  一个想要做山大王的男人！</p>
 <p>愿和你一起领略前端三昧，发现前端之美！</p>
 </blockquote>
+<hr>
 ]]></content>
       <categories>
         <category>JavaScript</category>
