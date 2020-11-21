@@ -1044,4 +1044,9 @@ module.exports = function (app) {
         <tag>JavaScript</tag>
       </tags>
   </entry>
+  <entry>
+    <title>NodeJS系列——揭开require模块的面纱</title>
+    <url>/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%A8%A1%E5%9D%97%E7%9A%84%E9%9D%A2%E7%BA%B1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
 </search>
