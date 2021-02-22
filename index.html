@@ -219,7 +219,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%A8%A1%E5%9D%97%E7%9A%84%E9%9D%A2%E7%BA%B1/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -233,7 +233,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%A8%A1%E5%9D%97%E7%9A%84%E9%9D%A2%E7%BA%B1/" class="post-title-link" itemprop="url">NodeJS系列——揭开require模块的面纱</a>
+            <a href="/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">JDK安装说明</a>
         </h2>
 
         <div class="post-meta">
@@ -243,7 +243,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-21 19:49:20" itemprop="dateCreated datePublished" datetime="2020-11-21T19:49:20+08:00">2020-11-21</time>
+              <time title="创建时间：2021-02-22 22:38:04" itemprop="dateCreated datePublished" datetime="2021-02-22T22:38:04+08:00">2021-02-22</time>
             </span>
 
           
@@ -258,6 +258,214 @@
 
       
           
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
+      <meta itemprop="name" content="隐逸王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端三昧">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/" class="post-title-link" itemprop="url">NodeJS系列——揭开require方法的面纱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-21 19:59:28" itemprop="dateCreated datePublished" datetime="2020-11-21T19:59:28+08:00">2020-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-12 15:16:47" itemprop="dateModified" datetime="2021-01-12T15:16:47+08:00">2021-01-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/NodeJs/" itemprop="url" rel="index"><span itemprop="name">NodeJs</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/NodeJs/require/" itemprop="url" rel="index"><span itemprop="name">require</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/NodeJs/require/module/" itemprop="url" rel="index"><span itemprop="name">module</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在 <code>NodeJS</code> 中有一个方法是我们使用频率最高的，那就是 <code>require</code> 方法。<code>NodeJs</code> 遵循 CommonJS 规范，该规范的核心是通过 require来加载其他依赖的模块。</p>
+<p>但是，熟归熟，用归用，其中的原理是什么呢？今天就带大家揭开require的面纱，一睹真容。</p>
+<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><ol>
+<li><p>module.exports 或者 exports 是全局变量吗？</p>
+</li>
+<li><p>模块的加载是同步还是异步？</p>
+</li>
+<li><p>循环引用会不会产生性能问题或者导致错误？</p>
+</li>
+</ol>
+<h2 id="什么是-CommonJS"><a href="#什么是-CommonJS" class="headerlink" title="什么是 CommonJS"></a>什么是 CommonJS</h2><p>每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。<code>CommonJS</code> 规范规定，每个模块内部，<code>module</code>  变量代表当前模块。这个变量是一个对象，它的 <code>exports</code> 属性（即<code>module.exports</code>）是对外的接口。</p>
+<h2 id="Node-模块的分类"><a href="#Node-模块的分类" class="headerlink" title="Node 模块的分类"></a>Node 模块的分类</h2><ol>
+<li><strong>build-in modules</strong> —— Nodejs 中以 C++ 形式提供的模块。</li>
+<li><strong>constant module</strong> —— Nodejs 中定义常量的模块。</li>
+<li><strong>native module</strong> —— Nodejs 中以 javascript 形式提供的模块。</li>
+<li><strong>第三方module</strong> —— 由第三方提供的模块。</li>
+</ol>
+<h2 id="module-对象"><a href="#module-对象" class="headerlink" title="module 对象"></a>module 对象</h2><p>NodeJs 内部提供一个<code>Module</code>构建函数。所有模块都是<code>Module</code>的实例。</p>
+<p>每个模块内部，都有一个<code>module</code>对象，代表当前模块。它有以下属性。</p>
+<ol>
+<li><p>module 对象的属性</p>
+<ul>
+<li><code>module.id</code> 模块的识别符，通常是带有绝对路径的模块文件名。</li>
+<li><code>module.filename</code> 模块的文件名，带有绝对路径。</li>
+<li><code>module.loaded</code> 返回一个布尔值，表示模块是否已经完成加载。</li>
+<li><code>module.parent</code> 返回一个对象，表示调用该模块的模块（程序入口文件的module.parent为null）</li>
+<li><code>module.children</code> 返回一个数组，表示该模块要用到的其他模块。</li>
+<li><code>module.exports</code> 表示模块对外输出的值。</li>
+</ul>
+</li>
+<li><p>module.exports 属性</p>
+<p> <code>module.exports</code>属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取<code>module.exports</code>变量。<code>module.exports</code>属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取<code>module.exports</code>变量。</p>
+</li>
+<li><p>exports变量</p>
+<p> 我们有时候会这么写：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(test);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span>.test = test;</span><br><span class="line"></span><br><span class="line"><span class="comment">// result.js</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="built_in">require</span>(<span class="string">"./test"</span>)</span><br></pre></td></tr></table></figure>
+
+<p> 这样也可以拿到正确的结果，这是因为：exports 变量指向 module.exports。这等同在每个模块头部，有一行这样的命令。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports;</span><br></pre></td></tr></table></figure>
+
+<p> 注意：不能直接给 <code>exports</code> 变量赋值，这样会改变 <code>exports</code> 的指向，不再指向 module.exports。在其他模块使用 <code>require</code> 方法是拿不到赋给 <code>exports</code> 的值的，因为  ==<em>require 方法获取的是其他模块的 module.exports 的值</em>==。</p>
+<p> 建议：尽可能的使用 <strong>module.exports</strong> 来导出结果。</p>
+</li>
+</ol>
+<h2 id="模块的流程"><a href="#模块的流程" class="headerlink" title="模块的流程"></a>模块的流程</h2><ul>
+<li>创建模块</li>
+<li>导出模块</li>
+<li>加载模块</li>
+<li>使用模块</li>
+</ul>
+<h2 id="require-方法"><a href="#require-方法" class="headerlink" title="require 方法"></a>require 方法</h2><blockquote>
+<p>require 是 node 用来加载并执行其它文件导出的模块的方法。</p>
+<p>在 NodeJs 中，我们引入的任何一个模块都对应一个 Module 实例，包括入口文件。</p>
+</blockquote>
+<p>完整步骤：</p>
+<ol>
+<li><p>调用父模块的 <code>require</code> 方法（父模块是指调用模块的当前模块）</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> = <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mod.require(path);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用 Module 的 <code>_load</code> 方法</p>
+</li>
+<li><p>通过 <code>Module._resolveFilename</code> 获取模块的路径fileName</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filename = Module._resolveFilename(request, parent, isMain);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据 fileName 判断是否存在该模块的缓存</p>
+<ul>
+<li>如果存在缓存，则调用 <code>updateChildren</code> 方法在更新缓存内容，==并返回缓存==</li>
+<li>如果不存在缓存，则继续执行</li>
+</ul>
+</li>
+<li><p>当做原生模块，调用 <code>loadNativeModule</code> 方法进行加载</p>
+<ul>
+<li>如果加载成功，则==返回==该原生模块</li>
+<li>否则，继续执行</li>
+</ul>
+</li>
+<li><p>根据当前模块名（路径）和父模块对象生成一个Module实例：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">module</span> = cachedModule || <span class="keyword">new</span> Module(filename, parent);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再判断该模块是否是入口文件</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isMain) &#123;</span><br><span class="line">    process.mainModule = <span class="built_in">module</span>;</span><br><span class="line">    <span class="built_in">module</span>.id = <span class="string">'.'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将该模块的实例存入到 Module 的缓存中</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module._cache[filename] = <span class="built_in">module</span>;</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210103%20/18-38-57-PgWQrw.png" alt="image-20210103183848388"></p>
+</li>
+<li><p>该模块的实例调用自身的 <code>load</code> 方法，根据 fileName 加载模块</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.load(filename);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取该模块文件的后缀名称</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> extension = findLongestRegisteredExtension(filename);</span><br></pre></td></tr></table></figure>
+
+<p>如果后缀名称是ES Module格式的（.mjs），则判断Module是否支持.mjs文件的解析，如果不支持，则==抛出异常==。</p>
+</li>
+<li><p>根据后缀名称解析模块文件内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module._extensions[extension](<span class="keyword">this</span>, filename);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据fileName读取文件内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content = fs.readFileSync(filename, <span class="string">'utf8'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译并执行读取到的文件，调用 module 自身的 <code>_complile</code> 方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>._compile(content, filename);</span><br></pre></td></tr></table></figure>
+
+<p><code>_compile</code> 主要内容步骤：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compiledWrapper = wrapSafe(filename, content, <span class="keyword">this</span>);</span><br><span class="line"><span class="keyword">const</span> dirname = path.dirname(filename);</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">require</span> = makeRequireFunction(<span class="keyword">this</span>, redirects);</span><br><span class="line"><span class="keyword">let</span> result;</span><br><span class="line"><span class="keyword">const</span> exports = <span class="keyword">this</span>.exports;</span><br><span class="line"><span class="keyword">const</span> thisValue = exports;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">module</span> = <span class="keyword">this</span>;</span><br><span class="line">result = compiledWrapper.call(thisValue, exports, <span class="built_in">require</span>, <span class="built_in">module</span>, filename, dirname);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
+
+<p><code>wrapSafe</code> 方法的返回值</p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210104%20/09-59-59-3Pe3jG.png" alt="image-20210104095957580"></p>
+<p>具体获得上图结果的代码是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wrapper = Module.wrap(content);</span><br><span class="line"><span class="keyword">return</span> vm.runInThisContext(wrapper, &#123;</span><br><span class="line">    filename,</span><br><span class="line">    lineOffset: <span class="number">0</span>,</span><br><span class="line">    displayErrors: <span class="literal">true</span>,</span><br><span class="line">    importModuleDynamically: <span class="keyword">async</span> (specifier) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> loader = asyncESM.ESMLoader;</span><br><span class="line">        <span class="keyword">return</span> loader.import(specifier, normalizeReferrerURL(filename));</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改该模块的加载状态为true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.loaded = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载成功。</p>
+</li>
+</ol>
+<p>通过上面的调试过程可得出以下结论：</p>
+<ol>
+<li>在NodeJs中，从入口文件开始，一切皆 Module</li>
+<li>模块的加载是==同步==的</li>
+<li>由于缓存机制的存在，模块的循环引用对性能的影响微乎其微，并且循环引用到的模块可能是不完整的，并且可能会导致错误</li>
+</ol>
+<p>require 查找模块的流程</p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210112%20/13-37-29-tie2Os.jpeg" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210112%20/13-38-01-RkeGjR.jpeg" alt="img"></p>
+
       
     </div>
 
@@ -1263,70 +1471,6 @@ module.exports = function (app) {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
-      <meta itemprop="name" content="隐逸王">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端三昧">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">致对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-22 16:47:39 / 修改时间：17:05:35" itemprop="dateCreated datePublished" datetime="2020-04-22T16:47:39+08:00">2020-04-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://i.loli.net/2020/04/22/rS7L4ZChb23kvIE.jpg" alt=""></p>
-<p>那时年少爱幻想<br>告别了灯红酒绿<br>来到了零一的世界<br>这是你的世界<br>也是我的梦想</p>
-<p>我们厮杀过<br>那一行行灰色<br>见证着我对你的伤害<br>这一根根白发<br>承载着你对我的报复</p>
-<p>我们也相爱过<br>为了完美<br>我曾无数次将你雕琢<br>作为回报<br>你曾无数次给我喜悦</p>
-<p>这一生<br>大概就这样了<br>待来世<br>我捧你上王座</p>
-<p><img src="https://i.loli.net/2020/04/22/bQwtpnWPGA4dfE3.png" alt=""></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1396,20 +1540,20 @@ module.exports = function (app) {
       <div class="site-state-item site-state-posts">
           <a href="/yinyiwang/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1456,7 +1600,7 @@ module.exports = function (app) {
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1467,7 +1611,7 @@ module.exports = function (app) {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共22.1k字</span>
+  <span class="post-count">博客全站共23.4k字</span>
 </div>
 
         
