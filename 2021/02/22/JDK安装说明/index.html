@@ -20,15 +20,32 @@
     var CONFIG = {"hostname":"yinyiwang.github.io","root":"/yinyiwang/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="JDK安装说明">
+  <meta name="description" content="JDK简介JDK  —— Java Development ToolKit (Java 开发工具包)。JDK 是整个 Java 的核心，包括了 Java 运行环境（Java Runtime Envirnment），一堆 Java 工具（ javac&#x2F;java&#x2F;jdb 等）和 Java 基础的类库（即 Java API 包括 rt.jar）。 最主流的 JDK 是Sun公司发布的 JDK，除了 Su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK安装说明及环境变量的配置">
 <meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/index.html">
 <meta property="og:site_name" content="前端三昧">
+<meta property="og:description" content="JDK简介JDK  —— Java Development ToolKit (Java 开发工具包)。JDK 是整个 Java 的核心，包括了 Java 运行环境（Java Runtime Envirnment），一堆 Java 工具（ javac&#x2F;java&#x2F;jdb 等）和 Java 基础的类库（即 Java API 包括 rt.jar）。 最主流的 JDK 是Sun公司发布的 JDK，除了 Su">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/Oracle%E5%AE%98%E7%BD%91.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step1.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step2.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step3.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step4.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step5.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step6.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step7.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step8.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step9.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step10.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/java-version.png">
+<meta property="og:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/bin_lib.png">
 <meta property="article:published_time" content="2021-02-22T14:38:04.000Z">
-<meta property="article:modified_time" content="2021-02-22T14:38:04.343Z">
+<meta property="article:modified_time" content="2021-02-23T01:49:17.895Z">
 <meta property="article:author" content="隐逸王">
+<meta property="article:tag" content="-JDK -Java -环境变量">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/Oracle%E5%AE%98%E7%BD%91.png">
 
 <link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
 
@@ -69,7 +86,7 @@
   padding: 0 10px 0 14px;
 }
 </style>
-  <title>JDK安装说明 | 前端三昧</title>
+  <title>JDK安装说明及环境变量的配置 | 前端三昧</title>
   
 
 
@@ -235,7 +252,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JDK安装说明
+          JDK安装说明及环境变量的配置
         </h1>
 
         <div class="post-meta">
@@ -246,6 +263,22 @@
               <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2021-02-22 22:38:04" itemprop="dateCreated datePublished" datetime="2021-02-22T22:38:04+08:00">2021-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-23 09:49:17" itemprop="dateModified" datetime="2021-02-23T09:49:17+08:00">2021-02-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/Java/" itemprop="url" rel="index"><span itemprop="name">-Java</span></a>
+                </span>
             </span>
 
           
@@ -266,7 +299,170 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h2 id="JDK简介"><a href="#JDK简介" class="headerlink" title="JDK简介"></a>JDK简介</h2><p>JDK  —— Java Development ToolKit (Java 开发工具包)。JDK 是整个 Java 的核心，包括了 Java 运行环境（Java Runtime Envirnment），一堆 Java 工具（ javac/java/jdb 等）和 Java 基础的类库（即 Java API 包括 rt.jar）。</p>
+<p>最主流的 JDK 是Sun公司发布的 JDK，除了 Sun 之外，还有很多公司和组织都开发了属于自己的 JDK，例如国外 IBM 公司开发了属于自己的 JDK，国内淘宝也开发了属于自己的 JDK，各个组织开发自己的 JDK 都是为了在某些方面得到一些提高，以适应自己的需求，比如 IBM 的 JDK 据说运行效率就比 SUN 的 JDK 高的多。但不管怎么说，我们还是需要先把基础的 Sun JDK 掌握好。</p>
+<p>JDK 是 Java 开发工具包，在其安装目录下面有六个文件夹、一些描述文件、一个 src 压缩文件。bin、include、lib、 jre 这四个文件夹起作用，demo、sample 是一些例子。可以看出来 JDK 包含 JRE，而 JRE 包含 JVM。</p>
+<ul>
+<li>bin：最主要的是编译器(javac.exe)</li>
+<li>include：java 和 JVM 交互用的头文件</li>
+<li>lib：类库</li>
+<li>jre：java运行环境（注意：这里的 bin、lib 文件夹和 jre 里的 bin、lib 是不同的）</li>
+</ul>
+<p>总的来说 JDK 是用于 Java 程序的开发,而 jre 则是只能运行 class 而没有编译的功能。 </p>
+<p>JDK 是提供给 Java 开发人员使用的，其中包含了 Java 的开发工具，也包括了 JRE。所以安装了 JDK，就不用在单独安装 JRE了。 其中的开发工具包括编译工具 ( javac.exe ) 打包工具 ( jar.exe ) 等</p>
+<p>在 JDK 的安装目录下有一个 jre 目录，里面有两个文件夹 bin 和 lib，在这里可以认为 bin 里的就是 jvm，lib 中则是 jvm 工作所需要的类库，而 jvm 和 lib 合起来就称为 jre。</p>
+<h2 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h2><p>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank" rel="noopener">Oracle官网</a>，找到最新版本的 JDK 进行下载</p>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/Oracle%E5%AE%98%E7%BD%91.png" alt="Oracle官网"></p>
+<h2 id="关于环境变量（Environment-Variable）"><a href="#关于环境变量（Environment-Variable）" class="headerlink" title="关于环境变量（Environment Variable）"></a>关于环境变量（<em>Environment Variable</em>）</h2><ul>
+<li><p>变量</p>
+<p>  就是可以随意给其赋值的一个存储单元。</p>
+</li>
+<li><p>环境</p>
+<p>  如果把操作系统当做是一个最大的软件，其它软件如Office、JVM、LOL等等都是运行在这个软件之内的小软件。那么，相对于这些小软件来说，它们所处的「环境」就是操作系统这个软件。</p>
+</li>
+<li><p>合起来就是“环境中的变量”</p>
+<p>  「环境变量」就是操作系统这个软件中的变量，即：操作系统提供给你的<strong>全局变量</strong>！</p>
+</li>
+<li><p>环境变量的作用</p>
+<p>  环境变量在任何程序中的作用都是“被赋值/被取值”！这个全局变量操作系统可以使用，其内的小软件也可以使用！</p>
+</li>
+</ul>
+<h2 id="Java中的环境变量"><a href="#Java中的环境变量" class="headerlink" title="Java中的环境变量"></a>Java中的环境变量</h2><blockquote>
+<p>环境变量大体上是给操作系统的直接上层程序用的。比如Linux中的<code>shell</code>、<code>.sh</code>文件；Windows中的<code>cmd</code>、<code>.bat</code>文件。</p>
+</blockquote>
+<p><strong>常见的Java相关环境变量及其作用</strong></p>
+<ol>
+<li><p><code>PATH</code></p>
+<p> <code>PATH</code>是操作系统用的，用来指定操作系统需要使用到的可执行程序的位置。</p>
+<p> 对于Java来说，通常需要把 JDK 的 bin 目录添加进入<code>PATH</code>中，这样你就可以在任意目录下使用 bin 下面的可执行程序，如<code>javac.exe</code>、<code>java.exe</code>等。</p>
+<p> <strong>这个变量一定要保证将 JRE/JDK 的 bin 纳入其中</strong>（这里我说的其实不严谨，你可以把<code>javaw.exe</code>等这类文件复制一份放到任意一个<code>PATH</code>路径下，不一定是JRE/JDK也行）<strong>，这样很多Java程序才能启动，比如<code>Eclipse</code>。</strong></p>
+</li>
+<li><p><code>JAVA_HOME</code></p>
+<p> <code>JAVA_HOME</code>是一个约定，通常它指的是JDK的目录。如果需要JDK的话，大部分程序会默认去环境变量中取<code>JAVA_HOME</code>这个变量。</p>
+<blockquote>
+<p>例如，Tomcat的<code>.bat/.sh</code>文件中就会默认去取<code>JAVA_HOME</code>来用。</p>
+</blockquote>
+<p> <strong>所以，这个变量最需要设置。设置它，可保你万无一失，一生平安……</strong></p>
+</li>
+<li><p><code>JRE_HOME</code></p>
+<p> 同样，这也是一个约定的变量，通常指JRE目录。其实大部分Java程序不需要JDK，而是只需要其子集JRE，所以很多程序也会去取这个变量来用。</p>
+<p> 例如，Tomcat中某些<code>.bat</code>文件中这样说到：</p>
+ <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem   JAVA_HOME       Must point at your Java Development Kit installation.</span></span><br><span class="line"><span class="comment">rem                   Using JRE_HOME instead works as well.</span></span><br><span class="line"><span class="comment">rem</span></span><br><span class="line"><span class="comment">rem   JRE_HOME        Must point at your Java Runtime installation.</span></span><br><span class="line"><span class="comment">rem                   Defaults to JAVA_HOME if empty. If JRE_HOME and JAVA_HOME</span></span><br><span class="line"><span class="comment">rem                   are both set, JRE_HOME is used.123456</span></span><br></pre></td></tr></table></figure>
+
+<p> 大意是说：Tomcat去取这俩变量，只要任意一个不为空就行，都不为空就用JRE_HOME了。因为Tomcat不需要JDK中的工具，它只是运行Java程序而已。</p>
+<p> <strong>这个变量如果你明确知道应用程序只需要设置这个就行（比如上面Tomcat的注释），那么它可以代替JAVA_HOME，且最好就用这个。</strong></p>
+</li>
+<li><p><code>CLASSPATH</code></p>
+<p> <code>CLASSPATH</code>是约定的一个可以设置我们自己的<code>.class, jar</code>文件所在目录的变量。不过某个Java程序可以自己决定取与不取这个变量。Tomcat 在某些情况下会去取，你自己的 Java 程序你不设置就会忽略它的。</p>
+<p> 这和Java可执行程序：<code>java.exe</code>的可选配置<code>-cp/-classpath</code>不是一个东西，仅是用意相似：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java [-options] class [args...]</span><br><span class="line">       (执行类)</span><br><span class="line">或  java [-options] -jar jarfile [args...]</span><br><span class="line">       (执行 jar 文件)</span><br><span class="line">其中选项包括:</span><br><span class="line">-cp &lt;目录和 zip&#x2F;jar 文件的类搜索路径&gt;</span><br><span class="line">-classpath &lt;目录和 zip&#x2F;jar 文件的类搜索路径&gt;</span><br><span class="line">              用 : 分隔的目录, JAR 档案</span><br><span class="line">              和 ZIP 档案列表, 用于搜索类文件。123456789</span><br></pre></td></tr></table></figure>
+
+<p> 结论：基本上，你不需要它。</p>
+</li>
+<li><p><code>CATALINA_HOME</code></p>
+<p> 这是Tomcat用的。叫CATALINA这个名字我估计是因为Tomcat默认服务（也就<code>&lt;Service&gt;&lt;/Service&gt;</code>标签）的名字就是CATALINA。当然，是不是其实不重要，毕竟变量的名字可以随意起（但最好见名知意），重要的是它存什么值。它的值代表当前tomat根目录，比如：<code>E:\apache-tomcat-7.0.55</code>。</p>
+<p> <strong>这个变量，仅当你移动了<code>.bat/.sh</code>等用来启动Tomcat的文件（就是不在原来的<code>tomcat\bin</code>下面了）时才需要指定。</strong>比如，在Linux中你将<code>catalina.sh</code>复制到<code>/etc/rc.d/init.d/</code>下做自启动服务时就需要设置一下。</p>
+</li>
+</ol>
+<p><strong>Java代码中也有API能获取环境变量：</strong></p>
+<ul>
+<li><p>获取并打印</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打印单个环境变量</span></span><br><span class="line"><span class="keyword">final</span> String env = System.getenv(<span class="string">"PATH"</span>);</span><br><span class="line">System.out.println(env);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印所有环境变量</span></span><br><span class="line"><span class="keyword">final</span> Map&lt;String, String&gt; envMap = System.getenv();</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, String&gt; env : envMap.entrySet()) &#123;</span><br><span class="line">    System.out.println(env.getKey() + <span class="string">"="</span> + env.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456789</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>最后我们总结一下：</p>
+<ol>
+<li><p><strong>需要</strong>在操作系统下设置的变量：</p>
+<ol>
+<li><code>PATH</code>中包含JRE/JDK的<code>bin</code>目录。</li>
+<li><code>JAVA_HOME</code>或者<code>JRE_HOME</code>。都设也可以，偷懒就只设 <code>JAVA_HOME</code>就可以。</li>
+</ol>
+</li>
+<li><p><strong>很少</strong>需要设置的：</p>
+<p> <code>CLASSPATH</code>、<code>CATALINA_HOME</code>。</p>
+</li>
+</ol>
+<h2 id="window-下-JDK-环境变量的设置"><a href="#window-下-JDK-环境变量的设置" class="headerlink" title="window 下 JDK 环境变量的设置"></a>window 下 JDK 环境变量的设置</h2><ol>
+<li>安装完成后，右击”我的电脑”，点击”属性”，选择”高级系统设置”；</li>
+</ol>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step1.png" alt="img"></p>
+<ol start="2">
+<li>选择”高级”选项卡，点击”环境变量”；</li>
+</ol>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step2.png" alt="img"></p>
+<ol start="3">
+<li>然后就会出现如下图所示的画面：</li>
+</ol>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step3.png" alt="img"></p>
+<p>在 “系统变量” 中设置 3 项属性，JAVA_HOME、PATH、CLASSPATH (大小写无所谓),若已存在则点击”编辑”，不存在则点击”新建”。</p>
+<blockquote>
+<p><strong>注意：</strong>如果使用 1.5 以上版本的 JDK，不用设置 CLASSPATH 环境变量，也可以正常编译和运行 Java 程序。</p>
+</blockquote>
+<p>变量设置参数如下：</p>
+<ul>
+<li><p>变量名：<strong>JAVA_HOME</strong></p>
+</li>
+<li><p>变量值：<strong>C:\Program Files (x86)\Java\jdk1.8.0_91</strong>     // 要根据自己的实际路径配置</p>
+</li>
+<li><p>变量名：<strong>CLASSPATH</strong></p>
+</li>
+<li><p>变量值：<strong>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</strong>     //记得前面有个”.”</p>
+</li>
+<li><p>变量名：<strong>Path</strong></p>
+</li>
+<li><p>变量值：<strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong></p>
+</li>
+</ul>
+<h4 id="JAVA-HOME-设置"><a href="#JAVA-HOME-设置" class="headerlink" title="JAVA_HOME 设置"></a>JAVA_HOME 设置</h4><p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step4.png" alt="img"></p>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step5.png" alt="img"></p>
+<h4 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h4><p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step6.png" alt="img"></p>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step7.png" alt="img"></p>
+<blockquote>
+<p><strong>注意：</strong>在 Windows10 中，Path 变量里是分条显示的，我们需要将 <strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong> 分开添加，否则无法识别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%JAVA_HOME%\bin;</span><br><span class="line">%JAVA_HOME%\jre\bin;</span><br></pre></td></tr></table></figure>
+
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step8.png" alt="img"></p>
+<p>更多内容可参考：<a href="https://www.runoob.com/w3cnote/windows10-java-setup.html" target="_blank" rel="noopener">Windows 10 配置Java 环境变量</a></p>
+</blockquote>
+<h4 id="CLASSPATH-设置"><a href="#CLASSPATH-设置" class="headerlink" title="CLASSPATH 设置"></a>CLASSPATH 设置</h4><p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step9.png" alt="img"></p>
+<p>这是 Java 的环境配置，配置完成后，你可以启动 Eclipse 来编写代码，它会自动完成java环境的配置。</p>
+<h4 id="测试JDK是否安装成功"><a href="#测试JDK是否安装成功" class="headerlink" title="测试JDK是否安装成功"></a>测试JDK是否安装成功</h4><p>1、”开始”-&gt;”运行”，键入”cmd”；</p>
+<p>2、键入命令: <strong>java -version</strong>、<strong>java</strong>、<strong>javac</strong> 几个命令，出现以下信息，说明环境变量配置成功；</p>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step10.png" alt="img"></p>
+<h2 id="MACOS-下设置-JDK-环境变量"><a href="#MACOS-下设置-JDK-环境变量" class="headerlink" title="MACOS 下设置 JDK 环境变量"></a>MACOS 下设置 JDK 环境变量</h2><ol>
+<li><p>打开终端，输入：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置一个<code>JAVA_HOME</code>的环境变量，它指向JDK的安装目录。在打开的 .bash_profile 中添加：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=`/Library/Java/JavaVirtualMachines/jdk-15.0.2.jdk/Contents/Home`</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：在 Mac 上，JDK 的路径和 window 上不同</p>
+</blockquote>
+</li>
+<li><p>设置 <code>PATH</code> 环境变量，把<code>JAVA_HOME</code>的<code>bin</code>目录附加到系统环境变量<code>PATH</code>上。在打开的 .bash_profile 中添加：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<p> 把<code>JAVA_HOME</code>的<code>bin</code>目录添加到<code>PATH</code>中是为了在任意文件夹下都可以运行<code>java</code>。</p>
+</li>
+<li><p>最后，保存 .bash_profile 文件，在终端输入：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure>
+
+<p> 打开终端，输入命令<code>java -version</code>，如果一切正常，你会看到如下输出:</p>
+<p> <img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/java-version.png" alt="iShot2021-02-23 09.31.21"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>细心的童鞋还可以在<code>JAVA_HOME</code>的<code>bin</code>目录下找到很多可执行文件：</p>
+<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/bin_lib.png" alt="iShot2021-02-23 09.33.34"></p>
+<ul>
+<li>java：这个可执行程序其实就是JVM，运行Java程序，就是启动JVM，然后让JVM执行指定的编译后的代码；</li>
+<li>javac：这是Java的编译器，它用于把Java源码文件（以<code>.java</code>后缀结尾）编译为Java字节码文件（以<code>.class</code>后缀结尾）；</li>
+<li>jar：用于把一组<code>.class</code>文件打包成一个<code>.jar</code>文件，便于发布；</li>
+<li>javadoc：用于从Java源码中自动提取注释并生成文档；</li>
+<li>jdb：Java调试器，用于开发阶段的运行调试。</li>
+</ul>
+
     </div>
 
     
@@ -280,6 +476,9 @@
     </div>
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/yinyiwang/tags/JDK-Java-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag"># -JDK -Java -环境变量</a>
+          </div>
 
         
 
@@ -350,6 +549,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK简介"><span class="nav-number">1.</span> <span class="nav-text">JDK简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK的安装"><span class="nav-number">2.</span> <span class="nav-text">JDK的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于环境变量（Environment-Variable）"><span class="nav-number">3.</span> <span class="nav-text">关于环境变量（Environment Variable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的环境变量"><span class="nav-number">4.</span> <span class="nav-text">Java中的环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-下-JDK-环境变量的设置"><span class="nav-number">5.</span> <span class="nav-text">window 下 JDK 环境变量的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JAVA-HOME-设置"><span class="nav-number">5.0.1.</span> <span class="nav-text">JAVA_HOME 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PATH设置"><span class="nav-number">5.0.2.</span> <span class="nav-text">PATH设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CLASSPATH-设置"><span class="nav-number">5.0.3.</span> <span class="nav-text">CLASSPATH 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试JDK是否安装成功"><span class="nav-number">5.0.4.</span> <span class="nav-text">测试JDK是否安装成功</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MACOS-下设置-JDK-环境变量"><span class="nav-number">6.</span> <span class="nav-text">MACOS 下设置 JDK 环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -370,13 +570,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -434,7 +634,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.4k字</span>
+  <span class="post-count">博客全站共25.8k字</span>
 </div>
 
         
