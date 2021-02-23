@@ -219,7 +219,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/02/22/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -233,7 +233,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2021/02/22/JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">JDK安装说明及环境变量的配置</a>
+            <a href="/yinyiwang/2021/02/22/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">JDK安装说明及环境变量的配置</a>
         </h2>
 
         <div class="post-meta">
@@ -250,7 +250,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-23 09:49:17" itemprop="dateModified" datetime="2021-02-23T09:49:17+08:00">2021-02-23</time>
+                <time title="修改时间：2021-02-23 16:12:57" itemprop="dateModified" datetime="2021-02-23T16:12:57+08:00">2021-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/yinyiwang/categories/Java/" itemprop="url" rel="index"><span itemprop="name">-Java</span></a>
+                  <a href="/yinyiwang/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
@@ -286,7 +286,7 @@
 <p>JDK 是提供给 Java 开发人员使用的，其中包含了 Java 的开发工具，也包括了 JRE。所以安装了 JDK，就不用在单独安装 JRE了。 其中的开发工具包括编译工具 ( javac.exe ) 打包工具 ( jar.exe ) 等</p>
 <p>在 JDK 的安装目录下有一个 jre 目录，里面有两个文件夹 bin 和 lib，在这里可以认为 bin 里的就是 jvm，lib 中则是 jvm 工作所需要的类库，而 jvm 和 lib 合起来就称为 jre。</p>
 <h2 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h2><p>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank" rel="noopener">Oracle官网</a>，找到最新版本的 JDK 进行下载</p>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/Oracle%E5%AE%98%E7%BD%91.png" alt="Oracle官网"></p>
+<p><img src="../images/20210223/Oracle%E5%AE%98%E7%BD%91.png" alt="Oracle官网"></p>
 <h2 id="关于环境变量（Environment-Variable）"><a href="#关于环境变量（Environment-Variable）" class="headerlink" title="关于环境变量（Environment Variable）"></a>关于环境变量（<em>Environment Variable</em>）</h2><ul>
 <li><p>变量</p>
 <p>  就是可以随意给其赋值的一个存储单元。</p>
@@ -360,15 +360,15 @@
 <h2 id="window-下-JDK-环境变量的设置"><a href="#window-下-JDK-环境变量的设置" class="headerlink" title="window 下 JDK 环境变量的设置"></a>window 下 JDK 环境变量的设置</h2><ol>
 <li>安装完成后，右击”我的电脑”，点击”属性”，选择”高级系统设置”；</li>
 </ol>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step1.png" alt="img"></p>
+<p><img src="../images/20210223/step1.png" alt="img"></p>
 <ol start="2">
 <li>选择”高级”选项卡，点击”环境变量”；</li>
 </ol>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step2.png" alt="img"></p>
+<p><img src="../images/20210223/step2.png" alt="img"></p>
 <ol start="3">
 <li>然后就会出现如下图所示的画面：</li>
 </ol>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step3.png" alt="img"></p>
+<p><img src="../images/20210223/step3.png" alt="img"></p>
 <p>在 “系统变量” 中设置 3 项属性，JAVA_HOME、PATH、CLASSPATH (大小写无所谓),若已存在则点击”编辑”，不存在则点击”新建”。</p>
 <blockquote>
 <p><strong>注意：</strong>如果使用 1.5 以上版本的 JDK，不用设置 CLASSPATH 环境变量，也可以正常编译和运行 Java 程序。</p>
@@ -388,22 +388,22 @@
 <li><p>变量值：<strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong></p>
 </li>
 </ul>
-<h4 id="JAVA-HOME-设置"><a href="#JAVA-HOME-设置" class="headerlink" title="JAVA_HOME 设置"></a>JAVA_HOME 设置</h4><p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step4.png" alt="img"></p>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step5.png" alt="img"></p>
-<h4 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h4><p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step6.png" alt="img"></p>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step7.png" alt="img"></p>
+<h4 id="JAVA-HOME-设置"><a href="#JAVA-HOME-设置" class="headerlink" title="JAVA_HOME 设置"></a>JAVA_HOME 设置</h4><p><img src="../images/20210223/step4.png" alt="img"></p>
+<p><img src="../images/20210223/step5.png" alt="img"></p>
+<h4 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h4><p><img src="../images/20210223/step6.png" alt="img"></p>
+<p><img src="../images/20210223/step7.png" alt="img"></p>
 <blockquote>
 <p><strong>注意：</strong>在 Windows10 中，Path 变量里是分条显示的，我们需要将 <strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong> 分开添加，否则无法识别：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%JAVA_HOME%\bin;</span><br><span class="line">%JAVA_HOME%\jre\bin;</span><br></pre></td></tr></table></figure>
 
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step8.png" alt="img"></p>
+<p><img src="../images/20210223/step8.png" alt="img"></p>
 <p>更多内容可参考：<a href="https://www.runoob.com/w3cnote/windows10-java-setup.html" target="_blank" rel="noopener">Windows 10 配置Java 环境变量</a></p>
 </blockquote>
-<h4 id="CLASSPATH-设置"><a href="#CLASSPATH-设置" class="headerlink" title="CLASSPATH 设置"></a>CLASSPATH 设置</h4><p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step9.png" alt="img"></p>
+<h4 id="CLASSPATH-设置"><a href="#CLASSPATH-设置" class="headerlink" title="CLASSPATH 设置"></a>CLASSPATH 设置</h4><p><img src="../images/20210223/step9.png" alt="img"></p>
 <p>这是 Java 的环境配置，配置完成后，你可以启动 Eclipse 来编写代码，它会自动完成java环境的配置。</p>
 <h4 id="测试JDK是否安装成功"><a href="#测试JDK是否安装成功" class="headerlink" title="测试JDK是否安装成功"></a>测试JDK是否安装成功</h4><p>1、”开始”-&gt;”运行”，键入”cmd”；</p>
 <p>2、键入命令: <strong>java -version</strong>、<strong>java</strong>、<strong>javac</strong> 几个命令，出现以下信息，说明环境变量配置成功；</p>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/step10.png" alt="img"></p>
+<p><img src="../images/20210223/step10.png" alt="img"></p>
 <h2 id="MACOS-下设置-JDK-环境变量"><a href="#MACOS-下设置-JDK-环境变量" class="headerlink" title="MACOS 下设置 JDK 环境变量"></a>MACOS 下设置 JDK 环境变量</h2><ol>
 <li><p>打开终端，输入：</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
@@ -424,11 +424,11 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure>
 
 <p> 打开终端，输入命令<code>java -version</code>，如果一切正常，你会看到如下输出:</p>
-<p> <img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/java-version.png" alt="iShot2021-02-23 09.31.21"></p>
+<p> <img src="../images/20210223/java-version.png" alt="iShot2021-02-23 09.31.21"></p>
 </li>
 </ol>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>细心的童鞋还可以在<code>JAVA_HOME</code>的<code>bin</code>目录下找到很多可执行文件：</p>
-<p><img src="2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/bin_lib.png" alt="iShot2021-02-23 09.33.34"></p>
+<p><img src="../images/20210223/bin_lib.png" alt="iShot2021-02-23 09.33.34"></p>
 <ul>
 <li>java：这个可执行程序其实就是JVM，运行Java程序，就是启动JVM，然后让JVM执行指定的编译后的代码；</li>
 <li>javac：这是Java的编译器，它用于把Java源码文件（以<code>.java</code>后缀结尾）编译为Java字节码文件（以<code>.class</code>后缀结尾）；</li>
@@ -1732,7 +1732,7 @@ module.exports = function (app) {
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1843,8 +1843,6 @@ module.exports = function (app) {
 <script src="/yinyiwang/js/next-boot.js"></script>
 
 
-  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
-    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/three-waves.min.js"></script>
 
 
   
