@@ -219,6 +219,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
+      <meta itemprop="name" content="隐逸王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端三昧">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/" class="post-title-link" itemprop="url">ES6迭代器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-24 08:50:07" itemprop="dateCreated datePublished" datetime="2020-04-24T08:50:07+08:00">2020-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-01 10:28:04" itemprop="dateModified" datetime="2020-06-01T10:28:04+08:00">2020-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p style = 'color:red'>这是一个p标签</p>
+
+<p><img src="https://i.loli.net/2020/04/24/zX21NdsLFHcA5OZ.jpg" alt="K9DIWTU0D4KID_thumbnail"></p>
+<h2 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h2><p>Iterator 是 ES6 引入的一种新的遍历机制，迭代器有两个核心概念：</p>
+<ul>
+<li>迭代器是一个统一的接口，它的作用是使各种数据结构可被便捷的访问，它是通过一个键为Symbol.iterator 的方法来实现。</li>
+<li>迭代器是用于遍历数据结构元素的指针（如数据库中的游标）。</li>
+</ul>
+<h3 id="迭代过程"><a href="#迭代过程" class="headerlink" title="迭代过程"></a>迭代过程</h3><p>迭代的过程如下：</p>
+<ul>
+<li>通过 Symbol.iterator 创建一个迭代器，指向当前数据结构的起始位置</li>
+<li>随后通过 next 方法进行向下迭代指向下一个位置， next 方法会返回当前位置的对象，对象包含了 value 和 done 两个属性， value 是当前属性的值， done 用于判断是否遍历结束</li>
+<li>当 done 为 true 时则遍历结束</li>
+</ul>
+<p>下面通过一个简单的例子进行说明：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>]; </span><br><span class="line"><span class="keyword">const</span> it = items[<span class="built_in">Symbol</span>.iterator]();  </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="string">"zero"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125; </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="string">"one"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125; </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="string">"two"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125; </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子，首先创建一个数组，然后通过 Symbol.iterator 方法创建一个迭代器，之后不断的调用 next 方法对数组内部项进行访问，当属性 done 为 true 时访问结束。</p>
+<p>迭代器是协议（使用它们的规则）的一部分，用于迭代。该协议的一个关键特性就是它是顺序的：迭代器一次返回一个值。这意味着如果可迭代数据结构是非线性的（例如树），迭代将会使其线性化。</p>
+<h3 id="可迭代的数据结构"><a href="#可迭代的数据结构" class="headerlink" title="可迭代的数据结构"></a>可迭代的数据结构</h3><p>以下是可迭代的值:</p>
+<ul>
+<li>Array</li>
+<li>String</li>
+<li>Map</li>
+<li>Set</li>
+<li>Dom元素（正在进行中）</li>
+</ul>
+<p>我们将使用 <strong>for…of</strong> 循环（参见下文的 for…of 循环）对数据结构进行迭代。</p>
+<p><strong>Array</strong></p>
+<p>数组 ( Array ) 和类型数组 ( TypedArray ) 他们是可迭代的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>]) &#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(item); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one </span></span><br><span class="line"><span class="comment">// two</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>String</strong></p>
+<p>字符串是可迭代的，单他们遍历的是 Unicode 码，每个码可能包含一个到两个的 Javascript 字符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> c <span class="keyword">of</span> <span class="string">'z\uD83D\uDC0A'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// z </span></span><br><span class="line"><span class="comment">// \uD83D\uDC0A</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Map</strong></p>
+<p>Map 主要是迭代它们的 entries ，每个 entry 都会被编码为 [key, value] 的项， entries 是以确定的形势进行迭代，其顺序是与添加的顺序相同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(); </span><br><span class="line">map.set(<span class="number">0</span>, <span class="string">"zero"</span>); </span><br><span class="line">map.set(<span class="number">1</span>, <span class="string">"one"</span>);  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> map) &#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(item); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// [0, "zero"] </span></span><br><span class="line"><span class="comment">// [1, "one"]</span></span><br></pre></td></tr></table></figure>
+
+<p>注意： WeakMaps 不可迭代</p>
+<p><strong>Set</strong></p>
+<p>Set 是对其元素进行迭代，迭代的顺序与其添加的顺序相同</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">set</span> = new Set(); </span><br><span class="line"><span class="keyword">set</span>.add("zero"); </span><br><span class="line"><span class="keyword">set</span>.add("one");  </span><br><span class="line">for (let item of <span class="keyword">set</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one</span></span><br></pre></td></tr></table></figure>
+
+<p>注意： WeakSets 不可迭代</p>
+<p><strong>arguments</strong></p>
+<p>arguments 目前在 ES6 中使用越来越少，但也是可遍历的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">args</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> <span class="built_in">arguments</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; args(<span class="string">"zero"</span>, <span class="string">"one"</span>); </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="普通对象不可迭代"><a href="#普通对象不可迭代" class="headerlink" title="普通对象不可迭代"></a>普通对象不可迭代</h3><p>普通对象是由 object 创建的，不可迭代：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TypeError </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> &#123;&#125;) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h2><p>for…of 是 ES6 新引入的循环，用于替代 for..in 和 forEach() ，并且支持新的迭代协议。它可用于迭代常规的数据类型，如 <code>Array</code> 、 <code>String</code> 、 <code>Map</code>和 <code>Set</code> 等等。</p>
+<h3 id="迭代常规数据类型"><a href="#迭代常规数据类型" class="headerlink" title="迭代常规数据类型"></a>迭代常规数据类型</h3><p><strong>Array</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// TypedArray </span></span><br><span class="line"><span class="keyword">const</span> typedArray1 = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(<span class="number">6</span>); </span><br><span class="line">typedArray1[<span class="number">0</span>] = <span class="number">10</span>; </span><br><span class="line">typedArray1[<span class="number">1</span>] = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> typedArray1) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>String</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">"zero"</span>;  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> str) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Map</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myMap = <span class="keyword">new</span> <span class="built_in">Map</span>(); </span><br><span class="line">myMap.set(<span class="number">0</span>, <span class="string">"zero"</span>); </span><br><span class="line">myMap.set(<span class="number">1</span>, <span class="string">"one"</span>); </span><br><span class="line">myMap.set(<span class="number">2</span>, <span class="string">"two"</span>);  </span><br><span class="line"><span class="comment">// 遍历 key 和 value </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> myMap) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" = "</span> + value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> myMap.entries()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" = "</span> + value);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 key </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> myMap.keys()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 value </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> myMap.values()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Set</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySet = <span class="keyword">new</span> <span class="built_in">Set</span>(); </span><br><span class="line">mySet.add(<span class="string">"zero"</span>); </span><br><span class="line">mySet.add(<span class="string">"one"</span>); </span><br><span class="line">mySet.add(<span class="string">"two"</span>);  </span><br><span class="line"><span class="comment">// 遍历整个 set </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> mySet) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 key 值 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> mySet.keys()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 value </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> mySet.values()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 遍历 key 和 value ，两者会相等 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> mySet.entries()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" = "</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可迭代的数据结构-1"><a href="#可迭代的数据结构-1" class="headerlink" title="可迭代的数据结构"></a>可迭代的数据结构</h3><p>of 操作数必须是可迭代，这意味着如果是普通对象则无法进行迭代。如果数据结构类似于数组的形式，则可以借助 Array.from() 方法进行转换迭代。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrayLink = &#123;</span><br><span class="line">    length: <span class="number">2</span>, </span><br><span class="line">    <span class="number">0</span>: <span class="string">"zero"</span>, </span><br><span class="line">    <span class="number">1</span>: <span class="string">"one"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 报 TypeError 异常 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arrayLink) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 正常运行 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> <span class="built_in">Array</span>.from(arrayLink)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>let 、const 和 var 用于 for..of</strong></p>
+<p>如果使用 let 和 const ，每次迭代将会创建一个新的存储空间，这可以保证作用域在迭代的内部。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 报 ReferenceError </span></span><br><span class="line"><span class="built_in">console</span>.log(num);</span><br></pre></td></tr></table></figure>
+
+<p>从上面的例子我们看到，最后一句会报异常，原因 num 的作用域只在循环体内部，外部无效。使用 var 则不会出现上述情况，因为 var 会作用于全局，迭代将不会每次都创建一个新的存储空间。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>];</span><br><span class="line">forv (<span class="keyword">var</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="comment">// output: two</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/04/24/oEYfrkFBCDzR7e2.png" alt="01"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -973,20 +1123,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/yinyiwang/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1044,7 +1194,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.8k字</span>
+  <span class="post-count">博客全站共27.5k字</span>
 </div>
 
         

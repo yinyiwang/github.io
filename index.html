@@ -219,6 +219,230 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/02/26/jmeter%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
+      <meta itemprop="name" content="隐逸王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端三昧">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/yinyiwang/2021/02/26/jmeter%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">jmeter 简介及安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-26 18:44:09 / 修改时间：19:48:46" itemprop="dateCreated datePublished" datetime="2021-02-26T18:44:09+08:00">2021-02-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="jmeter简介"><a href="#jmeter简介" class="headerlink" title="jmeter简介"></a>jmeter简介</h2><p>全名为 <strong>Apache JMeter</strong></p>
+<p><code>JMeter</code> 是一个软件，使负载测试或业绩为导向的业务（功能）测试不同的协议或技术。 它是 Apache 软件基金会的Stefano Mazzocchi JMeter 的最初的开发。它主要对 Apache JServ（现在称为如 Apache Tomcat 项目）的性能进行测试。Apache 后来重新设计 JMeter 增强的图形用户界面和添加功能测试能力。</p>
+<p>Apache JMeter 是100%纯 JAVA 桌面应用程序，被设计为用于测试客户端/服务端结构的软件(例如 web 应用程序)。它可以用来测试静态和动态资源的性能，例如：静态文件，Java Servlet,CGI Scripts,Java Object,数据库和 FTP 服务器等等。JMeter 可用于模拟大量负载来测试一台服务器，网络或者对象的健壮性或者分析不同负载下的整体性能。     </p>
+<p>同时，JMeter 可以帮助你对你的应用程序进行回归测试。通过你创建的测试脚本和 assertions 来验证你的程序返回了所期待的值。为了更高的适应性，JMeter 允许调用二次开发的 jar 包来丰富你的测试场景；JMeter 允许你使用正则表达式来创建这些 assertions.</p>
+<p>这是一个具有图形界面，使用 Swing 图形 API 的 Java 桌面应用程序，因此可以运行在任何环境/工作站接受一个 Java 虚拟机，例如：在 Windows，Linux，MAC等。</p>
+<p>JMeter 支持的协议有：</p>
+<ul>
+<li>web：HTTP，HTTPS 站点的 Web1.0的Web 2.0 (ajax, flex and flex-ws-amf)</li>
+<li>Web Services: SOAP / XML-RPC</li>
+<li>通过 JDBC 驱动程序的数据库</li>
+<li>目录: LDAP</li>
+<li>通过 JMS 面向消息的服务</li>
+<li>Service: POP3, IMAP, SMTP</li>
+<li>FTP服务</li>
+</ul>
+<h2 id="jmeter-的特点"><a href="#jmeter-的特点" class="headerlink" title="jmeter 的特点"></a>jmeter 的特点</h2><p>以下是一些  JMeter 的特点：</p>
+<ul>
+<li>它是免费的。开放源码软件。</li>
+<li>它具有简单，直观的图形用户界面。</li>
+<li>JMeter中负载和性能测试许多不同的服务器类型：网站 - - HTTP，HTTPS，SOAP，数据库通过 JDBC，LDAP，JMS，邮件 POP3</li>
+<li>它是独立于平台的工具。在 Linux / UNIX，JMeter 中 JMeter 中 shell 脚本点击可以调用。在 Windows 上，它可以调用启动 jmeter.bat 文件。</li>
+<li>它具有完整的 Swing 和轻量级组件支持（预编译的 JAR 使用包 javax.swing 中*）。</li>
+<li>JMeter 测试计划存储为XML格式。这意味着可以使用文本编辑器生成一个测试计划。</li>
+<li>它的完整的多线程框架，允许并发多线程和同步采样不同的功能由单独的线程组采样。</li>
+<li>它是高度可扩展的。</li>
+<li>也可用于执行应用程序的自动化测试和功能测试。</li>
+</ul>
+<h2 id="jmeter的安装"><a href="#jmeter的安装" class="headerlink" title="jmeter的安装"></a>jmeter的安装</h2><ol>
+<li><p>进入 <a href="https://jmeter.apache.org/" target="_blank" rel="noopener">Apache JMeter 官网 </a>，选择 <strong>Download Release</strong>，如下图：</p>
+<p> <img src="../images/20210226/image-20210226190149441.png" alt="image-20210226190149441"></p>
+</li>
+<li><p>根据操作系统，选择要下载的压缩包：</p>
+<p> <img src="../images/20210226/image-20210226190809394.png" alt="image-20210226190809394"></p>
+<blockquote>
+<p>注意事项：</p>
+<ol>
+<li>注意图片标题中的 Java 版本要求，这里要求的是 Java8 及以上的版本。</li>
+<li>我们一般选择 <strong>Binaries</strong> 下的压缩包，除非是你想要使用它的源码做研究，则可以选择 Source 下的资源包。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>解压下载下来的压缩包，得到如下的文件结构：</p>
+<p> <img src="../images/20210226/image-20210226191501823.png" alt="image-20210226191501823"></p>
+</li>
+<li><p>打开 <strong>bin</strong> 目录，通过双击 <strong>ApacheJMeter.jar</strong> 即可启动JMeter：</p>
+<p> <img src="../images/20210226/image-20210226192035951.png" alt="image-20210226192035951"></p>
+<blockquote>
+<ol>
+<li>也可以通过可执行文件进行启动，不同系统上的可执行文件在上图中有标出。</li>
+<li>JMeter 的运行需要 Java 环境的支持，需要提前安装 <strong>JDK</strong> 。</li>
+</ol>
+</blockquote>
+<h2 id="JMeter-根目录结构说明"><a href="#JMeter-根目录结构说明" class="headerlink" title="JMeter 根目录结构说明"></a>JMeter 根目录结构说明</h2><ol>
+<li><p><strong>backup目录</strong>   </p>
+<p> 脚本备份目录，里边的文件都是以 .jmx 后缀结尾的文件。</p>
+<p> 实际开始安装解压后是不存在这个目录的，在使用过 JMeter 后，JMeter 自动创建这个目录，然后备份了脚本文件。</p>
+</li>
+<li><p><strong>bin 目录</strong>  可执行文件目录</p>
+<ul>
+<li><p>Jmeter.bat：是启动 jmeter 的主脚本。</p>
+</li>
+<li><p>Jmeter-server.bar：是用来实现联机负载。</p>
+</li>
+<li><p>Jmeter.properties：是 jmeter 主要的配置文件，超过 80% 的配置项都是通过这个文件实现。（PS：修改配置文件后，要重启 Jmeter 才能生效）。</p>
+<blockquote>
+<p>Jmeter.bat  打开 Jmeter 主界面。</p>
+<p>Jmeter 使用的日志文件名称被定义到 Jmeter.properties 中，默认在 Jmeter.log 可查看日志。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>dosc目录</strong></p>
+<p> docs 目录下的文件是 JMeter 的 Java Docs。 </p>
+<p> printable_docs 的 usermanual 子目录下的内容是 JMeter 的用户手册文档，其中 component_reference.html 是最常用到的核心元件帮助文档。该目录下存放的是 jmeter 官方文档的 API 文档，主要是用于<em>二次开发</em>。</p>
+</li>
+<li><p><strong>extras目录</strong></p>
+<p> 该目录下的文件提供了对构建工具 Ant 的支持，可以使用 Ant 来实现测试自动化，例如批量脚本执行，产生 HTML格式的报表，测试运行时，可以把测试数据记录下来，Jmeter 会自动生成一个 .jtl 文件，将该文件放到 extras 目录下，运行 “ant -Dtest=文件名 report”，就可以生成测试统计报表。</p>
+<p> 也可以用于持续集成。</p>
+</li>
+<li><p><strong>lib目录</strong></p>
+<p> 该目录包含两个子目录，其中 ext 子目录存放有 JMeter 的核心 jar 包，另一个 junit 子目录存放 JUnit 测试脚本。</p>
+<p> 用户扩展所依赖的包，应该直接放到 lib 目录下，而非 lib/ext 下。</p>
+<blockquote>
+<p>注意：无法识别 zip 格式的包文件，所以需要的包文件均要求以 .jar 结尾</p>
+</blockquote>
+</li>
+<li><p><strong>Licenses jmeter 软件许可文件目录</strong></p>
+</li>
+<li><p><strong>printable_docs目录</strong></p>
+<p> 该目录存放的是 jmeter 官方提供的帮助文档。</p>
+<p> printable_docs 的 demos 子目录下有一些常用的 JMeter 脚本案例，可以作为参考。</p>
+</li>
+<li><p><strong>LICENSE JMeter ——许可说明</strong></p>
+</li>
+<li><p><strong>NOTICE JMeter ——简单信息说明</strong></p>
+</li>
+<li><p><strong>README.md ——JMeter 官方基本介绍</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="bin-目录说明"><a href="#bin-目录说明" class="headerlink" title="bin 目录说明"></a>bin 目录说明</h2><h4 id="window-下"><a href="#window-下" class="headerlink" title="window 下"></a>window 下</h4><ul>
+<li><p><strong>jmeter.bat</strong></p>
+<p>  启动 JMeter (默认 GUI 模式)</p>
+</li>
+<li><p><strong>jmeterw.cmd</strong></p>
+<p>  启动 JMeter 没有 windows shell 控制台 (默认 GUI 模式)</p>
+</li>
+<li><p><strong>jmeter-n.cmd</strong></p>
+<p>  删除一个 JMX 文件在运行非 GUI 测试</p>
+</li>
+<li><p><strong>jmeter-n-r.cmd</strong></p>
+<p>  删除一个 JMX 文件在运行非 GUI 远程测试</p>
+</li>
+<li><p><strong>jmeter-t.cmd</strong></p>
+<p>  删除一个 JMX 文件在 GUI 模式下加载它</p>
+</li>
+<li><p><strong>jmeter-server.bat</strong></p>
+<p>  在服务器模式启动JMeter</p>
+</li>
+<li><p><strong>mirror-server.cmd</strong></p>
+<p>  在非 GUI 模式下运行 JMeter 镜像服务器</p>
+</li>
+<li><p><strong>shutdown.cm</strong></p>
+<p>  运行关闭客户端，以优雅地停止非GUI实例</p>
+</li>
+<li><p><strong>stoptest.cmd</strong></p>
+<p>  运行关闭客户端,停止非 GUI 实例</p>
+</li>
+</ul>
+<h4 id="应该在大多数-Linux-UNIX-系统上工作："><a href="#应该在大多数-Linux-UNIX-系统上工作：" class="headerlink" title="应该在大多数 Linux / UNIX 系统上工作："></a>应该在大多数 Linux / UNIX 系统上工作：</h4><ul>
+<li><p><strong>jmeter</strong></p>
+<p>  启动 JMeter (默认 GUI 模式). 定义一些可能不适用于所有 JVM 的 JVM 设置。</p>
+</li>
+<li><p><strong>jmeter-server</strong></p>
+<p>  在服务器模式启动 JMeter (使用适当的参数调用 jmeter 脚本)</p>
+</li>
+<li><p><strong>jmeter.sh</strong></p>
+<p>  非常基础的 JMeter 脚本 (你可能需要调整 JVM 选项，比如内存设置).</p>
+</li>
+<li><p><strong>mirror-server.sh</strong></p>
+<p>  在非 GUI 模式下运行 JMeter 镜像服务器</p>
+</li>
+<li><p><strong>shutdown.sh</strong></p>
+<p>  运行关闭客户端，以优雅地停止非 GUI 实例</p>
+</li>
+<li><p><strong>stoptest.sh</strong></p>
+<p>  运行关闭客户端,停止非 GUI 实例</p>
+</li>
+</ul>
+<h2 id="JMeter-插件安装"><a href="#JMeter-插件安装" class="headerlink" title="JMeter 插件安装"></a>JMeter 插件安装</h2><ol>
+<li><p>进入 <a href="https://jmeter-plugins.org/install/Install/" target="_blank" rel="noopener">JMeter 插件网站</a>，现在 JMeter 插件包</p>
+<p> <img src="../images/20210226/image-20210226193950155.png" alt="image-20210226193950155"></p>
+</li>
+<li><p>解压插件，找到 JMeterPlugins-Extras.jar，把 JMeterPlugins-Extras.jar 放到 apache-jmeter-5.4.1\lib\ext 目录。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/02/22/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1500,156 +1724,6 @@ module.exports = function (app) {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
-      <meta itemprop="name" content="隐逸王">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前端三昧">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/" class="post-title-link" itemprop="url">ES6迭代器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-24 08:50:07" itemprop="dateCreated datePublished" datetime="2020-04-24T08:50:07+08:00">2020-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-01 10:28:04" itemprop="dateModified" datetime="2020-06-01T10:28:04+08:00">2020-06-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/yinyiwang/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p style = 'color:red'>这是一个p标签</p>
-
-<p><img src="https://i.loli.net/2020/04/24/zX21NdsLFHcA5OZ.jpg" alt="K9DIWTU0D4KID_thumbnail"></p>
-<h2 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h2><p>Iterator 是 ES6 引入的一种新的遍历机制，迭代器有两个核心概念：</p>
-<ul>
-<li>迭代器是一个统一的接口，它的作用是使各种数据结构可被便捷的访问，它是通过一个键为Symbol.iterator 的方法来实现。</li>
-<li>迭代器是用于遍历数据结构元素的指针（如数据库中的游标）。</li>
-</ul>
-<h3 id="迭代过程"><a href="#迭代过程" class="headerlink" title="迭代过程"></a>迭代过程</h3><p>迭代的过程如下：</p>
-<ul>
-<li>通过 Symbol.iterator 创建一个迭代器，指向当前数据结构的起始位置</li>
-<li>随后通过 next 方法进行向下迭代指向下一个位置， next 方法会返回当前位置的对象，对象包含了 value 和 done 两个属性， value 是当前属性的值， done 用于判断是否遍历结束</li>
-<li>当 done 为 true 时则遍历结束</li>
-</ul>
-<p>下面通过一个简单的例子进行说明：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>]; </span><br><span class="line"><span class="keyword">const</span> it = items[<span class="built_in">Symbol</span>.iterator]();  </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="string">"zero"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125; </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="string">"one"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125; </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="string">"two"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125; </span><br><span class="line">it.next(); </span><br><span class="line">&gt;&#123;<span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的例子，首先创建一个数组，然后通过 Symbol.iterator 方法创建一个迭代器，之后不断的调用 next 方法对数组内部项进行访问，当属性 done 为 true 时访问结束。</p>
-<p>迭代器是协议（使用它们的规则）的一部分，用于迭代。该协议的一个关键特性就是它是顺序的：迭代器一次返回一个值。这意味着如果可迭代数据结构是非线性的（例如树），迭代将会使其线性化。</p>
-<h3 id="可迭代的数据结构"><a href="#可迭代的数据结构" class="headerlink" title="可迭代的数据结构"></a>可迭代的数据结构</h3><p>以下是可迭代的值:</p>
-<ul>
-<li>Array</li>
-<li>String</li>
-<li>Map</li>
-<li>Set</li>
-<li>Dom元素（正在进行中）</li>
-</ul>
-<p>我们将使用 <strong>for…of</strong> 循环（参见下文的 for…of 循环）对数据结构进行迭代。</p>
-<p><strong>Array</strong></p>
-<p>数组 ( Array ) 和类型数组 ( TypedArray ) 他们是可迭代的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>]) &#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(item); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one </span></span><br><span class="line"><span class="comment">// two</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>String</strong></p>
-<p>字符串是可迭代的，单他们遍历的是 Unicode 码，每个码可能包含一个到两个的 Javascript 字符。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> c <span class="keyword">of</span> <span class="string">'z\uD83D\uDC0A'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(c); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// z </span></span><br><span class="line"><span class="comment">// \uD83D\uDC0A</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Map</strong></p>
-<p>Map 主要是迭代它们的 entries ，每个 entry 都会被编码为 [key, value] 的项， entries 是以确定的形势进行迭代，其顺序是与添加的顺序相同。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(); </span><br><span class="line">map.set(<span class="number">0</span>, <span class="string">"zero"</span>); </span><br><span class="line">map.set(<span class="number">1</span>, <span class="string">"one"</span>);  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> map) &#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(item); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// [0, "zero"] </span></span><br><span class="line"><span class="comment">// [1, "one"]</span></span><br></pre></td></tr></table></figure>
-
-<p>注意： WeakMaps 不可迭代</p>
-<p><strong>Set</strong></p>
-<p>Set 是对其元素进行迭代，迭代的顺序与其添加的顺序相同</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">set</span> = new Set(); </span><br><span class="line"><span class="keyword">set</span>.add("zero"); </span><br><span class="line"><span class="keyword">set</span>.add("one");  </span><br><span class="line">for (let item of <span class="keyword">set</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one</span></span><br></pre></td></tr></table></figure>
-
-<p>注意： WeakSets 不可迭代</p>
-<p><strong>arguments</strong></p>
-<p>arguments 目前在 ES6 中使用越来越少，但也是可遍历的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">args</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> <span class="built_in">arguments</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; args(<span class="string">"zero"</span>, <span class="string">"one"</span>); </span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="普通对象不可迭代"><a href="#普通对象不可迭代" class="headerlink" title="普通对象不可迭代"></a>普通对象不可迭代</h3><p>普通对象是由 object 创建的，不可迭代：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TypeError </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> &#123;&#125;) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h2><p>for…of 是 ES6 新引入的循环，用于替代 for..in 和 forEach() ，并且支持新的迭代协议。它可用于迭代常规的数据类型，如 <code>Array</code> 、 <code>String</code> 、 <code>Map</code>和 <code>Set</code> 等等。</p>
-<h3 id="迭代常规数据类型"><a href="#迭代常规数据类型" class="headerlink" title="迭代常规数据类型"></a>迭代常规数据类型</h3><p><strong>Array</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num); </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// TypedArray </span></span><br><span class="line"><span class="keyword">const</span> typedArray1 = <span class="keyword">new</span> <span class="built_in">Int8Array</span>(<span class="number">6</span>); </span><br><span class="line">typedArray1[<span class="number">0</span>] = <span class="number">10</span>; </span><br><span class="line">typedArray1[<span class="number">1</span>] = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> typedArray1) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>String</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">"zero"</span>;  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> str) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Map</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myMap = <span class="keyword">new</span> <span class="built_in">Map</span>(); </span><br><span class="line">myMap.set(<span class="number">0</span>, <span class="string">"zero"</span>); </span><br><span class="line">myMap.set(<span class="number">1</span>, <span class="string">"one"</span>); </span><br><span class="line">myMap.set(<span class="number">2</span>, <span class="string">"two"</span>);  </span><br><span class="line"><span class="comment">// 遍历 key 和 value </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> myMap) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" = "</span> + value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> myMap.entries()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" = "</span> + value);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 key </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> myMap.keys()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 value </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> myMap.values()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Set</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySet = <span class="keyword">new</span> <span class="built_in">Set</span>(); </span><br><span class="line">mySet.add(<span class="string">"zero"</span>); </span><br><span class="line">mySet.add(<span class="string">"one"</span>); </span><br><span class="line">mySet.add(<span class="string">"two"</span>);  </span><br><span class="line"><span class="comment">// 遍历整个 set </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> mySet) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 key 值 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> mySet.keys()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 只遍历 value </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> mySet.values()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 遍历 key 和 value ，两者会相等 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> mySet.entries()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">" = "</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="可迭代的数据结构-1"><a href="#可迭代的数据结构-1" class="headerlink" title="可迭代的数据结构"></a>可迭代的数据结构</h3><p>of 操作数必须是可迭代，这意味着如果是普通对象则无法进行迭代。如果数据结构类似于数组的形式，则可以借助 Array.from() 方法进行转换迭代。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrayLink = &#123;</span><br><span class="line">    length: <span class="number">2</span>, </span><br><span class="line">    <span class="number">0</span>: <span class="string">"zero"</span>, </span><br><span class="line">    <span class="number">1</span>: <span class="string">"one"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 报 TypeError 异常 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> arrayLink) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// 正常运行 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> <span class="built_in">Array</span>.from(arrayLink)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// output: </span></span><br><span class="line"><span class="comment">// zero </span></span><br><span class="line"><span class="comment">// one</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>let 、const 和 var 用于 for..of</strong></p>
-<p>如果使用 let 和 const ，每次迭代将会创建一个新的存储空间，这可以保证作用域在迭代的内部。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 报 ReferenceError </span></span><br><span class="line"><span class="built_in">console</span>.log(num);</span><br></pre></td></tr></table></figure>
-
-<p>从上面的例子我们看到，最后一句会报异常，原因 num 的作用域只在循环体内部，外部无效。使用 var 则不会出现上述情况，因为 var 会作用于全局，迭代将不会每次都创建一个新的存储空间。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nums = [<span class="string">"zero"</span>, <span class="string">"one"</span>, <span class="string">"two"</span>];</span><br><span class="line">forv (<span class="keyword">var</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="comment">// output: two</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.loli.net/2020/04/24/oEYfrkFBCDzR7e2.png" alt="01"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1719,20 +1793,20 @@ module.exports = function (app) {
       <div class="site-state-item site-state-posts">
           <a href="/yinyiwang/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1790,7 +1864,7 @@ module.exports = function (app) {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.8k字</span>
+  <span class="post-count">博客全站共27.5k字</span>
 </div>
 
         
