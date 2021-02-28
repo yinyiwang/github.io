@@ -233,7 +233,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2021/02/26/jmeter%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">jmeter 简介及安装</a>
+            <a href="/yinyiwang/2021/02/26/jmeter%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">JMeter 简介及安装</a>
         </h2>
 
         <div class="post-meta">
@@ -242,10 +242,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-02-26 18:44:09 / 修改时间：19:48:46" itemprop="dateCreated datePublished" datetime="2021-02-26T18:44:09+08:00">2021-02-26</time>
+              <time title="创建时间：2021-02-26 18:44:09" itemprop="dateCreated datePublished" datetime="2021-02-26T18:44:09+08:00">2021-02-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-27 00:49:47" itemprop="dateModified" datetime="2021-02-27T00:49:47+08:00">2021-02-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -267,39 +273,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="jmeter简介"><a href="#jmeter简介" class="headerlink" title="jmeter简介"></a>jmeter简介</h2><p>全名为 <strong>Apache JMeter</strong></p>
-<p><code>JMeter</code> 是一个软件，使负载测试或业绩为导向的业务（功能）测试不同的协议或技术。 它是 Apache 软件基金会的Stefano Mazzocchi JMeter 的最初的开发。它主要对 Apache JServ（现在称为如 Apache Tomcat 项目）的性能进行测试。Apache 后来重新设计 JMeter 增强的图形用户界面和添加功能测试能力。</p>
-<p>Apache JMeter 是100%纯 JAVA 桌面应用程序，被设计为用于测试客户端/服务端结构的软件(例如 web 应用程序)。它可以用来测试静态和动态资源的性能，例如：静态文件，Java Servlet,CGI Scripts,Java Object,数据库和 FTP 服务器等等。JMeter 可用于模拟大量负载来测试一台服务器，网络或者对象的健壮性或者分析不同负载下的整体性能。     </p>
-<p>同时，JMeter 可以帮助你对你的应用程序进行回归测试。通过你创建的测试脚本和 assertions 来验证你的程序返回了所期待的值。为了更高的适应性，JMeter 允许调用二次开发的 jar 包来丰富你的测试场景；JMeter 允许你使用正则表达式来创建这些 assertions.</p>
-<p>这是一个具有图形界面，使用 Swing 图形 API 的 Java 桌面应用程序，因此可以运行在任何环境/工作站接受一个 Java 虚拟机，例如：在 Windows，Linux，MAC等。</p>
-<p>JMeter 支持的协议有：</p>
-<ul>
-<li>web：HTTP，HTTPS 站点的 Web1.0的Web 2.0 (ajax, flex and flex-ws-amf)</li>
-<li>Web Services: SOAP / XML-RPC</li>
+          <blockquote>
+<p>最近需要进行一组性能测试，用到了 <strong>JMeter</strong> 这个测试工具，简单记录下对它的了解以及安装过程。</p>
+</blockquote>
+<h2 id="JMeter-简介"><a href="#JMeter-简介" class="headerlink" title="JMeter 简介"></a>JMeter 简介</h2><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210227%20/00-48-41-PCRNpO.png" alt="image-20210226205547298"></p>
+<p>全名为 <strong>Apache JMeter</strong></p>
+<p><code>JMeter</code> 是一个软件，使负载测试或业绩为导向的业务（功能）测试不同的协议或技术。<br>它是 Apache 软件基金会的Stefano Mazzocchi JMeter 最初开发的。<br>它主要对 Apache JServ（现在称为如 Apache Tomcat 项目）的性能进行测试。<br>Apache 后来重新设计 JMeter 增强的图形用户界面和添加功能测试能力。</p>
+<h2 id="JMeter-的作用"><a href="#JMeter-的作用" class="headerlink" title="JMeter 的作用"></a>JMeter 的作用</h2><p>Apache JMeter 是100%纯 JAVA 桌面应用程序，被设计为用于测试客户端/服务端结构的软件(例如 web 应用程序)。<br>JMeter 可以用来测试静态和动态资源的性能，例如：静态文件，Java Servlet,CGI Scripts,Java Object,数据库和 FTP 服务器等等。<br>JMeter 可用于模拟大量负载来测试一台服务器，网络或者对象的健壮性或者分析不同负载下的整体性能。     </p>
+<p>同时，JMeter 可以帮助你对你的应用程序进行回归测试。通过你创建的测试脚本和 assertions 来验证你的程序返回了所期待的值。<br>为了更高的适应性，JMeter 允许调用二次开发的 jar 包来丰富你的测试场景；JMeter 允许你使用正则表达式来创建这些 assertions.</p>
+<h2 id="JMeter-的使用范围"><a href="#JMeter-的使用范围" class="headerlink" title="JMeter 的使用范围"></a>JMeter 的使用范围</h2><p>JMeter 是一个具有图形界面，使用 Swing 图形 API 的 Java 桌面应用程序，因此可以运行在任何环境/工作站接受一个 Java 虚拟机，例如：在 Windows，Linux，MAC等。</p>
+<h2 id="JMeter-支持的协议"><a href="#JMeter-支持的协议" class="headerlink" title="JMeter 支持的协议"></a>JMeter 支持的协议</h2><ul>
+<li>web —— HTTP，HTTPS 站点的 Web1.0的Web 2.0 (ajax, flex and flex-ws-amf)</li>
+<li>Web Services: —— SOAP / XML-RPC</li>
 <li>通过 JDBC 驱动程序的数据库</li>
-<li>目录: LDAP</li>
+<li>目录: —— LDAP</li>
 <li>通过 JMS 面向消息的服务</li>
-<li>Service: POP3, IMAP, SMTP</li>
-<li>FTP服务</li>
+<li>Service: —— POP3, IMAP, SMTP</li>
+<li>FTP 服务</li>
 </ul>
-<h2 id="jmeter-的特点"><a href="#jmeter-的特点" class="headerlink" title="jmeter 的特点"></a>jmeter 的特点</h2><p>以下是一些  JMeter 的特点：</p>
+<h2 id="JMeter-的特点"><a href="#JMeter-的特点" class="headerlink" title="JMeter 的特点"></a>JMeter 的特点</h2><p>以下是一些  JMeter 的特点：</p>
 <ul>
 <li>它是免费的。开放源码软件。</li>
 <li>它具有简单，直观的图形用户界面。</li>
 <li>JMeter中负载和性能测试许多不同的服务器类型：网站 - - HTTP，HTTPS，SOAP，数据库通过 JDBC，LDAP，JMS，邮件 POP3</li>
-<li>它是独立于平台的工具。在 Linux / UNIX，JMeter 中 JMeter 中 shell 脚本点击可以调用。在 Windows 上，它可以调用启动 jmeter.bat 文件。</li>
+<li>它是独立于平台的工具。在 Linux / UNIX，JMeter 中 JMeter 中 shell 脚本点击可以调用。在 Windows 上，它可以调用启动 JMeter.bat 文件。</li>
 <li>它具有完整的 Swing 和轻量级组件支持（预编译的 JAR 使用包 javax.swing 中*）。</li>
 <li>JMeter 测试计划存储为XML格式。这意味着可以使用文本编辑器生成一个测试计划。</li>
 <li>它的完整的多线程框架，允许并发多线程和同步采样不同的功能由单独的线程组采样。</li>
 <li>它是高度可扩展的。</li>
 <li>也可用于执行应用程序的自动化测试和功能测试。</li>
 </ul>
-<h2 id="jmeter的安装"><a href="#jmeter的安装" class="headerlink" title="jmeter的安装"></a>jmeter的安装</h2><ol>
-<li><p>进入 <a href="https://jmeter.apache.org/" target="_blank" rel="noopener">Apache JMeter 官网 </a>，选择 <strong>Download Release</strong>，如下图：</p>
-<p> <img src="../images/20210226/image-20210226190149441.png" alt="image-20210226190149441"></p>
+<h2 id="JMeter-的安装"><a href="#JMeter-的安装" class="headerlink" title="JMeter 的安装"></a>JMeter 的安装</h2><ol>
+<li><p>进入 <a href="https://JMeter.apache.org/" target="_blank" rel="noopener">Apache JMeter 官网 </a>，选择 <strong>Download Release</strong>，如下图：</p>
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210227%20/00-48-48-qIw9CQ.png" alt="image-20210226190149441"></p>
 </li>
 <li><p>根据操作系统，选择要下载的压缩包：</p>
-<p> <img src="../images/20210226/image-20210226190809394.png" alt="image-20210226190809394"></p>
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210227%20/00-48-54-qCXWYT.png" alt="image-20210226190809394"></p>
 <blockquote>
 <p>注意事项：</p>
 <ol>
@@ -309,28 +318,31 @@
 </blockquote>
 </li>
 <li><p>解压下载下来的压缩包，得到如下的文件结构：</p>
-<p> <img src="../images/20210226/image-20210226191501823.png" alt="image-20210226191501823"></p>
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210227%20/00-49-02-2x7J2w.png" alt="image-20210226191501823"></p>
 </li>
 <li><p>打开 <strong>bin</strong> 目录，通过双击 <strong>ApacheJMeter.jar</strong> 即可启动JMeter：</p>
-<p> <img src="../images/20210226/image-20210226192035951.png" alt="image-20210226192035951"></p>
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210227%20/00-49-23-9XGQAv.png" alt="image-20210226192035951"></p>
 <blockquote>
 <ol>
 <li>也可以通过可执行文件进行启动，不同系统上的可执行文件在上图中有标出。</li>
 <li>JMeter 的运行需要 Java 环境的支持，需要提前安装 <strong>JDK</strong> 。</li>
 </ol>
 </blockquote>
+</li>
+</ol>
 <h2 id="JMeter-根目录结构说明"><a href="#JMeter-根目录结构说明" class="headerlink" title="JMeter 根目录结构说明"></a>JMeter 根目录结构说明</h2><ol>
-<li><p><strong>backup目录</strong>   </p>
+<li><p><strong>backup 目录</strong>   </p>
 <p> 脚本备份目录，里边的文件都是以 .jmx 后缀结尾的文件。</p>
 <p> 实际开始安装解压后是不存在这个目录的，在使用过 JMeter 后，JMeter 自动创建这个目录，然后备份了脚本文件。</p>
 </li>
-<li><p><strong>bin 目录</strong>  可执行文件目录</p>
+<li><p><strong>bin 目录</strong>  </p>
+<p> 可执行文件目录</p>
 <ul>
-<li><p>Jmeter.bat：是启动 jmeter 的主脚本。</p>
+<li><p>Jmeter.bat：是启动 JMeter 的主脚本。</p>
 </li>
 <li><p>Jmeter-server.bar：是用来实现联机负载。</p>
 </li>
-<li><p>Jmeter.properties：是 jmeter 主要的配置文件，超过 80% 的配置项都是通过这个文件实现。（PS：修改配置文件后，要重启 Jmeter 才能生效）。</p>
+<li><p>Jmeter.properties：是 JMeter 主要的配置文件，超过 80% 的配置项都是通过这个文件实现。（PS：修改配置文件后，要重启 Jmeter 才能生效）。</p>
 <blockquote>
 <p>Jmeter.bat  打开 Jmeter 主界面。</p>
 <p>Jmeter 使用的日志文件名称被定义到 Jmeter.properties 中，默认在 Jmeter.log 可查看日志。</p>
@@ -338,25 +350,24 @@
 </li>
 </ul>
 </li>
-<li><p><strong>dosc目录</strong></p>
+<li><p><strong>dosc 目录</strong></p>
 <p> docs 目录下的文件是 JMeter 的 Java Docs。 </p>
-<p> printable_docs 的 usermanual 子目录下的内容是 JMeter 的用户手册文档，其中 component_reference.html 是最常用到的核心元件帮助文档。该目录下存放的是 jmeter 官方文档的 API 文档，主要是用于<em>二次开发</em>。</p>
+<p> printable_docs 的 usermanual 子目录下的内容是 JMeter 的用户手册文档，其中 component_reference.html 是最常用到的核心元件帮助文档。该目录下存放的是 JMeter 官方文档的 API 文档，主要是用于<em>二次开发</em>。</p>
 </li>
-<li><p><strong>extras目录</strong></p>
+<li><p><strong>extras 目录</strong></p>
 <p> 该目录下的文件提供了对构建工具 Ant 的支持，可以使用 Ant 来实现测试自动化，例如批量脚本执行，产生 HTML格式的报表，测试运行时，可以把测试数据记录下来，Jmeter 会自动生成一个 .jtl 文件，将该文件放到 extras 目录下，运行 “ant -Dtest=文件名 report”，就可以生成测试统计报表。</p>
-<p> 也可以用于持续集成。</p>
 </li>
-<li><p><strong>lib目录</strong></p>
+<li><p><strong>lib 目录</strong></p>
 <p> 该目录包含两个子目录，其中 ext 子目录存放有 JMeter 的核心 jar 包，另一个 junit 子目录存放 JUnit 测试脚本。</p>
 <p> 用户扩展所依赖的包，应该直接放到 lib 目录下，而非 lib/ext 下。</p>
 <blockquote>
 <p>注意：无法识别 zip 格式的包文件，所以需要的包文件均要求以 .jar 结尾</p>
 </blockquote>
 </li>
-<li><p><strong>Licenses jmeter 软件许可文件目录</strong></p>
+<li><p><strong>Licenses JMeter 软件许可文件目录</strong></p>
 </li>
-<li><p><strong>printable_docs目录</strong></p>
-<p> 该目录存放的是 jmeter 官方提供的帮助文档。</p>
+<li><p><strong>printable_docs 目录</strong></p>
+<p> 该目录存放的是 JMeter 官方提供的帮助文档。</p>
 <p> printable_docs 的 demos 子目录下有一些常用的 JMeter 脚本案例，可以作为参考。</p>
 </li>
 <li><p><strong>LICENSE JMeter ——许可说明</strong></p>
@@ -366,45 +377,43 @@
 <li><p><strong>README.md ——JMeter 官方基本介绍</strong></p>
 </li>
 </ol>
-</li>
-</ol>
 <h2 id="bin-目录说明"><a href="#bin-目录说明" class="headerlink" title="bin 目录说明"></a>bin 目录说明</h2><h4 id="window-下"><a href="#window-下" class="headerlink" title="window 下"></a>window 下</h4><ul>
-<li><p><strong>jmeter.bat</strong></p>
+<li><p><strong>JMeter.bat</strong></p>
 <p>  启动 JMeter (默认 GUI 模式)</p>
 </li>
 <li><p><strong>jmeterw.cmd</strong></p>
 <p>  启动 JMeter 没有 windows shell 控制台 (默认 GUI 模式)</p>
 </li>
-<li><p><strong>jmeter-n.cmd</strong></p>
+<li><p><strong>JMeter-n.cmd</strong></p>
 <p>  删除一个 JMX 文件在运行非 GUI 测试</p>
 </li>
-<li><p><strong>jmeter-n-r.cmd</strong></p>
+<li><p><strong>JMeter-n-r.cmd</strong></p>
 <p>  删除一个 JMX 文件在运行非 GUI 远程测试</p>
 </li>
-<li><p><strong>jmeter-t.cmd</strong></p>
+<li><p><strong>JMeter-t.cmd</strong></p>
 <p>  删除一个 JMX 文件在 GUI 模式下加载它</p>
 </li>
-<li><p><strong>jmeter-server.bat</strong></p>
-<p>  在服务器模式启动JMeter</p>
+<li><p><strong>JMeter-server.bat</strong></p>
+<p>  在服务器模式启动 JMeter</p>
 </li>
 <li><p><strong>mirror-server.cmd</strong></p>
 <p>  在非 GUI 模式下运行 JMeter 镜像服务器</p>
 </li>
 <li><p><strong>shutdown.cm</strong></p>
-<p>  运行关闭客户端，以优雅地停止非GUI实例</p>
+<p>  运行关闭客户端，以优雅地停止非 GUI 实例</p>
 </li>
 <li><p><strong>stoptest.cmd</strong></p>
-<p>  运行关闭客户端,停止非 GUI 实例</p>
+<p>  运行关闭客户端，停止非 GUI 实例</p>
 </li>
 </ul>
-<h4 id="应该在大多数-Linux-UNIX-系统上工作："><a href="#应该在大多数-Linux-UNIX-系统上工作：" class="headerlink" title="应该在大多数 Linux / UNIX 系统上工作："></a>应该在大多数 Linux / UNIX 系统上工作：</h4><ul>
-<li><p><strong>jmeter</strong></p>
+<h4 id="在大多数-Linux-UNIX-系统上"><a href="#在大多数-Linux-UNIX-系统上" class="headerlink" title="在大多数 Linux / UNIX 系统上"></a>在大多数 Linux / UNIX 系统上</h4><ul>
+<li><p><strong>JMeter</strong></p>
 <p>  启动 JMeter (默认 GUI 模式). 定义一些可能不适用于所有 JVM 的 JVM 设置。</p>
 </li>
-<li><p><strong>jmeter-server</strong></p>
-<p>  在服务器模式启动 JMeter (使用适当的参数调用 jmeter 脚本)</p>
+<li><p><strong>JMeter-server</strong></p>
+<p>  在服务器模式启动 JMeter (使用适当的参数调用 JMeter 脚本)</p>
 </li>
-<li><p><strong>jmeter.sh</strong></p>
+<li><p><strong>JMeter.sh</strong></p>
 <p>  非常基础的 JMeter 脚本 (你可能需要调整 JVM 选项，比如内存设置).</p>
 </li>
 <li><p><strong>mirror-server.sh</strong></p>
@@ -414,14 +423,14 @@
 <p>  运行关闭客户端，以优雅地停止非 GUI 实例</p>
 </li>
 <li><p><strong>stoptest.sh</strong></p>
-<p>  运行关闭客户端,停止非 GUI 实例</p>
+<p>  运行关闭客户端，停止非 GUI 实例</p>
 </li>
 </ul>
 <h2 id="JMeter-插件安装"><a href="#JMeter-插件安装" class="headerlink" title="JMeter 插件安装"></a>JMeter 插件安装</h2><ol>
-<li><p>进入 <a href="https://jmeter-plugins.org/install/Install/" target="_blank" rel="noopener">JMeter 插件网站</a>，现在 JMeter 插件包</p>
-<p> <img src="../images/20210226/image-20210226193950155.png" alt="image-20210226193950155"></p>
+<li><p>进入 <a href="https://JMeter-plugins.org/install/Install/" target="_blank" rel="noopener">JMeter 插件网站</a>，下载  JMeter 插件包</p>
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210227%20/00-49-31-Z1pUjF.png" alt="image-20210226193950155"></p>
 </li>
-<li><p>解压插件，找到 JMeterPlugins-Extras.jar，把 JMeterPlugins-Extras.jar 放到 apache-jmeter-5.4.1\lib\ext 目录。</p>
+<li><p>解压插件，找到 JMeterPlugins-Extras.jar，把 JMeterPlugins-Extras.jar 放到 apache-JMeter-5.4.1\lib\ext 目录。</p>
 </li>
 </ol>
 
