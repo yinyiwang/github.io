@@ -23,7 +23,7 @@
   <meta name="description" content="那时年少爱幻想告别了灯红酒绿来到了零一的世界这是你的世界也是我的梦想 我们厮杀过那一行行灰色见证着我对你的伤害这一根根白发承载着你对我的报复 我们也相爱过为了完美我曾无数次将你雕琢作为回报你曾无数次给我喜悦 这一生大概就这样了待来世我捧你上王座">
 <meta property="og:type" content="article">
 <meta property="og:title" content="致对象">
-<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/04/22/2020-04-22-%E8%87%B4%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="前端三昧">
 <meta property="og:description" content="那时年少爱幻想告别了灯红酒绿来到了零一的世界这是你的世界也是我的梦想 我们厮杀过那一行行灰色见证着我对你的伤害这一根根白发承载着你对我的报复 我们也相爱过为了完美我曾无数次将你雕琢作为回报你曾无数次给我喜悦 这一生大概就这样了待来世我捧你上王座">
 <meta property="og:locale" content="zh_CN">
@@ -35,7 +35,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/04/22/rS7L4ZChb23kvIE.jpg">
 
-<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/">
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/04/22/2020-04-22-%E8%87%B4%E5%AF%B9%E8%B1%A1/">
 
 
 <script id="page-configurations">
@@ -187,21 +187,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -227,7 +224,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/22/2020-04-22-%E8%87%B4%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -299,11 +296,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/yinyiwang/2020/04/21/ES6%E6%A8%A1%E5%9D%97/" rel="prev" title="ES6模块">
+    <a href="/yinyiwang/2020/04/21/2020-04-21-ES6%E6%A8%A1%E5%9D%97/" rel="prev" title="ES6模块">
       <i class="fa fa-chevron-left"></i> ES6模块
     </a></div>
       <div class="post-nav-item">
-    <a href="/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="next" title="ES6迭代器">
+    <a href="/yinyiwang/2020/04/24/2020-04-24-ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/" rel="next" title="ES6迭代器">
       ES6迭代器 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -385,13 +382,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -504,12 +501,23 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
 
   
-<script src="/yinyiwang/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
 
 
 
@@ -519,6 +527,27 @@
 
 
 
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 <script>
@@ -570,7 +599,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'gitalk',
       owner       : 'yinyiwang',
       admin       : ['yinyiwang'],
-      id          : 'cb40ff106d9b17d1190b928ca5dcea8d',
+      id          : '9eafa1ef9187a0a64cb4a626fe68d96e',
         language: '',
       distractionFreeMode: true
     });

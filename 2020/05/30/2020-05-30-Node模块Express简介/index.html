@@ -20,24 +20,26 @@
     var CONFIG = {"hostname":"yinyiwang.github.io","root":"/yinyiwang/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="概述Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。 Express上手非常简单，首先新建一个项目目录，假定叫做hello-world。 1$ mkdir hello-world  进入该目录，新建一个package.json文件，内容如下。 123456789&amp;#123;  &quot;name&quot;: &quot;hello-world&quot;,  &quot;description">
+  <meta name="description" content="概述Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node模块Express简介">
-<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/05/30/Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="前端三昧">
-<meta property="og:description" content="概述Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。 Express上手非常简单，首先新建一个项目目录，假定叫做hello-world。 1$ mkdir hello-world  进入该目录，新建一个package.json文件，内容如下。 123456789&amp;#123;  &quot;name&quot;: &quot;hello-world&quot;,  &quot;description">
+<meta property="og:description" content="概述Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-37-59-3sBRp7.png">
 <meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-39-34-etX7RH.png">
 <meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-43-06-TVQccv.png">
 <meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-44-25-oYAFro.png">
 <meta property="article:published_time" content="2020-05-30T05:59:34.000Z">
-<meta property="article:modified_time" content="2020-05-30T06:44:35.715Z">
+<meta property="article:modified_time" content="2021-03-01T12:55:26.707Z">
 <meta property="article:author" content="隐逸王">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="express">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-37-59-3sBRp7.png">
 
-<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/05/30/Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/">
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/">
 
 
 <script id="page-configurations">
@@ -189,21 +191,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -229,7 +228,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/05/30/Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -251,9 +250,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-30 13:59:34 / 修改时间：14:44:35" itemprop="dateCreated datePublished" datetime="2020-05-30T13:59:34+08:00">2020-05-30</time>
+              <time title="创建时间：2020-05-30 13:59:34" itemprop="dateCreated datePublished" datetime="2020-05-30T13:59:34+08:00">2020-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-01 20:55:26" itemprop="dateModified" datetime="2021-03-01T20:55:26+08:00">2021-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/express/" itemprop="url" rel="index"><span itemprop="name">express</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/express/nodejs/" itemprop="url" rel="index"><span itemprop="name">nodejs</span></a>
+                </span>
             </span>
 
           
@@ -275,6 +293,8 @@
 
       
         <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。</p>
+<a id="more"></a>
+
 <p>Express上手非常简单，首先新建一个项目目录，假定叫做hello-world。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir hello-world</span><br></pre></td></tr></table></figure>
 
@@ -394,6 +414,10 @@
     </div>
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/yinyiwang/tags/nodejs/" rel="tag"># nodejs</a>
+              <a href="/yinyiwang/tags/express/" rel="tag"># express</a>
+          </div>
 
         
 
@@ -401,7 +425,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/yinyiwang/2020/04/28/Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="prev" title="Apache-Jmeter简单配置及使用">
+    <a href="/yinyiwang/2020/04/28/2020-04-28-Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="prev" title="Apache-Jmeter简单配置及使用">
       <i class="fa fa-chevron-left"></i> Apache-Jmeter简单配置及使用
     </a></div>
       <div class="post-nav-item">
@@ -488,13 +512,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -607,12 +631,23 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
 
   
-<script src="/yinyiwang/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
 
 
 
@@ -622,6 +657,27 @@
 
 
 
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 <script>
@@ -673,7 +729,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'gitalk',
       owner       : 'yinyiwang',
       admin       : ['yinyiwang'],
-      id          : '66cf0d1c516d2bfc93a72fec0617dd21',
+      id          : '79d4b9e1d1682c31fc7e909a47d744a1',
         language: '',
       distractionFreeMode: true
     });

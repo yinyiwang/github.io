@@ -180,21 +180,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -250,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-01 15:00:44" itemprop="dateModified" datetime="2021-03-01T15:00:44+08:00">2021-03-01</time>
+                <time title="修改时间：2021-03-01 20:52:54" itemprop="dateModified" datetime="2021-03-01T20:52:54+08:00">2021-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,164 +273,14 @@
           <blockquote>
 <p>最近需要进行一组性能测试，用到了 <strong>JMeter</strong> 这个测试工具，简单记录下对它的了解以及安装过程。</p>
 </blockquote>
-<h2 id="JMeter-简介"><a href="#JMeter-简介" class="headerlink" title="JMeter 简介"></a>JMeter 简介</h2><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-08-fnMAIf.png" alt="image-20210226205547298"></p>
-<p>全名为 <strong>Apache JMeter</strong></p>
-<p><code>JMeter</code> 是一个软件，使负载测试或业绩为导向的业务（功能）测试不同的协议或技术。<br>它是 Apache 软件基金会的Stefano Mazzocchi JMeter 最初开发的。<br>它主要对 Apache JServ（现在称为如 Apache Tomcat 项目）的性能进行测试。<br>Apache 后来重新设计 JMeter 增强的图形用户界面和添加功能测试能力。</p>
-<h2 id="JMeter-的作用"><a href="#JMeter-的作用" class="headerlink" title="JMeter 的作用"></a>JMeter 的作用</h2><p>Apache JMeter 是100%纯 JAVA 桌面应用程序，被设计为用于测试客户端/服务端结构的软件(例如 web 应用程序)。<br>JMeter 可以用来测试静态和动态资源的性能，例如：静态文件，Java Servlet,CGI Scripts,Java Object,数据库和 FTP 服务器等等。<br>JMeter 可用于模拟大量负载来测试一台服务器，网络或者对象的健壮性或者分析不同负载下的整体性能。     </p>
-<p>同时，JMeter 可以帮助你对你的应用程序进行回归测试。通过你创建的测试脚本和 assertions 来验证你的程序返回了所期待的值。<br>为了更高的适应性，JMeter 允许调用二次开发的 jar 包来丰富你的测试场景；JMeter 允许你使用正则表达式来创建这些 assertions.</p>
-<h2 id="JMeter-的使用范围"><a href="#JMeter-的使用范围" class="headerlink" title="JMeter 的使用范围"></a>JMeter 的使用范围</h2><p>JMeter 是一个具有图形界面，使用 Swing 图形 API 的 Java 桌面应用程序，因此可以运行在任何环境/工作站接受一个 Java 虚拟机，例如：在 Windows，Linux，MAC等。</p>
-<h2 id="JMeter-支持的协议"><a href="#JMeter-支持的协议" class="headerlink" title="JMeter 支持的协议"></a>JMeter 支持的协议</h2><ul>
-<li>web —— HTTP，HTTPS 站点的 Web1.0的Web 2.0 (ajax, flex and flex-ws-amf)</li>
-<li>Web Services: —— SOAP / XML-RPC</li>
-<li>通过 JDBC 驱动程序的数据库</li>
-<li>目录: —— LDAP</li>
-<li>通过 JMS 面向消息的服务</li>
-<li>Service: —— POP3, IMAP, SMTP</li>
-<li>FTP 服务</li>
-</ul>
-<h2 id="JMeter-的特点"><a href="#JMeter-的特点" class="headerlink" title="JMeter 的特点"></a>JMeter 的特点</h2><p>以下是一些  JMeter 的特点：</p>
-<ul>
-<li>它是免费的。开放源码软件。</li>
-<li>它具有简单，直观的图形用户界面。</li>
-<li>JMeter中负载和性能测试许多不同的服务器类型：网站 - - HTTP，HTTPS，SOAP，数据库通过 JDBC，LDAP，JMS，邮件 POP3</li>
-<li>它是独立于平台的工具。在 Linux / UNIX，JMeter 中 JMeter 中 shell 脚本点击可以调用。在 Windows 上，它可以调用启动 JMeter.bat 文件。</li>
-<li>它具有完整的 Swing 和轻量级组件支持（预编译的 JAR 使用包 javax.swing 中*）。</li>
-<li>JMeter 测试计划存储为XML格式。这意味着可以使用文本编辑器生成一个测试计划。</li>
-<li>它的完整的多线程框架，允许并发多线程和同步采样不同的功能由单独的线程组采样。</li>
-<li>它是高度可扩展的。</li>
-<li>也可用于执行应用程序的自动化测试和功能测试。</li>
-</ul>
-<h2 id="JMeter-的安装"><a href="#JMeter-的安装" class="headerlink" title="JMeter 的安装"></a>JMeter 的安装</h2><ol>
-<li><p>进入 <a href="https://JMeter.apache.org/" target="_blank" rel="noopener">Apache JMeter 官网 </a>，选择 <strong>Download Release</strong>，如下图：</p>
-<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-14-tVazaK.png" alt="image-20210226190149441"></p>
-</li>
-<li><p>根据操作系统，选择要下载的压缩包：</p>
-<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-22-rpeUwp.png" alt="image-20210226190809394"></p>
-<blockquote>
-<p>注意事项：</p>
-<ol>
-<li>注意图片标题中的 Java 版本要求，这里要求的是 Java8 及以上的版本。</li>
-<li>我们一般选择 <strong>Binaries</strong> 下的压缩包，除非是你想要使用它的源码做研究，则可以选择 Source 下的资源包。</li>
-</ol>
-</blockquote>
-</li>
-<li><p>解压下载下来的压缩包，得到如下的文件结构：</p>
-<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-27-WXk5Jo.png" alt="image-20210226191501823"></p>
-</li>
-<li><p>打开 <strong>bin</strong> 目录，通过双击 <strong>ApacheJMeter.jar</strong> 即可启动JMeter：</p>
-<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-31-NnT9V8.png" alt="image-20210226192035951"></p>
-<blockquote>
-<ol>
-<li>也可以通过可执行文件进行启动，不同系统上的可执行文件在上图中有标出。</li>
-<li>JMeter 的运行需要 Java 环境的支持，需要提前安装 <strong>JDK</strong> 。</li>
-</ol>
-</blockquote>
-</li>
-</ol>
-<h2 id="JMeter-根目录结构说明"><a href="#JMeter-根目录结构说明" class="headerlink" title="JMeter 根目录结构说明"></a>JMeter 根目录结构说明</h2><ol>
-<li><p><strong>backup 目录</strong>   </p>
-<p> 脚本备份目录，里边的文件都是以 .jmx 后缀结尾的文件。</p>
-<p> 实际开始安装解压后是不存在这个目录的，在使用过 JMeter 后，JMeter 自动创建这个目录，然后备份了脚本文件。</p>
-</li>
-<li><p><strong>bin 目录</strong>  </p>
-<p> 可执行文件目录</p>
-<ul>
-<li><p>Jmeter.bat：是启动 JMeter 的主脚本。</p>
-</li>
-<li><p>Jmeter-server.bar：是用来实现联机负载。</p>
-</li>
-<li><p>Jmeter.properties：是 JMeter 主要的配置文件，超过 80% 的配置项都是通过这个文件实现。（PS：修改配置文件后，要重启 Jmeter 才能生效）。</p>
-<blockquote>
-<p>Jmeter.bat  打开 Jmeter 主界面。</p>
-<p>Jmeter 使用的日志文件名称被定义到 Jmeter.properties 中，默认在 Jmeter.log 可查看日志。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p><strong>dosc 目录</strong></p>
-<p> docs 目录下的文件是 JMeter 的 Java Docs。 </p>
-<p> printable_docs 的 usermanual 子目录下的内容是 JMeter 的用户手册文档，其中 component_reference.html 是最常用到的核心元件帮助文档。该目录下存放的是 JMeter 官方文档的 API 文档，主要是用于<em>二次开发</em>。</p>
-</li>
-<li><p><strong>extras 目录</strong></p>
-<p> 该目录下的文件提供了对构建工具 Ant 的支持，可以使用 Ant 来实现测试自动化，例如批量脚本执行，产生 HTML格式的报表，测试运行时，可以把测试数据记录下来，Jmeter 会自动生成一个 .jtl 文件，将该文件放到 extras 目录下，运行 “ant -Dtest=文件名 report”，就可以生成测试统计报表。</p>
-</li>
-<li><p><strong>lib 目录</strong></p>
-<p> 该目录包含两个子目录，其中 ext 子目录存放有 JMeter 的核心 jar 包，另一个 junit 子目录存放 JUnit 测试脚本。</p>
-<p> 用户扩展所依赖的包，应该直接放到 lib 目录下，而非 lib/ext 下。</p>
-<blockquote>
-<p>注意：无法识别 zip 格式的包文件，所以需要的包文件均要求以 .jar 结尾</p>
-</blockquote>
-</li>
-<li><p><strong>Licenses JMeter 软件许可文件目录</strong></p>
-</li>
-<li><p><strong>printable_docs 目录</strong></p>
-<p> 该目录存放的是 JMeter 官方提供的帮助文档。</p>
-<p> printable_docs 的 demos 子目录下有一些常用的 JMeter 脚本案例，可以作为参考。</p>
-</li>
-<li><p><strong>LICENSE JMeter ——许可说明</strong></p>
-</li>
-<li><p><strong>NOTICE JMeter ——简单信息说明</strong></p>
-</li>
-<li><p><strong>README.md ——JMeter 官方基本介绍</strong></p>
-</li>
-</ol>
-<h2 id="bin-目录说明"><a href="#bin-目录说明" class="headerlink" title="bin 目录说明"></a>bin 目录说明</h2><h4 id="window-下"><a href="#window-下" class="headerlink" title="window 下"></a>window 下</h4><ul>
-<li><p><strong>JMeter.bat</strong></p>
-<p>  启动 JMeter (默认 GUI 模式)</p>
-</li>
-<li><p><strong>jmeterw.cmd</strong></p>
-<p>  启动 JMeter 没有 windows shell 控制台 (默认 GUI 模式)</p>
-</li>
-<li><p><strong>JMeter-n.cmd</strong></p>
-<p>  删除一个 JMX 文件在运行非 GUI 测试</p>
-</li>
-<li><p><strong>JMeter-n-r.cmd</strong></p>
-<p>  删除一个 JMX 文件在运行非 GUI 远程测试</p>
-</li>
-<li><p><strong>JMeter-t.cmd</strong></p>
-<p>  删除一个 JMX 文件在 GUI 模式下加载它</p>
-</li>
-<li><p><strong>JMeter-server.bat</strong></p>
-<p>  在服务器模式启动 JMeter</p>
-</li>
-<li><p><strong>mirror-server.cmd</strong></p>
-<p>  在非 GUI 模式下运行 JMeter 镜像服务器</p>
-</li>
-<li><p><strong>shutdown.cm</strong></p>
-<p>  运行关闭客户端，以优雅地停止非 GUI 实例</p>
-</li>
-<li><p><strong>stoptest.cmd</strong></p>
-<p>  运行关闭客户端，停止非 GUI 实例</p>
-</li>
-</ul>
-<h4 id="在大多数-Linux-UNIX-系统上"><a href="#在大多数-Linux-UNIX-系统上" class="headerlink" title="在大多数 Linux / UNIX 系统上"></a>在大多数 Linux / UNIX 系统上</h4><ul>
-<li><p><strong>JMeter</strong></p>
-<p>  启动 JMeter (默认 GUI 模式). 定义一些可能不适用于所有 JVM 的 JVM 设置。</p>
-</li>
-<li><p><strong>JMeter-server</strong></p>
-<p>  在服务器模式启动 JMeter (使用适当的参数调用 JMeter 脚本)</p>
-</li>
-<li><p><strong>JMeter.sh</strong></p>
-<p>  非常基础的 JMeter 脚本 (你可能需要调整 JVM 选项，比如内存设置).</p>
-</li>
-<li><p><strong>mirror-server.sh</strong></p>
-<p>  在非 GUI 模式下运行 JMeter 镜像服务器</p>
-</li>
-<li><p><strong>shutdown.sh</strong></p>
-<p>  运行关闭客户端，以优雅地停止非 GUI 实例</p>
-</li>
-<li><p><strong>stoptest.sh</strong></p>
-<p>  运行关闭客户端，停止非 GUI 实例</p>
-</li>
-</ul>
-<h2 id="JMeter-插件安装"><a href="#JMeter-插件安装" class="headerlink" title="JMeter 插件安装"></a>JMeter 插件安装</h2><ol>
-<li><p>进入 <a href="https://JMeter-plugins.org/install/Install/" target="_blank" rel="noopener">JMeter 插件网站</a>，下载  JMeter 插件包</p>
-<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-41-NTIwDe.png" alt="image-20210226193950155"></p>
-</li>
-<li><p>解压插件，找到 JMeterPlugins-Extras.jar，把 JMeterPlugins-Extras.jar 放到 apache-JMeter-5.4.1\lib\ext 目录。</p>
-</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yinyiwang/2021/02/26/jmeter%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -483,7 +330,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-23 16:12:57" itemprop="dateModified" datetime="2021-02-23T16:12:57+08:00">2021-02-23</time>
+                <time title="修改时间：2021-03-01 20:53:05" itemprop="dateModified" datetime="2021-03-01T20:53:05+08:00">2021-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -507,169 +354,14 @@
 
       
           <h2 id="JDK简介"><a href="#JDK简介" class="headerlink" title="JDK简介"></a>JDK简介</h2><p>JDK  —— Java Development ToolKit (Java 开发工具包)。JDK 是整个 Java 的核心，包括了 Java 运行环境（Java Runtime Envirnment），一堆 Java 工具（ javac/java/jdb 等）和 Java 基础的类库（即 Java API 包括 rt.jar）。</p>
-<p>最主流的 JDK 是Sun公司发布的 JDK，除了 Sun 之外，还有很多公司和组织都开发了属于自己的 JDK，例如国外 IBM 公司开发了属于自己的 JDK，国内淘宝也开发了属于自己的 JDK，各个组织开发自己的 JDK 都是为了在某些方面得到一些提高，以适应自己的需求，比如 IBM 的 JDK 据说运行效率就比 SUN 的 JDK 高的多。但不管怎么说，我们还是需要先把基础的 Sun JDK 掌握好。</p>
-<p>JDK 是 Java 开发工具包，在其安装目录下面有六个文件夹、一些描述文件、一个 src 压缩文件。bin、include、lib、 jre 这四个文件夹起作用，demo、sample 是一些例子。可以看出来 JDK 包含 JRE，而 JRE 包含 JVM。</p>
-<ul>
-<li>bin：最主要的是编译器(javac.exe)</li>
-<li>include：java 和 JVM 交互用的头文件</li>
-<li>lib：类库</li>
-<li>jre：java运行环境（注意：这里的 bin、lib 文件夹和 jre 里的 bin、lib 是不同的）</li>
-</ul>
-<p>总的来说 JDK 是用于 Java 程序的开发,而 jre 则是只能运行 class 而没有编译的功能。 </p>
-<p>JDK 是提供给 Java 开发人员使用的，其中包含了 Java 的开发工具，也包括了 JRE。所以安装了 JDK，就不用在单独安装 JRE了。 其中的开发工具包括编译工具 ( javac.exe ) 打包工具 ( jar.exe ) 等</p>
-<p>在 JDK 的安装目录下有一个 jre 目录，里面有两个文件夹 bin 和 lib，在这里可以认为 bin 里的就是 jvm，lib 中则是 jvm 工作所需要的类库，而 jvm 和 lib 合起来就称为 jre。</p>
-<h2 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h2><p>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank" rel="noopener">Oracle官网</a>，找到最新版本的 JDK 进行下载</p>
-<p><img src="../images/20210223/Oracle%E5%AE%98%E7%BD%91.png" alt="Oracle官网"></p>
-<h2 id="关于环境变量（Environment-Variable）"><a href="#关于环境变量（Environment-Variable）" class="headerlink" title="关于环境变量（Environment Variable）"></a>关于环境变量（<em>Environment Variable</em>）</h2><ul>
-<li><p>变量</p>
-<p>  就是可以随意给其赋值的一个存储单元。</p>
-</li>
-<li><p>环境</p>
-<p>  如果把操作系统当做是一个最大的软件，其它软件如Office、JVM、LOL等等都是运行在这个软件之内的小软件。那么，相对于这些小软件来说，它们所处的「环境」就是操作系统这个软件。</p>
-</li>
-<li><p>合起来就是“环境中的变量”</p>
-<p>  「环境变量」就是操作系统这个软件中的变量，即：操作系统提供给你的<strong>全局变量</strong>！</p>
-</li>
-<li><p>环境变量的作用</p>
-<p>  环境变量在任何程序中的作用都是“被赋值/被取值”！这个全局变量操作系统可以使用，其内的小软件也可以使用！</p>
-</li>
-</ul>
-<h2 id="Java中的环境变量"><a href="#Java中的环境变量" class="headerlink" title="Java中的环境变量"></a>Java中的环境变量</h2><blockquote>
-<p>环境变量大体上是给操作系统的直接上层程序用的。比如Linux中的<code>shell</code>、<code>.sh</code>文件；Windows中的<code>cmd</code>、<code>.bat</code>文件。</p>
-</blockquote>
-<p><strong>常见的Java相关环境变量及其作用</strong></p>
-<ol>
-<li><p><code>PATH</code></p>
-<p> <code>PATH</code>是操作系统用的，用来指定操作系统需要使用到的可执行程序的位置。</p>
-<p> 对于Java来说，通常需要把 JDK 的 bin 目录添加进入<code>PATH</code>中，这样你就可以在任意目录下使用 bin 下面的可执行程序，如<code>javac.exe</code>、<code>java.exe</code>等。</p>
-<p> <strong>这个变量一定要保证将 JRE/JDK 的 bin 纳入其中</strong>（这里我说的其实不严谨，你可以把<code>javaw.exe</code>等这类文件复制一份放到任意一个<code>PATH</code>路径下，不一定是JRE/JDK也行）<strong>，这样很多Java程序才能启动，比如<code>Eclipse</code>。</strong></p>
-</li>
-<li><p><code>JAVA_HOME</code></p>
-<p> <code>JAVA_HOME</code>是一个约定，通常它指的是JDK的目录。如果需要JDK的话，大部分程序会默认去环境变量中取<code>JAVA_HOME</code>这个变量。</p>
-<blockquote>
-<p>例如，Tomcat的<code>.bat/.sh</code>文件中就会默认去取<code>JAVA_HOME</code>来用。</p>
-</blockquote>
-<p> <strong>所以，这个变量最需要设置。设置它，可保你万无一失，一生平安……</strong></p>
-</li>
-<li><p><code>JRE_HOME</code></p>
-<p> 同样，这也是一个约定的变量，通常指JRE目录。其实大部分Java程序不需要JDK，而是只需要其子集JRE，所以很多程序也会去取这个变量来用。</p>
-<p> 例如，Tomcat中某些<code>.bat</code>文件中这样说到：</p>
- <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem   JAVA_HOME       Must point at your Java Development Kit installation.</span></span><br><span class="line"><span class="comment">rem                   Using JRE_HOME instead works as well.</span></span><br><span class="line"><span class="comment">rem</span></span><br><span class="line"><span class="comment">rem   JRE_HOME        Must point at your Java Runtime installation.</span></span><br><span class="line"><span class="comment">rem                   Defaults to JAVA_HOME if empty. If JRE_HOME and JAVA_HOME</span></span><br><span class="line"><span class="comment">rem                   are both set, JRE_HOME is used.123456</span></span><br></pre></td></tr></table></figure>
-
-<p> 大意是说：Tomcat去取这俩变量，只要任意一个不为空就行，都不为空就用JRE_HOME了。因为Tomcat不需要JDK中的工具，它只是运行Java程序而已。</p>
-<p> <strong>这个变量如果你明确知道应用程序只需要设置这个就行（比如上面Tomcat的注释），那么它可以代替JAVA_HOME，且最好就用这个。</strong></p>
-</li>
-<li><p><code>CLASSPATH</code></p>
-<p> <code>CLASSPATH</code>是约定的一个可以设置我们自己的<code>.class, jar</code>文件所在目录的变量。不过某个Java程序可以自己决定取与不取这个变量。Tomcat 在某些情况下会去取，你自己的 Java 程序你不设置就会忽略它的。</p>
-<p> 这和Java可执行程序：<code>java.exe</code>的可选配置<code>-cp/-classpath</code>不是一个东西，仅是用意相似：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java [-options] class [args...]</span><br><span class="line">       (执行类)</span><br><span class="line">或  java [-options] -jar jarfile [args...]</span><br><span class="line">       (执行 jar 文件)</span><br><span class="line">其中选项包括:</span><br><span class="line">-cp &lt;目录和 zip&#x2F;jar 文件的类搜索路径&gt;</span><br><span class="line">-classpath &lt;目录和 zip&#x2F;jar 文件的类搜索路径&gt;</span><br><span class="line">              用 : 分隔的目录, JAR 档案</span><br><span class="line">              和 ZIP 档案列表, 用于搜索类文件。123456789</span><br></pre></td></tr></table></figure>
-
-<p> 结论：基本上，你不需要它。</p>
-</li>
-<li><p><code>CATALINA_HOME</code></p>
-<p> 这是Tomcat用的。叫CATALINA这个名字我估计是因为Tomcat默认服务（也就<code>&lt;Service&gt;&lt;/Service&gt;</code>标签）的名字就是CATALINA。当然，是不是其实不重要，毕竟变量的名字可以随意起（但最好见名知意），重要的是它存什么值。它的值代表当前tomat根目录，比如：<code>E:\apache-tomcat-7.0.55</code>。</p>
-<p> <strong>这个变量，仅当你移动了<code>.bat/.sh</code>等用来启动Tomcat的文件（就是不在原来的<code>tomcat\bin</code>下面了）时才需要指定。</strong>比如，在Linux中你将<code>catalina.sh</code>复制到<code>/etc/rc.d/init.d/</code>下做自启动服务时就需要设置一下。</p>
-</li>
-</ol>
-<p><strong>Java代码中也有API能获取环境变量：</strong></p>
-<ul>
-<li><p>获取并打印</p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打印单个环境变量</span></span><br><span class="line"><span class="keyword">final</span> String env = System.getenv(<span class="string">"PATH"</span>);</span><br><span class="line">System.out.println(env);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印所有环境变量</span></span><br><span class="line"><span class="keyword">final</span> Map&lt;String, String&gt; envMap = System.getenv();</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, String&gt; env : envMap.entrySet()) &#123;</span><br><span class="line">    System.out.println(env.getKey() + <span class="string">"="</span> + env.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456789</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>最后我们总结一下：</p>
-<ol>
-<li><p><strong>需要</strong>在操作系统下设置的变量：</p>
-<ol>
-<li><code>PATH</code>中包含JRE/JDK的<code>bin</code>目录。</li>
-<li><code>JAVA_HOME</code>或者<code>JRE_HOME</code>。都设也可以，偷懒就只设 <code>JAVA_HOME</code>就可以。</li>
-</ol>
-</li>
-<li><p><strong>很少</strong>需要设置的：</p>
-<p> <code>CLASSPATH</code>、<code>CATALINA_HOME</code>。</p>
-</li>
-</ol>
-<h2 id="window-下-JDK-环境变量的设置"><a href="#window-下-JDK-环境变量的设置" class="headerlink" title="window 下 JDK 环境变量的设置"></a>window 下 JDK 环境变量的设置</h2><ol>
-<li>安装完成后，右击”我的电脑”，点击”属性”，选择”高级系统设置”；</li>
-</ol>
-<p><img src="../images/20210223/step1.png" alt="img"></p>
-<ol start="2">
-<li>选择”高级”选项卡，点击”环境变量”；</li>
-</ol>
-<p><img src="../images/20210223/step2.png" alt="img"></p>
-<ol start="3">
-<li>然后就会出现如下图所示的画面：</li>
-</ol>
-<p><img src="../images/20210223/step3.png" alt="img"></p>
-<p>在 “系统变量” 中设置 3 项属性，JAVA_HOME、PATH、CLASSPATH (大小写无所谓),若已存在则点击”编辑”，不存在则点击”新建”。</p>
-<blockquote>
-<p><strong>注意：</strong>如果使用 1.5 以上版本的 JDK，不用设置 CLASSPATH 环境变量，也可以正常编译和运行 Java 程序。</p>
-</blockquote>
-<p>变量设置参数如下：</p>
-<ul>
-<li><p>变量名：<strong>JAVA_HOME</strong></p>
-</li>
-<li><p>变量值：<strong>C:\Program Files (x86)\Java\jdk1.8.0_91</strong>     // 要根据自己的实际路径配置</p>
-</li>
-<li><p>变量名：<strong>CLASSPATH</strong></p>
-</li>
-<li><p>变量值：<strong>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</strong>     //记得前面有个”.”</p>
-</li>
-<li><p>变量名：<strong>Path</strong></p>
-</li>
-<li><p>变量值：<strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong></p>
-</li>
-</ul>
-<h4 id="JAVA-HOME-设置"><a href="#JAVA-HOME-设置" class="headerlink" title="JAVA_HOME 设置"></a>JAVA_HOME 设置</h4><p><img src="../images/20210223/step4.png" alt="img"></p>
-<p><img src="../images/20210223/step5.png" alt="img"></p>
-<h4 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h4><p><img src="../images/20210223/step6.png" alt="img"></p>
-<p><img src="../images/20210223/step7.png" alt="img"></p>
-<blockquote>
-<p><strong>注意：</strong>在 Windows10 中，Path 变量里是分条显示的，我们需要将 <strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong> 分开添加，否则无法识别：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%JAVA_HOME%\bin;</span><br><span class="line">%JAVA_HOME%\jre\bin;</span><br></pre></td></tr></table></figure>
-
-<p><img src="../images/20210223/step8.png" alt="img"></p>
-<p>更多内容可参考：<a href="https://www.runoob.com/w3cnote/windows10-java-setup.html" target="_blank" rel="noopener">Windows 10 配置Java 环境变量</a></p>
-</blockquote>
-<h4 id="CLASSPATH-设置"><a href="#CLASSPATH-设置" class="headerlink" title="CLASSPATH 设置"></a>CLASSPATH 设置</h4><p><img src="../images/20210223/step9.png" alt="img"></p>
-<p>这是 Java 的环境配置，配置完成后，你可以启动 Eclipse 来编写代码，它会自动完成java环境的配置。</p>
-<h4 id="测试JDK是否安装成功"><a href="#测试JDK是否安装成功" class="headerlink" title="测试JDK是否安装成功"></a>测试JDK是否安装成功</h4><p>1、”开始”-&gt;”运行”，键入”cmd”；</p>
-<p>2、键入命令: <strong>java -version</strong>、<strong>java</strong>、<strong>javac</strong> 几个命令，出现以下信息，说明环境变量配置成功；</p>
-<p><img src="../images/20210223/step10.png" alt="img"></p>
-<h2 id="MACOS-下设置-JDK-环境变量"><a href="#MACOS-下设置-JDK-环境变量" class="headerlink" title="MACOS 下设置 JDK 环境变量"></a>MACOS 下设置 JDK 环境变量</h2><ol>
-<li><p>打开终端，输入：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置一个<code>JAVA_HOME</code>的环境变量，它指向JDK的安装目录。在打开的 .bash_profile 中添加：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=`/Library/Java/JavaVirtualMachines/jdk-15.0.2.jdk/Contents/Home`</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：在 Mac 上，JDK 的路径和 window 上不同</p>
-</blockquote>
-</li>
-<li><p>设置 <code>PATH</code> 环境变量，把<code>JAVA_HOME</code>的<code>bin</code>目录附加到系统环境变量<code>PATH</code>上。在打开的 .bash_profile 中添加：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
-
-<p> 把<code>JAVA_HOME</code>的<code>bin</code>目录添加到<code>PATH</code>中是为了在任意文件夹下都可以运行<code>java</code>。</p>
-</li>
-<li><p>最后，保存 .bash_profile 文件，在终端输入：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure>
-
-<p> 打开终端，输入命令<code>java -version</code>，如果一切正常，你会看到如下输出:</p>
-<p> <img src="../images/20210223/java-version.png" alt="iShot2021-02-23 09.31.21"></p>
-</li>
-</ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>细心的童鞋还可以在<code>JAVA_HOME</code>的<code>bin</code>目录下找到很多可执行文件：</p>
-<p><img src="../images/20210223/bin_lib.png" alt="iShot2021-02-23 09.33.34"></p>
-<ul>
-<li>java：这个可执行程序其实就是JVM，运行Java程序，就是启动JVM，然后让JVM执行指定的编译后的代码；</li>
-<li>javac：这是Java的编译器，它用于把Java源码文件（以<code>.java</code>后缀结尾）编译为Java字节码文件（以<code>.class</code>后缀结尾）；</li>
-<li>jar：用于把一组<code>.class</code>文件打包成一个<code>.jar</code>文件，便于发布；</li>
-<li>javadoc：用于从Java源码中自动提取注释并生成文档；</li>
-<li>jdb：Java调试器，用于开发阶段的运行调试。</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yinyiwang/2021/02/22/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -688,7 +380,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/11/21/2020-11-21-NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -702,7 +394,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/" class="post-title-link" itemprop="url">NodeJS系列——揭开require方法的面纱</a>
+            <a href="/yinyiwang/2020/11/21/2020-11-21-NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/" class="post-title-link" itemprop="url">NodeJS系列——揭开require方法的面纱</a>
         </h2>
 
         <div class="post-meta">
@@ -719,7 +411,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-12 15:16:47" itemprop="dateModified" datetime="2021-01-12T15:16:47+08:00">2021-01-12</time>
+                <time title="修改时间：2021-03-01 20:53:32" itemprop="dateModified" datetime="2021-03-01T20:53:32+08:00">2021-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -752,132 +444,14 @@
       
           <p>在 <code>NodeJS</code> 中有一个方法是我们使用频率最高的，那就是 <code>require</code> 方法。<code>NodeJs</code> 遵循 CommonJS 规范，该规范的核心是通过 require来加载其他依赖的模块。</p>
 <p>但是，熟归熟，用归用，其中的原理是什么呢？今天就带大家揭开require的面纱，一睹真容。</p>
-<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><ol>
-<li><p>module.exports 或者 exports 是全局变量吗？</p>
-</li>
-<li><p>模块的加载是同步还是异步？</p>
-</li>
-<li><p>循环引用会不会产生性能问题或者导致错误？</p>
-</li>
-</ol>
-<h2 id="什么是-CommonJS"><a href="#什么是-CommonJS" class="headerlink" title="什么是 CommonJS"></a>什么是 CommonJS</h2><p>每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。<code>CommonJS</code> 规范规定，每个模块内部，<code>module</code>  变量代表当前模块。这个变量是一个对象，它的 <code>exports</code> 属性（即<code>module.exports</code>）是对外的接口。</p>
-<h2 id="Node-模块的分类"><a href="#Node-模块的分类" class="headerlink" title="Node 模块的分类"></a>Node 模块的分类</h2><ol>
-<li><strong>build-in modules</strong> —— Nodejs 中以 C++ 形式提供的模块。</li>
-<li><strong>constant module</strong> —— Nodejs 中定义常量的模块。</li>
-<li><strong>native module</strong> —— Nodejs 中以 javascript 形式提供的模块。</li>
-<li><strong>第三方module</strong> —— 由第三方提供的模块。</li>
-</ol>
-<h2 id="module-对象"><a href="#module-对象" class="headerlink" title="module 对象"></a>module 对象</h2><p>NodeJs 内部提供一个<code>Module</code>构建函数。所有模块都是<code>Module</code>的实例。</p>
-<p>每个模块内部，都有一个<code>module</code>对象，代表当前模块。它有以下属性。</p>
-<ol>
-<li><p>module 对象的属性</p>
-<ul>
-<li><code>module.id</code> 模块的识别符，通常是带有绝对路径的模块文件名。</li>
-<li><code>module.filename</code> 模块的文件名，带有绝对路径。</li>
-<li><code>module.loaded</code> 返回一个布尔值，表示模块是否已经完成加载。</li>
-<li><code>module.parent</code> 返回一个对象，表示调用该模块的模块（程序入口文件的module.parent为null）</li>
-<li><code>module.children</code> 返回一个数组，表示该模块要用到的其他模块。</li>
-<li><code>module.exports</code> 表示模块对外输出的值。</li>
-</ul>
-</li>
-<li><p>module.exports 属性</p>
-<p> <code>module.exports</code>属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取<code>module.exports</code>变量。<code>module.exports</code>属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取<code>module.exports</code>变量。</p>
-</li>
-<li><p>exports变量</p>
-<p> 我们有时候会这么写：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(test);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span>.test = test;</span><br><span class="line"></span><br><span class="line"><span class="comment">// result.js</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="built_in">require</span>(<span class="string">"./test"</span>)</span><br></pre></td></tr></table></figure>
-
-<p> 这样也可以拿到正确的结果，这是因为：exports 变量指向 module.exports。这等同在每个模块头部，有一行这样的命令。</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports;</span><br></pre></td></tr></table></figure>
-
-<p> 注意：不能直接给 <code>exports</code> 变量赋值，这样会改变 <code>exports</code> 的指向，不再指向 module.exports。在其他模块使用 <code>require</code> 方法是拿不到赋给 <code>exports</code> 的值的，因为  ==<em>require 方法获取的是其他模块的 module.exports 的值</em>==。</p>
-<p> 建议：尽可能的使用 <strong>module.exports</strong> 来导出结果。</p>
-</li>
-</ol>
-<h2 id="模块的流程"><a href="#模块的流程" class="headerlink" title="模块的流程"></a>模块的流程</h2><ul>
-<li>创建模块</li>
-<li>导出模块</li>
-<li>加载模块</li>
-<li>使用模块</li>
-</ul>
-<h2 id="require-方法"><a href="#require-方法" class="headerlink" title="require 方法"></a>require 方法</h2><blockquote>
-<p>require 是 node 用来加载并执行其它文件导出的模块的方法。</p>
-<p>在 NodeJs 中，我们引入的任何一个模块都对应一个 Module 实例，包括入口文件。</p>
-</blockquote>
-<p>完整步骤：</p>
-<ol>
-<li><p>调用父模块的 <code>require</code> 方法（父模块是指调用模块的当前模块）</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> = <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mod.require(path);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>调用 Module 的 <code>_load</code> 方法</p>
-</li>
-<li><p>通过 <code>Module._resolveFilename</code> 获取模块的路径fileName</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filename = Module._resolveFilename(request, parent, isMain);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据 fileName 判断是否存在该模块的缓存</p>
-<ul>
-<li>如果存在缓存，则调用 <code>updateChildren</code> 方法在更新缓存内容，==并返回缓存==</li>
-<li>如果不存在缓存，则继续执行</li>
-</ul>
-</li>
-<li><p>当做原生模块，调用 <code>loadNativeModule</code> 方法进行加载</p>
-<ul>
-<li>如果加载成功，则==返回==该原生模块</li>
-<li>否则，继续执行</li>
-</ul>
-</li>
-<li><p>根据当前模块名（路径）和父模块对象生成一个Module实例：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">module</span> = cachedModule || <span class="keyword">new</span> Module(filename, parent);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再判断该模块是否是入口文件</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isMain) &#123;</span><br><span class="line">    process.mainModule = <span class="built_in">module</span>;</span><br><span class="line">    <span class="built_in">module</span>.id = <span class="string">'.'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将该模块的实例存入到 Module 的缓存中</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module._cache[filename] = <span class="built_in">module</span>;</span><br></pre></td></tr></table></figure>
-
-<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210103%20/18-38-57-PgWQrw.png" alt="image-20210103183848388"></p>
-</li>
-<li><p>该模块的实例调用自身的 <code>load</code> 方法，根据 fileName 加载模块</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.load(filename);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取该模块文件的后缀名称</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> extension = findLongestRegisteredExtension(filename);</span><br></pre></td></tr></table></figure>
-
-<p>如果后缀名称是ES Module格式的（.mjs），则判断Module是否支持.mjs文件的解析，如果不支持，则==抛出异常==。</p>
-</li>
-<li><p>根据后缀名称解析模块文件内容</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Module._extensions[extension](<span class="keyword">this</span>, filename);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据fileName读取文件内容</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content = fs.readFileSync(filename, <span class="string">'utf8'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译并执行读取到的文件，调用 module 自身的 <code>_complile</code> 方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>._compile(content, filename);</span><br></pre></td></tr></table></figure>
-
-<p><code>_compile</code> 主要内容步骤：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compiledWrapper = wrapSafe(filename, content, <span class="keyword">this</span>);</span><br><span class="line"><span class="keyword">const</span> dirname = path.dirname(filename);</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">require</span> = makeRequireFunction(<span class="keyword">this</span>, redirects);</span><br><span class="line"><span class="keyword">let</span> result;</span><br><span class="line"><span class="keyword">const</span> exports = <span class="keyword">this</span>.exports;</span><br><span class="line"><span class="keyword">const</span> thisValue = exports;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">module</span> = <span class="keyword">this</span>;</span><br><span class="line">result = compiledWrapper.call(thisValue, exports, <span class="built_in">require</span>, <span class="built_in">module</span>, filename, dirname);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
-
-<p><code>wrapSafe</code> 方法的返回值</p>
-<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210104%20/09-59-59-3Pe3jG.png" alt="image-20210104095957580"></p>
-<p>具体获得上图结果的代码是：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wrapper = Module.wrap(content);</span><br><span class="line"><span class="keyword">return</span> vm.runInThisContext(wrapper, &#123;</span><br><span class="line">    filename,</span><br><span class="line">    lineOffset: <span class="number">0</span>,</span><br><span class="line">    displayErrors: <span class="literal">true</span>,</span><br><span class="line">    importModuleDynamically: <span class="keyword">async</span> (specifier) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> loader = asyncESM.ESMLoader;</span><br><span class="line">        <span class="keyword">return</span> loader.import(specifier, normalizeReferrerURL(filename));</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改该模块的加载状态为true</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.loaded = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>加载成功。</p>
-</li>
-</ol>
-<p>通过上面的调试过程可得出以下结论：</p>
-<ol>
-<li>在NodeJs中，从入口文件开始，一切皆 Module</li>
-<li>模块的加载是==同步==的</li>
-<li>由于缓存机制的存在，模块的循环引用对性能的影响微乎其微，并且循环引用到的模块可能是不完整的，并且可能会导致错误</li>
-</ol>
-<p>require 查找模块的流程</p>
-<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210112%20/13-37-29-tie2Os.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210112%20/13-38-01-RkeGjR.jpeg" alt="img"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yinyiwang/2020/11/21/2020-11-21-NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1041,7 +615,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-01 15:03:45" itemprop="dateModified" datetime="2021-03-01T15:03:45+08:00">2021-03-01</time>
+                <time title="修改时间：2021-03-01 20:54:35" itemprop="dateModified" datetime="2021-03-01T20:54:35+08:00">2021-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1068,212 +642,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="images/20200927/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="文章架构图"></p>
+          <p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-13-36-xhQInZ.png" alt="文章架构图"></p>
 <blockquote>
 <p>完整阅读本文大约需要二十分钟时间，可根据文章结构图直接阅读自己需要的部分。</p>
 </blockquote>
 <h2 id="Cookie-产生的背景"><a href="#Cookie-产生的背景" class="headerlink" title="Cookie 产生的背景"></a>Cookie 产生的背景</h2><blockquote>
 <p>所有新技术的出现都是为了解决某一痛点。 ——《前端三昧》</p>
 </blockquote>
-<p>我们都知道，<code>HTTP 协议</code>是==无状态的==，服务器无法知道两个请求是否来自同一个浏览器，也不知道用户上一次做了什么，每次请求都是完全相互独立，这严重阻碍了<code>交互式 Web</code> 应用程序的实现。例子：</p>
-<ul>
-<li>购物车：在典型的网上购物场景中，用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于 <code>HTTP</code> 的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。</li>
-<li>登录状态：我们常用的“记住密码”功能，在以前如果不是用 <code>Cookie</code> 记住了登录凭据，想要实现该功能将会很复杂。</li>
-</ul>
-<p>正是为了解决这些交互方面存在的痛点，<code>Cookie</code> 应运而生。</p>
-<h2 id="Cookie-概述"><a href="#Cookie-概述" class="headerlink" title="Cookie 概述"></a>Cookie 概述</h2><blockquote>
-<p> <code>Cookie</code>（ 也叫 <code>Web Cookie</code> 或<code>浏览器  Cookie</code> ）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。</p>
-</blockquote>
-<p>存储 <code>Cookie</code> 是浏览器提供的功能。<code>Cookie</code>  其实是存储在浏览器中的纯文本，浏览器的安装目录下会专门有一个  <code>Cookie</code>  文件夹来存放各个域下设置的 <code>Cookie</code>（非内存 <code>Cookie</code>）。</p>
-<p><img src="../images/20200927/Cookie%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE.png" alt="Cookie存放的位置"></p>
-<p>通常，它用于==告知服务端两个请求是否来自同一浏览器==，或者用来==保存一些状态信息==，<code>Cookie</code>  使基于无状态的 <code>HTTP</code> 协议记录稳定的状态信息成为了可能。常用的有以下方面：</p>
-<ul>
-<li>对话（<code>session</code>）管理：保存登录、购物车等需要记录的信息。</li>
-<li>简单的缓存：存储一些简单的业务数据，比如购物车等需要记录的信息。</li>
-<li>个性化：保存用户的偏好，比如网页的字体大小、背景色等等。</li>
-<li>追踪：记录和分析用户行为。</li>
-</ul>
-<blockquote>
-<p><code>Cookie</code> 主要是用来存储状态的。</p>
-</blockquote>
-<p><code>Cookie</code> 曾一度用于客户端数据的存储，因当时并没有其它合适的存储办法而作为唯一的存储手段。现在来说，这样做虽然可行，但是并不推荐，因为 <code>Cookie</code> 的设计目标并不是这个，它:</p>
-<ul>
-<li>容量很小（ 4KB ）</li>
-<li>缺乏数据操作接口</li>
-<li>影响性能</li>
-</ul>
-<p>客户端储存应该更多的考虑使用 <code>localStorage</code> 、<code>sesseionStorage</code> 和 <code>IndexedDB</code>。</p>
-<p>查看浏览器上存储的 <code>Cookie</code> 的方法如下图：</p>
-<p><img src="../images/20200927/%E6%9F%A5%E7%9C%8BCookie%E7%9A%84%E6%AD%A5%E9%AA%A4%E5%92%8C%E6%96%B9%E6%B3%95.png" alt="查看Cookie的步骤和方法"></p>
-<p>当然，浏览器可以设置不接受 <code>Cookie</code>，也可以设置不向服务器发送 <code>Cookie</code>。<code>window.navigator.cookieEnabled</code>属性返回一个布尔值，表示浏览器是否打开 <code>Cookie</code> 功能。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 浏览器是否打开 Cookie 功能</span></span><br><span class="line"><span class="built_in">window</span>.navigator.cookieEnabled <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>本文所有的讨论都是在浏览器的 <code>window.navigator.cookieEnabled</code> 为 ==true== 的前提下进行的。</p>
-</blockquote>
-<h2 id="Cookie-的工作流程"><a href="#Cookie-的工作流程" class="headerlink" title="Cookie 的工作流程"></a>Cookie 的工作流程</h2><p><img src="../images/20200927/Cookie%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="Cookie的工作原理"></p>
-<h2 id="Cookie-的限制"><a href="#Cookie-的限制" class="headerlink" title="Cookie 的限制"></a>Cookie 的限制</h2><h3 id="格式限制"><a href="#格式限制" class="headerlink" title="格式限制"></a>格式限制</h3><p><code>Cookie</code> 只能存储纯文本格式，因为：</p>
-<ul>
-<li>每条 <code>Cookie</code> 的大小有限制</li>
-<li>为用户信息安全考虑，<code>Cookie</code> 中存储的是不可执行语句</li>
-</ul>
-<h3 id="大小和条数限制"><a href="#大小和条数限制" class="headerlink" title="大小和条数限制"></a>大小和条数限制</h3><p>由于 <code>Cookie</code> 是保存在客户端上的，所以浏览器加入了一些限制确保 <code>Cookie</code> 不会被恶意使用，同时不会占据太多磁盘空间，所以 <code>Cookie</code> 的数量和大小是有限的。</p>
-<p>不同浏览器对 <code>Cookie</code> 数量和大小的限制，是不一样的。一般来说，单个域设置的 <code>Cookie</code> 不应超过 ==50个==，每个 Cookie 的大小不能超过 ==4KB== 。超过限制以后，<code>Cookie</code> 将被==忽略==，不会被设置。</p>
-<blockquote>
-<p>其限制的原因，主要在于阻止 <code>Cookie</code> 的滥用，而且 <code>Cookie</code> 会被发送到服务器端，如果数量太大的话，会严重影响请求的性能。以上这两个限制条件，就是 <code>Cookie</code> 为什么会被浏览器自动删除的原因了。</p>
-</blockquote>
-<h3 id="域限制"><a href="#域限制" class="headerlink" title="域限制"></a>域限制</h3><p>不可跨域读取，<code>Cookie</code> 是被哪个域写入的，就只能被这个域及其子域读取。比如：</p>
-<p>由 <code>test.com</code> 写入的 <code>Cookie</code> 可以被 <code>test.com</code> 和 <code>test.com/child</code> 读取，而不能被 <code>example.com</code> 读取。</p>
-<h3 id="路径限制"><a href="#路径限制" class="headerlink" title="路径限制"></a>路径限制</h3><p>存储 <code>Cookie</code> 时会指定路径，该路径的子级可以读取该 <code>Cookie</code>，但是它的父级却读取不到——==子可以读取父，但父不能拿到子==，例如：</p>
-<p>由 <code>test.com/parent/child</code> 存储下的 <code>Cookie</code>，可以被 <code>test.com/parent/child/child</code> 读取，但不能被 <code>test.com/parent</code> 读取。</p>
-<blockquote>
-<p>一般会将 <code>Cookie</code> 存在根路径下，可以避免这种情况的发生。</p>
-</blockquote>
-<h3 id="时效限制"><a href="#时效限制" class="headerlink" title="时效限制"></a>时效限制</h3><p>每个 <code>Cookie</code> 都有时效性，默认的有效期是==会话级别==（ <code>Seesion Cookie</code> ）：就是当浏览器关闭，那么 <code>Cookie</code> 立即销毁，但是我们也可以在存储的时候手动设置  <code>Cookie</code> 的过期时间，具体设置方法会在下文讲到。</p>
-<h2 id="Cookie-的属性"><a href="#Cookie-的属性" class="headerlink" title="Cookie 的属性"></a>Cookie 的属性</h2><p><img src="../images/20200927/Cookie%E7%9A%84%E5%B1%9E%E6%80%A7.png" alt="Cookie的属性"></p>
-<h3 id="Name-Value"><a href="#Name-Value" class="headerlink" title="Name/Value"></a>Name/Value</h3><p>设置 <code>Cookie</code> 的名称及相对应的值，对于认证 <code>Cookie</code>，<code>Value</code> 值包括 <code>Web</code> 服务器所提供的访问令牌 。</p>
-<h3 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h3><p>指定了可以访问该 <code>Cookie</code> 的 Web 站点或域。</p>
-<p><code>Cookie</code> 机制并未遵循严格的同源策略，允许一个子域可以设置或获取其父域的 <code>Cookie</code>。</p>
-<p>当需要实现单点登录方案时，<code>Cookie</code> 的上述特性非常有用，然而也增加了 <code>Cookie</code> 受攻击的危险，比如攻击者可以借此发动会话定置攻击。因而，浏览器禁止在 <code>Domain</code> 属性中设置 .org、.com 等通用顶级域名、以及在国家及地区顶级域下注册的二级域名，以减小攻击发生的范围。</p>
-<h3 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h3><p><code>Path</code> 标识指定了主机下的哪些路径可以接受 <code>Cookie</code>（该 URL 路径必须存在于请求 URL 中）。以字符 <code>%x2F (&quot;/&quot;)</code>  作为路径分隔符，子路径也会被匹配。</p>
-<h3 id="Expires-Max-Age"><a href="#Expires-Max-Age" class="headerlink" title="Expires/Max-Age"></a>Expires/Max-Age</h3><p>设置 <code>Cookie</code> 的生存期。有两种存储类型的 <code>Cookie</code> ：会话性与持久性。</p>
-<p><code>Expires</code> 属性指定一个具体的到期时间，到了这个指定的时间之后，浏览器就不再保留这个 <code>Cookie</code> ,它的值是 UTC 格式，可以使用 <code>Date.prototype.toUTCString()</code>  格式进行转换。</p>
-<p><code>Max-Age</code> 属性制定了从现在开始 <code>Cookie</code> 存在的秒数，比如 60 * 60 * 24 * 365（即一年）。过了这个时间以后，浏览器就不再保留这个 <code>Cookie</code></p>
-<blockquote>
-<p>如果没有设置这两个选项，则会使用默认值。 <code>domain</code> 的默认值为设置该 <code>Cookie</code> 的网页所在的域名， <code>path</code> 默认值为设置该 <code>Cookie</code> 的网页所在的目录。</p>
-</blockquote>
-<ul>
-<li><code>Expires</code> 属性缺省时，为会话性 <code>Cookie(Session Cookie)</code> ，仅保存在客户端内存中，并在用户关闭浏览器时失效。</li>
-<li>持久性 <code>Cookie</code> 会保存在用户的硬盘中，直至生存期到或用户直接在网页中单击“注销”等按钮结束会话时才会失效。</li>
-</ul>
-<blockquote>
-<p>当 <code>Cookie</code> 的过期时间被设定时，设定的日期和时间只与客户端相关，而不是服务端。</p>
-</blockquote>
-<h3 id="HTTPOnly"><a href="#HTTPOnly" class="headerlink" title="HTTPOnly"></a>HTTPOnly</h3><p>这个选项用来设置 <code>Cookie</code> 是否能通过 <code>JavaScript</code> 去访问。默认情况下， <code>Cookie</code> 不会带 <code>HTTPOnly</code> 选项(即为空)，所以默认情况下，客户端是可以通过 <code>JavaScript</code> 代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 的。当 <code>Cookie</code> 带 <code>HTTPOnly</code> 选项时，客户端则无法通过js代码去访问（包括读取、修改、删除等）这个 <code>Cookie</code> 。</p>
-<p>用于防止客户端脚本通过 <code>document.cookie</code> 属性访问 <code>Cookie</code> ，有助于保护 <code>Cookie</code> 不被跨站脚本攻击窃取或篡改。但是，<code>HTTPOnly</code> 的应用仍存在局限性，一些浏览器可以阻止客户端脚本对 <code>Cookie</code> 的读操作，但允许写操作；此外大多数浏览器仍允许通过 <code>XMLHTTP</code> 对象读取 <code>HTTP</code> 响应中的 <code>Set-Cookie</code> 头  。</p>
-<blockquote>
-<p>在客户端是不能通过 <code>JAvaScript</code> 代码去设置一个 <code>httpOnly</code> 类型的 <code>Cookie</code> 的，这种类型的 <code>Cookie</code> 只能通过服务端来设置。</p>
-</blockquote>
-<h3 id="Secure"><a href="#Secure" class="headerlink" title="Secure"></a>Secure</h3><p>指定是否使用 <code>HTTPS</code> 安全协议发送 <code>Cookie</code> 。</p>
-<p>使用 <code>HTTPS</code> 安全协议，可以保护 <code>Cookie</code> 在浏览器和 <code>Web</code> 服务器间的传输过程中不被窃取和篡改。该方法也可用于 <code>Web</code> 站点的身份鉴别，即在 <code>HTTPS</code> 的连接建立阶段，浏览器会检查 <code>Web</code> 网站的 <code>SSL</code> 证书的有效性。</p>
-<p>但是基于兼容性的原因（比如有些网站使用自签署的证书）在检测到 <code>SSL</code> 证书无效时，浏览器并不会立即终止用户的连接请求，而是显示安全风险信息，用户仍可以选择继续访问该站点。由于许多用户缺乏安全意识，因而仍可能连接到 <code>Pharming</code> 攻击所伪造的网站 。</p>
-<blockquote>
-<p>如果当前协议是 HTTP，浏览器会自动忽略服务器发来的 Secure。</p>
-</blockquote>
-<h3 id="SameSite"><a href="#SameSite" class="headerlink" title="SameSite"></a>SameSite</h3><p><code>Cookie</code> 允许服务器要求某个 <code>Cookie</code> 在跨站请求时不会被发送，（其中 <code>Site</code> 由可注册域定义），从而可以阻止跨站请求伪造攻击（<code>CSRF</code>）。</p>
-<p><code>SameSite cookies</code> 是相对较新的一个字段，所有主流浏览器都已经得到支持。下面是例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: key=value; SameSite=Strict</span><br></pre></td></tr></table></figure>
-
-<p><code>SameSite</code> 可以有下面三种值：</p>
-<ul>
-<li><strong><code>None</code></strong>。浏览器会在同站请求、跨站请求下继续发送 <code>Cookies</code>，不区分大小写。</li>
-<li><strong><code>Strict</code>。</strong>浏览器将只在访问相同站点时发送 <code>Cookie</code>。（在原有 <code>Cookies</code> 的限制条件上的加强）。</li>
-<li><strong><code>Lax</code>。</strong>与 <strong><code>Strict</code></strong> 类似，但用户从外部站点导航至URL时（例如通过链接）除外。 在新版本浏览器中，为默认选项，<code>Same-site cookies</code> 将会为一些跨站子请求保留，如图片加载或者 <code>frames</code> 的调用，但只有当用户从外部站点导航到 <code>URL</code> 时才会发送。如 link 链接。</li>
-</ul>
-<blockquote>
-<p>以前，如果 <code>SameSite</code> 属性没有设置，或者没有得到运行浏览器的支持，那么它的行为等同于 <code>None</code>，<code>Cookies</code> 会被包含在任何请求中——包括跨站请求。</p>
-<p>大多数主流浏览器正在将 <code>SameSite</code> 的默认值迁移至 <code>Lax</code>。如果想要指定 <code>Cookies</code> 在同站、跨站请求都被发送，现在需要明确指定 <code>SameSite</code>  为 <code>None</code>。</p>
-</blockquote>
-<h3 id="Cookie-prefixes"><a href="#Cookie-prefixes" class="headerlink" title="Cookie prefixes"></a>Cookie prefixes</h3><p><code>Cookie</code> 机制的使得服务器无法确认  <code>Cookie</code>  是在安全来源上设置的，甚至无法确定   <code>Cookie</code>   最初是在哪里设置的。</p>
-<p>子域上的易受攻击的应用程序可以使用 <code>Domain</code> 属性设置  <code>Cookie</code>  ，从而可以访问所有其他子域上的该   <code>Cookie</code>  。会话定置攻击中可能会滥用此机制。</p>
-<p>但是，作为 <code>深度防御措施</code>，可以使用 <code>Cookie</code> 前缀来断言有关  <code>Cookie</code>  的特定事实。有两个前缀可用：</p>
-<ul>
-<li><p><strong><code>__Host-</code></strong></p>
-<p>  如果    <code>Cookie</code>  名称具有此前缀，则仅当它也用 <code>Secure</code> 属性标记，是从安全来源发送的，不包括 <code>Domain</code> 属性，并将 <code>Path</code> 属性设置为 <code>/</code> 时，它才在 <code>Set-Cookie</code> 标头中接受。这样，这些 <code>Cookie</code> 可以被视为 “<code>domain-locked</code>”。</p>
-</li>
-<li><p><strong><code>__Secure-</code></strong></p>
-<p>  如果 <code>Cookie</code> 名称具有此前缀，则仅当它也用 <code>Secure</code> 属性标记，是从安全来源发送的，它才在 <code>Set-Cookie</code> 标头中接受。该前缀限制要弱于 <code>__Host-</code> 前缀。</p>
-</li>
-</ul>
-<p>带有这些前缀点 <code>Cookie</code>， 如果不符合其限制的会被浏览器拒绝。请注意，这确保了如果子域要创建带有前缀的  <code>Cookie</code>，那么它将要么局限于该子域，要么被完全忽略。由于应用服务器仅在确定用户是否已通过身份验证或 CSRF 令牌正确时才检查特定的  <code>Cookie</code>  名称，因此，这有效地充当了针对会话劫持的防御措施。</p>
-<p><code>Cookie</code> 各个属性的兼容性如下图所示：</p>
-<p><img src="../images/20200927/Cookie%E5%B1%9E%E6%80%A7%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.png" alt="Cookie属性的兼容性"></p>
-<h2 id="HTTP-Cookie-和-document-cookie"><a href="#HTTP-Cookie-和-document-cookie" class="headerlink" title="HTTP Cookie 和 document.cookie"></a>HTTP Cookie 和 document.cookie</h2><h3 id="HTTP-Cookie"><a href="#HTTP-Cookie" class="headerlink" title="HTTP Cookie"></a>HTTP Cookie</h3><p>服务器如果希望在浏览器保存 <code>Cookie</code>，就要在 <code>HTTP</code> 回应的头信息里面，放置一个<code>Set-Cookie</code>字段。</p>
-<p><img src="../images/20200927/HTTP%E8%AE%BE%E7%BD%AECookie.png" alt="HTTP设置Cookie"></p>
-<p>浏览器收到响应后通常会保存下 <code>Cookie</code>，之后对该服务器每一次请求中都通过  <code>Cookie</code> 请求头部将 <code>Cookie</code> 信息发送给服务器。另外，<code>Cookie</code> 的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。</p>
-<p><code>HTTP</code> 回应可以包含多个 <code>Set-Cookie</code> 字段，即在浏览器生成多个 <code>Cookie</code>。下面是一个例子。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.0</span> <span class="number">200</span> OK</span><br><span class="line">Content-type: text/html</span><br><span class="line"><span class="built_in">Set</span>-Cookie: yummy_cookie=choco</span><br><span class="line"><span class="built_in">Set</span>-Cookie: tasty_cookie=strawberry</span><br><span class="line"></span><br><span class="line">[page content]</span><br></pre></td></tr></table></figure>
-
-<p>除了 <code>Cookie</code> 的值，<code>Set-Cookie</code>字段还可以附加 <code>Cookie</code> 的属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Expires=&lt;date&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Max-Age=&lt;non-zero-digit&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Domain=&lt;domain-value&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Path=&lt;path-value&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Secure</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; HttpOnly</span><br></pre></td></tr></table></figure>
-
-<p>一个 <code>Set-Cookie</code> 字段里面，可以同时包括多个属性，没有次序的要求。</p>
-<blockquote>
-<p>如果服务器想改变一个早先设置的 <code>Cookie</code>，必须同时满足四个条件：<code>Cookie</code> 的 <code>key</code>、<code>domain</code>、<code>path</code> 和 <code>secure</code> 都匹配。否则，会创建一个新的 <code>Cookie</code>。</p>
-</blockquote>
-<p>浏览器接收了响应头提供的 <code>Cookie</code> 之后，每一次访问该域时，都会携带该 <code>Cookie</code> 值：</p>
-<p><img src="../images/20200927/HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E6%90%BA%E5%B8%A6Cookie.png" alt="HTTP的请求头中携带Cookie"></p>
-<p><code>Cookie</code> 字段可以包含多个 Cookie，使用分号（<code>;</code>）分隔。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /sample_page.html HTTP/<span class="number">1.1</span></span><br><span class="line">Host: www.example.org</span><br><span class="line">Cookie: yummy_cookie=choco; tasty_cookie=strawberry</span><br></pre></td></tr></table></figure>
-
-<h3 id="document-cookie"><a href="#document-cookie" class="headerlink" title="document.cookie"></a>document.cookie</h3><p>通过 <code>document.cookie</code> 属性可创建新的 <code>Cookie</code>，也可通过该属性访问==非 HttpOnly== 标记的 <code>Cookie</code>。</p>
-<p><img src="../images/20200927/Document%E8%8E%B7%E5%8F%96Cookie.png" alt="Document获取Cookie"></p>
-<p>上图从 <code>document.cookie</code> 一次性读出多个 <code>Cookie</code>，它们之间使用分号分隔。必须手动还原，才能取出每一个 <code>Cookie</code> 的值。</p>
-<p>写入的时候，<code>Cookie</code> 的值必须写成 <code>key=value</code> 的形式。注意，等号两边不能有空格。另外，写入 <code>Cookie</code> 的时候，必须对分号、逗号和空格进行转义（它们都不允许作为 <code>Cookie</code> 的值），这可以用 <code>encodeURIComponent</code> 方法达到。比如，我们要存储一个对象到 <code>Cookie</code>中，可以通过下面代码实现：</p>
-<p><img src="../images/20200927/document.cookie%E8%AE%BE%E7%BD%AE.png" alt="document.cookie设置"></p>
-<p>设置完成后，在浏览器查看：</p>
-<p><img src="../images/20200927/%E6%9F%A5%E7%9C%8B%E8%AE%BE%E7%BD%AE%E7%9A%84Cookie.png" alt="查看设置的Cookie"></p>
-<p>那要怎么才能读取到这次设置的 <code>Cookie</code> 呢？方法如下：</p>
-<p><img src="../images/20200927/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie_people.png" alt="读取设置的cookie_people"></p>
-<p>读取到的结果如下：</p>
-<p><img src="../images/20200927/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie.png" alt="读取设置的cookie"></p>
-<blockquote>
-<p><code>document.cookie</code> 一次只能写入一个 <code>Cookie</code>，而且写入并不是覆盖，而是添加。</p>
-</blockquote>
-<h2 id="Cookie-的安全隐患"><a href="#Cookie-的安全隐患" class="headerlink" title="Cookie 的安全隐患"></a>Cookie 的安全隐患</h2><blockquote>
-<p>信息被存在 <code>Cookie</code> 中时，需要明白 <code>Cookie</code> 的值时可以被访问，且可以被终端用户所修改的。根据应用程序的不同，可能需要使用服务器查找的不透明标识符，或者研究诸如 <code>JSON Web Tokens</code> 之类的替代身份验证/机密机制。</p>
-<p>当机器处于不安全环境时，切记<em>不能</em>通过 <code>HTTP Cookie</code> 存储、传输敏感信息。</p>
-</blockquote>
-<h3 id="Cookie-捕获-重放"><a href="#Cookie-捕获-重放" class="headerlink" title="Cookie 捕获/重放"></a>Cookie 捕获/重放</h3><p>攻击者可以通过木马等恶意程序，或使用跨站脚本攻击等手段偷窃存放在用户硬盘或内存中的 <code>Cookie</code>。借助网络攻击手段，包括：</p>
-<ul>
-<li>在不安全的局域网中被动地监听网络通信；</li>
-<li>通过攻击网络用户的路由器，或通过搭建恶意的无线路由器等手法，控制路由基础设施，将网络流量重定向到攻击者控制的主机；</li>
-<li>发动 <code>DNSPharming</code> (域欺骗)攻击，通过 <code>DNS 缓存中毒</code>、<code>DNS 应答欺骗</code>、或修改用户端的本地域名解析文件等方法攻击 <code>DNS</code> 系统，导致用户对合法网站的访问请求被重定向到恶意网站等等，同样可能窃取 <code>Cookie</code>。</li>
-</ul>
-<p>对于捕获到的认证 <code>Cookie</code>，攻击者往往会猜测其中的访问令牌，试图获取会话ID、用户名与口令、用户角色、时间戳等敏感信息；或者直接重放该 <code>Cookie</code>，假冒受害者的身份发动攻击  。</p>
-<h3 id="恶意-Cookies"><a href="#恶意-Cookies" class="headerlink" title="恶意 Cookies"></a>恶意 Cookies</h3><p><code>Cookies</code> 是文本文件， 一般情况下认为它不会造成安全威胁。 但是，如果在 <code>Cookies</code> 中通过特殊标记语言，引入可执行代码，就很可能给用户造成严重的安全隐患。<code>HTML</code> 为区别普通文本和标记语言，用符号 <code>“&lt;&gt;”</code> 来指示 <code>HTML</code> 代码。 这些 <code>HTML</code> 代码或者定义 <code>Web</code> 网页格式，或者引入 <code>Web</code> 浏览器可执行代码段。 <code>Web</code> 服务 器可以使用 <code>Cookies</code> 信息创建动态网页。假使 <code>Cookies</code> 包含可执行恶意代码段，那么在显示合成有该 <code>Cookies</code> 的网页时，就会自动执行这段恶意代码。当然，恶意代码能否真正造成危害，还取决于 <code>Web</code> 站点的安全配置策略 。</p>
-<h3 id="会话定置"><a href="#会话定置" class="headerlink" title="会话定置"></a>会话定置</h3><p>会话定置(<code>Session Fixation</code>)攻击是指，攻击者向受害者主机注入自己控制的认证 <code>Cookie</code> 等信息，使得受害者以攻击者的身份登录网站，从而窃取受害者的会话信息。</p>
-<p>注入 <code>Cookie</code> 的方法包括：</p>
-<ul>
-<li>使用跨站脚本或木马等恶意程序；</li>
-<li>或伪造与合法网站同域的站点，并利用各种方法欺骗用户访问该仿冒网站，从而通过HTTP响应中的Set-Cookie头将攻击者拥有的该域Cookie发送给用户等。</li>
-</ul>
-<h3 id="CSRF-攻击"><a href="#CSRF-攻击" class="headerlink" title="CSRF 攻击"></a>CSRF 攻击</h3><p>跨站请求伪造（<code>Cross-Site Request Forgery</code>，简称<code>CSRF</code>）是指：</p>
-<p>攻击者可能利用网页中的恶意代码强迫受害者浏览器向被攻击的 <code>Web</code> 站点发送伪造的请求，篡夺受害者的认证 <code>Cookie</code> 等身份信息，从而假冒受害者对目标站点执行指定的操作。</p>
-<p>Firefox、Opera 等浏览器使用单进程机制，多个窗口或标签使用同一个进程，共享 <code>Cookie</code> 等会话数据。IE 则混合使用单进程与多进程模式，一个窗口中的多个标签，以及使用 “CTRL+N”  或单击网页中的链接打开的新窗口使用同一进程，共享会话数据；只有直接运行IE可执行程序打开窗口时，才会创建新的进程。Chrome 虽然使用多进程机制，然而经测试发现，其不同的窗口或标签之间仍会共享会话数据，除非使用隐身访问方式。</p>
-<p>因而，用户同时打开多个浏览器窗口或标签访问互联网资源时，就为 <code>CSRF</code> 攻击篡夺用户的会话 <code>Cookie</code> 创造了条件。另外，如果一个Web 站点提供持久化 <code>Cookie</code>，则 <code>CSRF</code> 攻击将更直接、更容易。</p>
-<blockquote>
-<p>缓解 Cookie 攻击的方法如下：</p>
-<ul>
-<li>对用户输入进行过滤来阻止 XSS；</li>
-<li>任何敏感操作都需要确认；</li>
-<li>用于敏感信息的 Cookie 只能拥有较短的生命周期；</li>
-</ul>
-</blockquote>
-<h2 id="安全使用-Cookie"><a href="#安全使用-Cookie" class="headerlink" title="安全使用 Cookie"></a>安全使用 Cookie</h2><p>有两种方法可以确保 <code>Cookie</code> 被安全发送，并且不会被意外的参与者或脚本访问：<code>Secure</code> 属性和 <code>HttpOnly</code> 属性。</p>
-<p>标记为 <code>Secure</code> 的 <code>Cookie</code> 只应通过被 <code>HTTPS</code> 协议加密过的请求发送给服务端，因此可以预防 <code>man-in-the-middle</code> 攻击者的攻击。但即便设置了 <code>Secure</code> 标记，敏感信息也不应该通过 <code>Cookie</code> 传输，因为 <code>Cookie</code> 有其固有的不安全性，<code>Secure</code> 标记也无法提供确实的安全保障, 例如，可以访问客户端硬盘的人可以读取它。</p>
-<p><code>JavaScript Document.cookie API</code> 无法访问带有 <code>HttpOnly</code> 属性的 <code>Cookie</code>；此类 <code>Cookie</code> 仅作用于服务器。例如，例如，持久化服务器端会话的 <code>Cookie</code> 不需要对 <code>JavaScript</code> 可用，而应具有 <code>HttpOnly</code> 属性。此预防措施有助于缓解跨站点脚本（<code>XSS</code>）攻击。</p>
-<h2 id="Cookie-的替代方案"><a href="#Cookie-的替代方案" class="headerlink" title="Cookie 的替代方案"></a>Cookie 的替代方案</h2><p>由于 <code>Cookie</code>  在使用上存在较多限制，近年来，随着技术的发展成熟，出现了几种可替代 <code>Cookie</code> 的方案，且已被大多数主流浏览器支持。</p>
-<p><img src="../images/20200927/Cookie%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88.png" alt="Cookie的替代方案"></p>
-<ul>
-<li><strong>Web Storage、window.localStorage</strong> </li>
-</ul>
-<p>在浏览器中存储数据的另一种方法是 ==Web Storage API==。<code>window.sessionStorage</code> 和 <code>window.localStorage</code> 属性与持续时间中的会话和永久 <code>Cookie</code> 相对应，但是存储限制比 <code>Cookie</code>大，并且永远不会发送到服务器。</p>
-<ul>
-<li><strong>IndexedDB</strong></li>
-</ul>
-<p>可以使用 <code>IndexedDB API</code> 或基于它构建的库来存储更多结构化的数据。</p>
-<ul>
-<li><strong>Web SQL</strong></li>
-</ul>
-<p><code>Web SQL</code> 是一种利用数据库进行数据存储并利用 SQL 处理检索任务的 API。</p>
-<hr>
-<blockquote>
-<p>欢迎大家来到我的「山头」，我是「前端三昧」的作者 <em>隐逸王</em>  ——  一个想要做山大王的男人！</p>
-<p>愿和你一起领略前端三昧，发现前端之美！</p>
-</blockquote>
-<hr>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yinyiwang/2020/09/25/2020-09-25-%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Cookie%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1361,7 +744,7 @@ module.exports = function (app) {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/05/30/Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -1375,7 +758,7 @@ module.exports = function (app) {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2020/05/30/Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">Node模块Express简介</a>
+            <a href="/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">Node模块Express简介</a>
         </h2>
 
         <div class="post-meta">
@@ -1384,9 +767,28 @@ module.exports = function (app) {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-30 13:59:34 / 修改时间：14:44:35" itemprop="dateCreated datePublished" datetime="2020-05-30T13:59:34+08:00">2020-05-30</time>
+              <time title="创建时间：2020-05-30 13:59:34" itemprop="dateCreated datePublished" datetime="2020-05-30T13:59:34+08:00">2020-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-01 20:55:26" itemprop="dateModified" datetime="2021-03-01T20:55:26+08:00">2021-03-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/express/" itemprop="url" rel="index"><span itemprop="name">express</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/express/nodejs/" itemprop="url" rel="index"><span itemprop="name">nodejs</span></a>
+                </span>
             </span>
 
           
@@ -1401,112 +803,14 @@ module.exports = function (app) {
 
       
           <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。</p>
-<p>Express上手非常简单，首先新建一个项目目录，假定叫做hello-world。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir hello-world</span><br></pre></td></tr></table></figure>
-
-<p>进入该目录，新建一个package.json文件，内容如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"hello-world"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"hello world test app"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.0.1"</span>,</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"express"</span>: <span class="string">"4.x"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码定义了项目的名称、描述、版本等，并且指定需要4.0版本以上的Express。</p>
-<p>然后，就可以安装了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<p>执行上面的命令以后，在项目根目录下，新建一个启动文件，假定叫做index.js。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line">app.use(express.static(__dirname + <span class="string">'/public'</span>));</span><br><span class="line">app.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-37-59-3sBRp7.png" alt="1"></p>
-<p>然后，运行上面的启动脚本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node index</span><br></pre></td></tr></table></figure>
-
-<p>现在就可以访问<code>http://localhost:8080</code>，它会在浏览器中打开当前目录的public子目录（严格来说，是打开public目录的index.html文件）。如果public目录之中有一个图片文件<code>my_image.png</code>，那么可以用<code>http://localhost:8080/my_image.png</code>访问该文件。</p>
-<p>你也可以在index.js之中，生成动态网页。<br><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-39-34-etX7RH.png" alt="2"></p>
-<p>然后，在命令行下运行启动脚本，就可以在浏览器中访问项目网站了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node index</span><br></pre></td></tr></table></figure>
-
-<p>上面代码会在本机的3000端口启动一个网站，网页显示Hello World。</p>
-<p>启动脚本index.js的<code>app.get</code>方法，用于指定不同的访问路径所对应的回调函数，这叫做“路由”（routing）。上面代码只指定了根目录的回调函数，因此只有一个路由记录。实际应用中，可能有多个路由记录。</p>
-<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-43-06-TVQccv.png" alt="3"></p>
-<p>这时，最好就把路由放到一个单独的文件中，比如新建一个routes子目录。</p>
-<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20200530%20/14-44-25-oYAFro.png" alt="4"></p>
-<p>然后，原来的index.js就变成下面这样。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"><span class="keyword">var</span> routes = <span class="built_in">require</span>(<span class="string">'./routes'</span>)(app);</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h2><h3 id="底层：http模块"><a href="#底层：http模块" class="headerlink" title="底层：http模块"></a>底层：http模块</h3><p>Express框架建立在node.js内置的http模块上。http模块生成服务器的原始代码如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> app = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123;<span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>&#125;);</span><br><span class="line">  response.end(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="string">"localhost"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码的关键是http模块的createServer方法，表示生成一个HTTP服务器实例。该方法接受一个回调函数，该回调函数的参数，分别为代表HTTP请求和HTTP回应的request对象和response对象。</p>
-<p>Express框架的核心是对http模块的再包装。上面的代码用Express改写如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello world!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
-
-<p>比较两段代码，可以看到它们非常接近。原来是用<code>http.createServer</code>方法新建一个app实例，现在则是用Express的构造方法，生成一个Epress实例。两者的回调函数都是相同的。Express框架等于在http模块之上，加了一个中间层。</p>
-<h3 id="什么是中间件"><a href="#什么是中间件" class="headerlink" title="什么是中间件"></a>什么是中间件</h3><p>简单说，中间件（middleware）就是处理HTTP请求的函数。它最大的特点就是，一个中间件处理完，再传递给下一个中间件。App实例在运行过程中，会调用一系列的中间件。</p>
-<p>每个中间件可以从App实例，接收三个参数，依次为request对象（代表HTTP请求）、response对象（代表HTTP回应），next回调函数（代表下一个中间件）。每个中间件都可以对HTTP请求（request对象）进行加工，并且决定是否调用next方法，将request对象再传给下一个中间件。</p>
-<p>一个不进行任何操作、只传递request对象的中间件，就是下面这样。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uselessMiddleware</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码的next就是下一个中间件。如果它带有参数，则代表抛出一个错误，参数为错误文本。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uselessMiddleware</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  next(<span class="string">'出错了！'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>抛出错误以后，后面的中间件将不再执行，直到发现一个错误处理函数为止。</p>
-<h3 id="use方法"><a href="#use方法" class="headerlink" title="use方法"></a>use方法</h3><p>use是express注册中间件的方法，它返回一个函数。下面是一个连续调用两个中间件的例子。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request, response, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"In comes a "</span> + request.method + <span class="string">" to "</span> + request.url);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  response.end(<span class="string">"Hello world!\n"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(<span class="number">1337</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码使用<code>app.use</code>方法，注册了两个中间件。收到HTTP请求后，先调用第一个中间件，在控制台输出一行信息，然后通过<code>next</code>方法，将执行权传给第二个中间件，输出HTTP回应。由于第二个中间件没有调用<code>next</code>方法，所以request对象就不再向后传递了。</p>
-<p><code>use</code>方法内部可以对访问路径进行判断，据此就能实现简单的路由，根据不同的请求网址，返回不同的网页内容。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request, response, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (request.url == <span class="string">"/"</span>) &#123;</span><br><span class="line">    response.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">    response.end(<span class="string">"Welcome to the homepage!\n"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request, response, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (request.url == <span class="string">"/about"</span>) &#123;</span><br><span class="line">    response.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">404</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  response.end(<span class="string">"404 error!\n"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(<span class="number">1337</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码通过<code>request.url</code>属性，判断请求的网址，从而返回不同的内容。注意，<code>app.use</code>方法一共登记了三个中间件，只要请求路径匹配，就不会将执行权交给下一个中间件。因此，最后一个中间件会返回404错误，即前面的中间件都没匹配请求路径，找不到所要请求的资源。</p>
-<p>除了在回调函数内部判断请求的网址，use方法也允许将请求网址写在第一个参数。这代表，只有请求路径匹配这个参数，后面的中间件才会生效。无疑，这样写更加清晰和方便。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/path'</span>, someMiddleware);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码表示，只对根目录的请求，调用某个中间件。</p>
-<p>因此，上面的代码可以写成下面的样子。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">"/home"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response, next</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  response.end(<span class="string">"Welcome to the homepage!\n"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">"/about"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response, next</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  response.end(<span class="string">"Welcome to the about page!\n"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">404</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  response.end(<span class="string">"404 error!\n"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(<span class="number">1337</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Express的方法"><a href="#Express的方法" class="headerlink" title="Express的方法"></a>Express的方法</h2><h3 id="all方法和HTTP动词方法"><a href="#all方法和HTTP动词方法" class="headerlink" title="all方法和HTTP动词方法"></a>all方法和HTTP动词方法</h3><p>针对不同的请求，Express提供了use方法的一些别名。比如，上面代码也可以用别名的形式来写。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.all(<span class="string">"*"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response, next</span>) </span>&#123;</span><br><span class="line">  response.writeHead(<span class="number">200</span>, &#123; <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span> &#125;);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.end(<span class="string">"Welcome to the homepage!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/about"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.end(<span class="string">"Welcome to the about page!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"*"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.end(<span class="string">"404!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.createServer(app).listen(<span class="number">1337</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码的all方法表示，所有请求都必须通过该中间件，参数中的“*”表示对所有路径有效。get方法则是只有GET动词的HTTP请求通过该中间件，它的第一个参数是请求的路径。由于get方法的回调函数没有调用next方法，所以只要有一个中间件被调用了，后面的中间件就不会再被调用了。</p>
-<p>除了get方法以外，Express还提供post、put、delete方法，即HTTP动词都是Express的方法。</p>
-<p>这些方法的第一个参数，都是请求的路径。除了绝对匹配以外，Express允许模式匹配。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/hello/:who"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.end(<span class="string">"Hello, "</span> + req.params.who + <span class="string">"."</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码将匹配“/hello/alice”网址，网址中的alice将被捕获，作为req.params.who属性的值。需要注意的是，捕获后需要对网址进行检查，过滤不安全字符，上面的写法只是为了演示，生产中不应这样直接使用用户提供的值。</p>
-<p>如果在模式参数后面加上问号，表示该参数可选。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/hello/:who?'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(req.params.id) &#123;</span><br><span class="line">    	res.end(<span class="string">"Hello, "</span> + req.params.who + <span class="string">"."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">    	res.send(<span class="string">"Hello, Guest."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>下面是一些更复杂的模式匹配的例子。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/forum/:fid/thread/:tid'</span>, middleware)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配/commits/71dbb9c</span></span><br><span class="line"><span class="comment">// 或/commits/71dbb9c..4c084f9这样的git格式的网址</span></span><br><span class="line">app.get(<span class="regexp">/^\/commits\/(\w+)(?:\.\.(\w+))?$/</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">from</span> = req.params[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">var</span> to = req.params[<span class="number">1</span>] || <span class="string">'HEAD'</span>;</span><br><span class="line">  res.send(<span class="string">'commit range '</span> + <span class="keyword">from</span> + <span class="string">'..'</span> + to);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="set方法"><a href="#set方法" class="headerlink" title="set方法"></a>set方法</h3><p>set方法用于指定变量的值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.set(<span class="string">"views"</span>, __dirname + <span class="string">"/views"</span>);</span><br><span class="line"></span><br><span class="line">app.set(<span class="string">"view engine"</span>, <span class="string">"jade"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码使用set方法，为系统变量“views”和“view engine”指定值。</p>
-<h3 id="response对象"><a href="#response对象" class="headerlink" title="response对象"></a>response对象</h3><p><strong>（1）response.redirect方法</strong></p>
-<p>response.redirect方法允许网址的重定向。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.redirect(<span class="string">"/hello/anime"</span>);</span><br><span class="line">response.redirect(<span class="string">"http://www.example.com"</span>);</span><br><span class="line">response.redirect(<span class="number">301</span>, <span class="string">"http://www.example.com"</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>（2）response.sendFile方法</strong></p>
-<p>response.sendFile方法用于发送文件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendFile(<span class="string">"/path/to/anime.mp4"</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>（3）response.render方法</strong></p>
-<p>response.render方法用于渲染网页模板。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  response.render(<span class="string">"index"</span>, &#123; <span class="attr">message</span>: <span class="string">"Hello World"</span> &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码使用render方法，将message变量传入index模板，渲染成HTML网页。</p>
-<h3 id="requst对象"><a href="#requst对象" class="headerlink" title="requst对象"></a>requst对象</h3><p><strong>（1）request.ip</strong></p>
-<p>request.ip属性用于获得HTTP请求的IP地址。</p>
-<p><strong>（2）request.files</strong></p>
-<p>request.files用于获取上传的文件。</p>
-<h3 id="搭建HTTPs服务器"><a href="#搭建HTTPs服务器" class="headerlink" title="搭建HTTPs服务器"></a>搭建HTTPs服务器</h3><p>使用Express搭建HTTPs加密服务器，也很简单。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  key: fs.readFileSync(<span class="string">'E:/ssl/myserver.key'</span>),</span><br><span class="line">  cert: fs.readFileSync(<span class="string">'E:/ssl/myserver.crt'</span>),</span><br><span class="line">  passphrase: <span class="string">'1234'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">'https'</span>);</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello World Expressjs'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = https.createServer(options, app);</span><br><span class="line">server.listen(<span class="number">8084</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Server is running on port 8084'</span>);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1525,7 +829,7 @@ module.exports = function (app) {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/28/Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/28/2020-04-28-Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -1539,7 +843,7 @@ module.exports = function (app) {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2020/04/28/Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Apache-Jmeter简单配置及使用</a>
+            <a href="/yinyiwang/2020/04/28/2020-04-28-Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Apache-Jmeter简单配置及使用</a>
         </h2>
 
         <div class="post-meta">
@@ -1589,7 +893,7 @@ module.exports = function (app) {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/25/ES6-Promise/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/25/2020-04-25-ES6-Promise/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -1603,7 +907,7 @@ module.exports = function (app) {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/yinyiwang/2020/04/25/ES6-Promise/" class="post-title-link" itemprop="url">ES6_Promise</a>
+            <a href="/yinyiwang/2020/04/25/2020-04-25-ES6-Promise/" class="post-title-link" itemprop="url">ES6_Promise</a>
         </h2>
 
         <div class="post-meta">
@@ -1612,10 +916,16 @@ module.exports = function (app) {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-25 10:12:13 / 修改时间：10:54:27" itemprop="dateCreated datePublished" datetime="2020-04-25T10:12:13+08:00">2020-04-25</time>
+              <time title="创建时间：2020-04-25 10:12:13" itemprop="dateCreated datePublished" datetime="2020-04-25T10:12:13+08:00">2020-04-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-01 20:55:34" itemprop="dateModified" datetime="2021-03-01T20:55:34+08:00">2021-03-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1638,87 +948,14 @@ module.exports = function (app) {
 
       
           <p>ECMAscript 6 原生提供了 Promise 对象。<br>Promise 对象代表了未来将要发生的事件，用来传递异步操作的消息。</p>
-<h3 id="Promise-对象有以下两个特点"><a href="#Promise-对象有以下两个特点" class="headerlink" title="Promise 对象有以下两个特点:"></a>Promise 对象有以下两个特点:</h3><p>1、对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：</p>
-<ul>
-<li><code>pending</code>: 初始状态，不是成功或失败状态。</li>
-<li><code>fulfilled</code>: 意味着操作成功完成。</li>
-<li><code>rejected</code>: 意味着操作失败。</li>
-</ul>
-<p>只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。</p>
-<p>2、一旦状态改变，就不会再变，任何时候都可以得到这个结果。</p>
-<p>Promise 对象的状态改变，只有两种可能：从 Pending 变为 Resolved 和从 Pending 变为 Rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果。就算改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
-<h3 id="Promise-优缺点"><a href="#Promise-优缺点" class="headerlink" title="Promise 优缺点"></a>Promise 优缺点</h3><p>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
-<p>Promise 也有一些缺点。首先，无法取消 Promise，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
-<h3 id="Promise-创建"><a href="#Promise-创建" class="headerlink" title="Promise 创建"></a>Promise 创建</h3><p>要想创建一个 promise 对象、可以使用 new 来调用 Promise 的构造器来进行实例化。<br>下面是创建 promise 的步骤：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 异步处理    </span></span><br><span class="line">    <span class="comment">// 处理结束后、调用resolve 或 reject </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>Promise 构造函数包含一个参数和一个带有 resolve（解析）和 reject（拒绝）两个参数的回调。在回调中执行一些操作（例如异步），如果一切都正常，则调用 resolve，否则调用 reject。</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myFirstPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 当异步代码执行成功时，我们才会调用resolve(...), </span></span><br><span class="line">    <span class="comment">// 当异步代码失败时就会调用reject(...)</span></span><br><span class="line">    <span class="comment">// 在本例中，我们使用setTimeout(...)来模拟异步代码</span></span><br><span class="line">    <span class="comment">// 实际编码时可能是XHR请求或是HTML5的一些API方法.    </span></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		resolve(<span class="string">"成功!"</span>); <span class="comment">//代码正常执行！</span></span><br><span class="line">	&#125;, <span class="number">250</span>); </span><br><span class="line">&#125;);  </span><br><span class="line">myFirstPromise.then(<span class="function"><span class="keyword">function</span>(<span class="params">successMessage</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//successMessage的值是上面调用resolve(...)方法传入的值.    </span></span><br><span class="line">    <span class="comment">//successMessage参数不一定非要是字符串类型，这里只是举个例子</span></span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">"Yay! "</span> + successMessage); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>对于已经实例化过的 promise 对象可以调用 promise.then() 方法，传递 resolve 和 reject 方法作为回调。</p>
-<p>promise.then() 是 promise 最为常用的方法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled, onRejected)</span><br></pre></td></tr></table></figure>
-
-<p>promise简化了对error的处理，上面的代码我们也可以这样写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled).catch(onRejected)</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Promise-Ajax"><a href="#Promise-Ajax" class="headerlink" title="Promise Ajax"></a>Promise Ajax</h2><p>下面是一个用 Promise 对象实现的 Ajax 操作的例子。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">URL</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> req = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        req.open(<span class="string">'GET'</span>, URL, <span class="literal">true</span>);</span><br><span class="line">        req.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (req.status === <span class="number">200</span>) &#123;</span><br><span class="line">                resolve(req.responseText);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                reject(<span class="keyword">new</span> <span class="built_in">Error</span>(req.statusText));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        req.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            reject(<span class="keyword">new</span> <span class="built_in">Error</span>(req.statusText));</span><br><span class="line">        &#125;;</span><br><span class="line">        req.send();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> URL = <span class="string">"/try/ajax/testpromise.php"</span>;</span><br><span class="line">ajax(URL).then(<span class="function"><span class="keyword">function</span> <span class="title">onFulfilled</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'内容是：'</span> + value);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> <span class="title">onRejected</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'错误：'</span> + error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，resolve 方法和 reject 方法调用时，都带有参数。它们的参数会被传递给回调函数。</p>
-<p>reject 方法的参数通常是 Error 对象的实例，而 resolve 方法的参数除了正常的值以外，还可能是另一个 Promise 实例，比如像下面这样。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ... some code</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ... some code  resolve(p1);</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，p1 和 p2 都是 Promise 的实例，但是 p2 的 resolve 方法将 p1 作为参数，这时 p1 的状态就会传递给 p2。如果调用的时候，p1 的状态是 pending，那么 p2 的回调函数就会等待 p1 的状态改变；如果 p1 的状态已经是 fulfilled 或者 rejected，那么 p2 的回调函数将会立刻执行。</p>
-<hr>
-<h2 id="Promise-prototype-then方法：链式操作"><a href="#Promise-prototype-then方法：链式操作" class="headerlink" title="Promise.prototype.then方法：链式操作"></a>Promise.prototype.then方法：链式操作</h2><p>Promise.prototype.then 方法返回的是一个新的 Promise 对象，因此可以采用链式写法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getJSON(<span class="string">"/posts.json"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> json.post;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// proceed</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码使用 then 方法，依次指定了两个回调函数。第一个回调函数完成以后，会将返回结果作为参数，传入第二个回调函数。</p>
-<p>如果前一个回调函数返回的是Promise对象，这时后一个回调函数就会等待该Promise对象有了运行结果，才会进一步调用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getJSON(<span class="string">"/post/1.json"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getJSON(post.commentURL);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">comments</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 对comments进行处理</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这种设计使得嵌套的异步操作，可以被很容易得改写，从回调函数的”横向发展”改为”向下发展”。</p>
-<hr>
-<h2 id="Promise-prototype-catch方法：捕捉错误"><a href="#Promise-prototype-catch方法：捕捉错误" class="headerlink" title="Promise.prototype.catch方法：捕捉错误"></a>Promise.prototype.catch方法：捕捉错误</h2><p>Promise.prototype.catch 方法是 Promise.prototype.then(null, rejection) 的别名，用于指定发生错误时的回调函数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getJSON(<span class="string">"/posts.json"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">posts</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// some code</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 处理前一个回调函数运行时发生的错误</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'发生错误！'</span>, error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Promise 对象的错误具有”冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个 catch 语句捕获。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getJSON(<span class="string">"/post/1.json"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getJSON(post.commentURL);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">comments</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// some code</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 处理前两个回调函数的错误</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Promise-all方法，Promise-race方法"><a href="#Promise-all方法，Promise-race方法" class="headerlink" title="Promise.all方法，Promise.race方法"></a>Promise.all方法，Promise.race方法</h2><p>Promise.all 方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.all([p1,p2,p3]);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，Promise.all 方法接受一个数组作为参数，p1、p2、p3 都是 Promise 对象的实例。（Promise.all 方法的参数不一定是数组，但是必须具有 <strong>iterator 接口</strong>，且返回的每个成员都是 Promise 实例。）</p>
-<p>p 的状态由 p1、p2、p3 决定，分成两种情况。</p>
-<ul>
-<li>只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。</li>
-<li>只要p1、p2、p3之中有一个被rejected，p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。</li>
-</ul>
-<p>下面是一个具体的例子。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成一个Promise对象的数组 </span></span><br><span class="line"><span class="keyword">var</span> promises = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>].map(<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getJSON(<span class="string">"/post/"</span> + id + <span class="string">".json"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Promise</span>.all(promises).then(<span class="function"><span class="keyword">function</span>(<span class="params">posts</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Promise.race 方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.race([p1,p2,p3]);</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的Promise实例的返回值，就传递给p的返回值。</p>
-<p>如果Promise.all方法和Promise.race方法的参数，不是Promise实例，就会先调用下面讲到的Promise.resolve方法，将参数转为Promise实例，再进一步处理。</p>
-<hr>
-<h2 id="Promise-resolve-方法，Promise-reject-方法"><a href="#Promise-resolve-方法，Promise-reject-方法" class="headerlink" title="Promise.resolve 方法，Promise.reject 方法"></a>Promise.resolve 方法，Promise.reject 方法</h2><p>有时需要将现有对象转为Promise对象，Promise.resolve方法就起到这个作用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsPromise = <span class="built_in">Promise</span>.resolve($.ajax(<span class="string">'/whatever.json'</span>));</span><br></pre></td></tr></table></figure>
-
-<p>上面代码将 jQuery 生成 deferred 对象，转为一个新的 ES6 的 Promise 对象。</p>
-<p>如果 Promise.resolve 方法的参数，不是具有 then 方法的对象（又称 thenable 对象），则返回一个新的 Promise 对象，且它的状态为fulfilled。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.resolve(<span class="string">'Hello'</span>);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span> (<span class="params">s</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(s)</span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// Hello</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码生成一个新的Promise对象的实例p，它的状态为<code>fulfilled</code>，所以回调函数会立即执行，Promise.resolve方法的参数就是回调函数的参数。</p>
-<p>如果Promise.resolve方法的参数是一个Promise对象的实例，则会被原封不动地返回。</p>
-<p>Promise.reject(reason)方法也会返回一个新的Promise实例，该实例的状态为<code>rejected</code>。Promise.reject方法的参数reason，会被传递给实例的回调函数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>);</span><br><span class="line">p.then(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span> (<span class="params">s</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(s)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 出错了</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码生成一个Promise对象的实例p，状态为<code>rejected</code>，回调函数会立即执行。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yinyiwang/2020/04/25/2020-04-25-ES6-Promise/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1809,13 +1046,13 @@ module.exports = function (app) {
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1928,12 +1165,23 @@ module.exports = function (app) {
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
 
   
-<script src="/yinyiwang/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
 
 
 
@@ -1943,6 +1191,27 @@ module.exports = function (app) {
 
 
 
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 <script>
@@ -1963,6 +1232,16 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://yinyiwang.github.io/yinyiwang/',]
+      });
+      });
+  </script>
 <div id="needsharebutton-float">
       <span class="btn">
         <i class="fa fa-share-alt" aria-hidden="true"></i>

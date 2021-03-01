@@ -23,7 +23,7 @@
   <meta name="description" content="前言使用github pages服务搭建博客的好处有：  全是静态文件，访问速度快； 免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的； 数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行； 博客内容可以轻松打包、转移、发布到其它平台； 等等；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Github和HEXO搭建个人博客">
-<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2020/04/09/2020-04-09-%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="前端三昧">
 <meta property="og:description" content="前言使用github pages服务搭建博客的好处有：  全是静态文件，访问速度快； 免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的； 数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行； 博客内容可以轻松打包、转移、发布到其它平台； 等等；">
 <meta property="og:locale" content="zh_CN">
@@ -45,7 +45,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://image.liuxianan.com/201608/20160823_191336_238_8683.png">
 
-<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/2020-04-09-%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
 
 
 <script id="page-configurations">
@@ -197,21 +197,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -237,7 +234,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2020/04/09/2020-04-09-%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
@@ -480,7 +477,7 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/yinyiwang/2020/04/09/%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="解决同一台电脑生成过个SSH的问题">
+    <a href="/yinyiwang/2020/04/09/2020-04-09-%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="解决同一台电脑生成过个SSH的问题">
       解决同一台电脑生成过个SSH的问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -563,13 +560,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -682,12 +679,23 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
 
   
-<script src="/yinyiwang/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
 
 
 
@@ -697,6 +705,27 @@
 
 
 
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 <script>
@@ -748,7 +777,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'gitalk',
       owner       : 'yinyiwang',
       admin       : ['yinyiwang'],
-      id          : 'c315440fa0d7926e825c71d07cec706e',
+      id          : '5ec9af30962b0f0fd4d9108906115688',
         language: '',
       distractionFreeMode: true
     });

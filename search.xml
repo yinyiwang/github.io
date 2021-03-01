@@ -40,7 +40,7 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>解决同一台电脑生成过个SSH的问题</title>
-    <url>/yinyiwang/2020/04/09/%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <url>/yinyiwang/2020/04/09/2020-04-09-%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>解决同一台电脑生成两份或多份ssh密钥、公钥映射两个或多个GitHub账号</p>
 <p>需求描述</p>
 <p>本人注册一个GitHub账户，用来分享本人自己的开源项目或者代码，同时，公司注册了一个GitHub账户，用来分享公司的开源项目。如果按照单个ssh公钥生成的方法则会把之前的公钥覆盖掉，这样将导致其中一方在下一次上传代码，本机和GitHub无法映射成功。</p>
@@ -69,7 +69,7 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>使用Github和HEXO搭建个人博客</title>
-    <url>/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <url>/yinyiwang/2020/04/09/2020-04-09-%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用github pages服务搭建博客的好处有：</p>
 <ol>
 <li>全是静态文件，访问速度快；</li>
@@ -256,7 +256,7 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>ES6的Module使用详解</title>
-    <url>/yinyiwang/2020/04/20/ES6%E7%9A%84Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</url>
+    <url>/yinyiwang/2020/04/20/2020-04-20-ES6%E7%9A%84Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<blockquote>
 <p>ES6在语言标准的层面上，实现了<strong>模块</strong>的功能，有望成为浏览器和服务端模块的通用解决方案。</p>
 <p>ES6 模块的设计思想是尽量的<strong>静态化</strong>，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。</p>
@@ -282,7 +282,7 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>Module使用详解</title>
-    <url>/yinyiwang/2020/04/20/Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</url>
+    <url>/yinyiwang/2020/04/20/2020-04-20-Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>sdsdsdsdsds</p>
 ]]></content>
   </entry>
@@ -476,8 +476,10 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>ES6模块</title>
-    <url>/yinyiwang/2020/04/21/ES6%E6%A8%A1%E5%9D%97/</url>
+    <url>/yinyiwang/2020/04/21/2020-04-21-ES6%E6%A8%A1%E5%9D%97/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在 ES6 前， 实现模块化使用的是 RequireJS 或者 seaJS（分别是基于 AMD 规范的模块化库， 和基于 CMD 规范的模块化库）。<br>ES6 引入了模块化，其设计思想是在编译时就能确定模块的依赖关系，以及输入和输出的变量。<br>ES6 的模块化分为导出（export） @与导入（import）两个模块。</p>
+<a id="more"></a>
+
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>ES6 的模块自动开启严格模式，不管你有没有在模块头部加上 <strong>use strict;</strong>。<br>模块中可以导入和导出各种类型的变量，如函数，对象，字符串，数字，布尔值，类等。<br>每个模块都有自己的上下文，每一个模块内声明的变量都是局部变量，不会污染全局作用域。<br>每一个模块只加载一次（是单例的）， 若再去加载同目录下同文件，直接从内存中读取。</p>
 <h2 id="export-与-import"><a href="#export-与-import" class="headerlink" title="export 与 import"></a>export 与 import</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>模块导入导出各种类型的变量，如字符串，数值，函数，类。</p>
 <ul>
@@ -519,7 +521,7 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>致对象</title>
-    <url>/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/</url>
+    <url>/yinyiwang/2020/04/22/2020-04-22-%E8%87%B4%E5%AF%B9%E8%B1%A1/</url>
     <content><![CDATA[<p><img src="https://i.loli.net/2020/04/22/rS7L4ZChb23kvIE.jpg" alt=""></p>
 <p>那时年少爱幻想<br>告别了灯红酒绿<br>来到了零一的世界<br>这是你的世界<br>也是我的梦想</p>
 <p>我们厮杀过<br>那一行行灰色<br>见证着我对你的伤害<br>这一根根白发<br>承载着你对我的报复</p>
@@ -530,7 +532,7 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>ES6迭代器</title>
-    <url>/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/</url>
+    <url>/yinyiwang/2020/04/24/2020-04-24-ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/</url>
     <content><![CDATA[<p style = 'color:red'>这是一个p标签</p>
 
 <p><img src="https://i.loli.net/2020/04/24/zX21NdsLFHcA5OZ.jpg" alt="K9DIWTU0D4KID_thumbnail"></p>
@@ -539,6 +541,8 @@ module.exports = function (app) {
 <li>迭代器是一个统一的接口，它的作用是使各种数据结构可被便捷的访问，它是通过一个键为Symbol.iterator 的方法来实现。</li>
 <li>迭代器是用于遍历数据结构元素的指针（如数据库中的游标）。</li>
 </ul>
+<a id="more"></a>
+
 <h3 id="迭代过程"><a href="#迭代过程" class="headerlink" title="迭代过程"></a>迭代过程</h3><p>迭代的过程如下：</p>
 <ul>
 <li>通过 Symbol.iterator 创建一个迭代器，指向当前数据结构的起始位置</li>
@@ -619,8 +623,10 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>ES6_Promise</title>
-    <url>/yinyiwang/2020/04/25/ES6-Promise/</url>
+    <url>/yinyiwang/2020/04/25/2020-04-25-ES6-Promise/</url>
     <content><![CDATA[<p>ECMAscript 6 原生提供了 Promise 对象。<br>Promise 对象代表了未来将要发生的事件，用来传递异步操作的消息。</p>
+<a id="more"></a>
+
 <h3 id="Promise-对象有以下两个特点"><a href="#Promise-对象有以下两个特点" class="headerlink" title="Promise 对象有以下两个特点:"></a>Promise 对象有以下两个特点:</h3><p>1、对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：</p>
 <ul>
 <li><code>pending</code>: 初始状态，不是成功或失败状态。</li>
@@ -712,13 +718,15 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>Apache-Jmeter简单配置及使用</title>
-    <url>/yinyiwang/2020/04/28/Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <url>/yinyiwang/2020/04/28/2020-04-28-Apache-Jmeter%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Node模块Express简介</title>
-    <url>/yinyiwang/2020/05/30/Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/</url>
+    <url>/yinyiwang/2020/05/30/2020-05-30-Node%E6%A8%A1%E5%9D%97Express%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。</p>
+<a id="more"></a>
+
 <p>Express上手非常简单，首先新建一个项目目录，假定叫做hello-world。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$ mkdir hello-world</span><br></pre></td></tr></table></figure>
 
@@ -825,17 +833,27 @@ module.exports = function (app) {
 <p>request.files用于获取上传的文件。</p>
 <h3 id="搭建HTTPs服务器"><a href="#搭建HTTPs服务器" class="headerlink" title="搭建HTTPs服务器"></a>搭建HTTPs服务器</h3><p>使用Express搭建HTTPs加密服务器，也很简单。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  key: fs.readFileSync(<span class="string">'E:/ssl/myserver.key'</span>),</span><br><span class="line">  cert: fs.readFileSync(<span class="string">'E:/ssl/myserver.crt'</span>),</span><br><span class="line">  passphrase: <span class="string">'1234'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">'https'</span>);</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello World Expressjs'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = https.createServer(options, app);</span><br><span class="line">server.listen(<span class="number">8084</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Server is running on port 8084'</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>express</category>
+        <category>nodejs</category>
+      </categories>
+      <tags>
+        <tag>nodejs</tag>
+        <tag>express</tag>
+      </tags>
   </entry>
   <entry>
     <title>最全面的Cookie知识点总结</title>
     <url>/yinyiwang/2020/09/25/2020-09-25-%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Cookie%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p><img src="images/20200927/%E6%96%87%E7%AB%A0%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="文章架构图"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-13-36-xhQInZ.png" alt="文章架构图"></p>
 <blockquote>
 <p>完整阅读本文大约需要二十分钟时间，可根据文章结构图直接阅读自己需要的部分。</p>
 </blockquote>
 <h2 id="Cookie-产生的背景"><a href="#Cookie-产生的背景" class="headerlink" title="Cookie 产生的背景"></a>Cookie 产生的背景</h2><blockquote>
 <p>所有新技术的出现都是为了解决某一痛点。 ——《前端三昧》</p>
 </blockquote>
+<a id="more"></a>
+
 <p>我们都知道，<code>HTTP 协议</code>是==无状态的==，服务器无法知道两个请求是否来自同一个浏览器，也不知道用户上一次做了什么，每次请求都是完全相互独立，这严重阻碍了<code>交互式 Web</code> 应用程序的实现。例子：</p>
 <ul>
 <li>购物车：在典型的网上购物场景中，用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于 <code>HTTP</code> 的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么。</li>
@@ -846,7 +864,7 @@ module.exports = function (app) {
 <p> <code>Cookie</code>（ 也叫 <code>Web Cookie</code> 或<code>浏览器  Cookie</code> ）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。</p>
 </blockquote>
 <p>存储 <code>Cookie</code> 是浏览器提供的功能。<code>Cookie</code>  其实是存储在浏览器中的纯文本，浏览器的安装目录下会专门有一个  <code>Cookie</code>  文件夹来存放各个域下设置的 <code>Cookie</code>（非内存 <code>Cookie</code>）。</p>
-<p><img src="../images/20200927/Cookie%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE.png" alt="Cookie存放的位置"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-13-43-QsXwT5.png" alt="Cookie存放的位置"></p>
 <p>通常，它用于==告知服务端两个请求是否来自同一浏览器==，或者用来==保存一些状态信息==，<code>Cookie</code>  使基于无状态的 <code>HTTP</code> 协议记录稳定的状态信息成为了可能。常用的有以下方面：</p>
 <ul>
 <li>对话（<code>session</code>）管理：保存登录、购物车等需要记录的信息。</li>
@@ -865,14 +883,14 @@ module.exports = function (app) {
 </ul>
 <p>客户端储存应该更多的考虑使用 <code>localStorage</code> 、<code>sesseionStorage</code> 和 <code>IndexedDB</code>。</p>
 <p>查看浏览器上存储的 <code>Cookie</code> 的方法如下图：</p>
-<p><img src="../images/20200927/%E6%9F%A5%E7%9C%8BCookie%E7%9A%84%E6%AD%A5%E9%AA%A4%E5%92%8C%E6%96%B9%E6%B3%95.png" alt="查看Cookie的步骤和方法"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-13-47-G5egfg.png" alt="查看Cookie的步骤和方法"></p>
 <p>当然，浏览器可以设置不接受 <code>Cookie</code>，也可以设置不向服务器发送 <code>Cookie</code>。<code>window.navigator.cookieEnabled</code>属性返回一个布尔值，表示浏览器是否打开 <code>Cookie</code> 功能。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器是否打开 Cookie 功能</span></span><br><span class="line"><span class="built_in">window</span>.navigator.cookieEnabled <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>本文所有的讨论都是在浏览器的 <code>window.navigator.cookieEnabled</code> 为 ==true== 的前提下进行的。</p>
 </blockquote>
-<h2 id="Cookie-的工作流程"><a href="#Cookie-的工作流程" class="headerlink" title="Cookie 的工作流程"></a>Cookie 的工作流程</h2><p><img src="../images/20200927/Cookie%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="Cookie的工作原理"></p>
+<h2 id="Cookie-的工作流程"><a href="#Cookie-的工作流程" class="headerlink" title="Cookie 的工作流程"></a>Cookie 的工作流程</h2><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-13-51-8zf2s2.png" alt="Cookie的工作原理"></p>
 <h2 id="Cookie-的限制"><a href="#Cookie-的限制" class="headerlink" title="Cookie 的限制"></a>Cookie 的限制</h2><h3 id="格式限制"><a href="#格式限制" class="headerlink" title="格式限制"></a>格式限制</h3><p><code>Cookie</code> 只能存储纯文本格式，因为：</p>
 <ul>
 <li>每条 <code>Cookie</code> 的大小有限制</li>
@@ -891,7 +909,7 @@ module.exports = function (app) {
 <p>一般会将 <code>Cookie</code> 存在根路径下，可以避免这种情况的发生。</p>
 </blockquote>
 <h3 id="时效限制"><a href="#时效限制" class="headerlink" title="时效限制"></a>时效限制</h3><p>每个 <code>Cookie</code> 都有时效性，默认的有效期是==会话级别==（ <code>Seesion Cookie</code> ）：就是当浏览器关闭，那么 <code>Cookie</code> 立即销毁，但是我们也可以在存储的时候手动设置  <code>Cookie</code> 的过期时间，具体设置方法会在下文讲到。</p>
-<h2 id="Cookie-的属性"><a href="#Cookie-的属性" class="headerlink" title="Cookie 的属性"></a>Cookie 的属性</h2><p><img src="../images/20200927/Cookie%E7%9A%84%E5%B1%9E%E6%80%A7.png" alt="Cookie的属性"></p>
+<h2 id="Cookie-的属性"><a href="#Cookie-的属性" class="headerlink" title="Cookie 的属性"></a>Cookie 的属性</h2><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-13-57-0YvIFL.png" alt="Cookie的属性"></p>
 <h3 id="Name-Value"><a href="#Name-Value" class="headerlink" title="Name/Value"></a>Name/Value</h3><p>设置 <code>Cookie</code> 的名称及相对应的值，对于认证 <code>Cookie</code>，<code>Value</code> 值包括 <code>Web</code> 服务器所提供的访问令牌 。</p>
 <h3 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h3><p>指定了可以访问该 <code>Cookie</code> 的 Web 站点或域。</p>
 <p><code>Cookie</code> 机制并未遵循严格的同源策略，允许一个子域可以设置或获取其父域的 <code>Cookie</code>。</p>
@@ -948,9 +966,9 @@ module.exports = function (app) {
 </ul>
 <p>带有这些前缀点 <code>Cookie</code>， 如果不符合其限制的会被浏览器拒绝。请注意，这确保了如果子域要创建带有前缀的  <code>Cookie</code>，那么它将要么局限于该子域，要么被完全忽略。由于应用服务器仅在确定用户是否已通过身份验证或 CSRF 令牌正确时才检查特定的  <code>Cookie</code>  名称，因此，这有效地充当了针对会话劫持的防御措施。</p>
 <p><code>Cookie</code> 各个属性的兼容性如下图所示：</p>
-<p><img src="../images/20200927/Cookie%E5%B1%9E%E6%80%A7%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7.png" alt="Cookie属性的兼容性"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-03-KXp4C1.png" alt="Cookie属性的兼容性"></p>
 <h2 id="HTTP-Cookie-和-document-cookie"><a href="#HTTP-Cookie-和-document-cookie" class="headerlink" title="HTTP Cookie 和 document.cookie"></a>HTTP Cookie 和 document.cookie</h2><h3 id="HTTP-Cookie"><a href="#HTTP-Cookie" class="headerlink" title="HTTP Cookie"></a>HTTP Cookie</h3><p>服务器如果希望在浏览器保存 <code>Cookie</code>，就要在 <code>HTTP</code> 回应的头信息里面，放置一个<code>Set-Cookie</code>字段。</p>
-<p><img src="../images/20200927/HTTP%E8%AE%BE%E7%BD%AECookie.png" alt="HTTP设置Cookie"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-08-TfXiZ0.png" alt="HTTP设置Cookie"></p>
 <p>浏览器收到响应后通常会保存下 <code>Cookie</code>，之后对该服务器每一次请求中都通过  <code>Cookie</code> 请求头部将 <code>Cookie</code> 信息发送给服务器。另外，<code>Cookie</code> 的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。</p>
 <p><code>HTTP</code> 回应可以包含多个 <code>Set-Cookie</code> 字段，即在浏览器生成多个 <code>Cookie</code>。下面是一个例子。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">HTTP/<span class="number">1.0</span> <span class="number">200</span> OK</span><br><span class="line">Content-type: text/html</span><br><span class="line"><span class="built_in">Set</span>-Cookie: yummy_cookie=choco</span><br><span class="line"><span class="built_in">Set</span>-Cookie: tasty_cookie=strawberry</span><br><span class="line"></span><br><span class="line">[page content]</span><br></pre></td></tr></table></figure>
@@ -963,21 +981,21 @@ module.exports = function (app) {
 <p>如果服务器想改变一个早先设置的 <code>Cookie</code>，必须同时满足四个条件：<code>Cookie</code> 的 <code>key</code>、<code>domain</code>、<code>path</code> 和 <code>secure</code> 都匹配。否则，会创建一个新的 <code>Cookie</code>。</p>
 </blockquote>
 <p>浏览器接收了响应头提供的 <code>Cookie</code> 之后，每一次访问该域时，都会携带该 <code>Cookie</code> 值：</p>
-<p><img src="../images/20200927/HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E6%90%BA%E5%B8%A6Cookie.png" alt="HTTP的请求头中携带Cookie"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-13-gx8jqV.png" alt="HTTP的请求头中携带Cookie"></p>
 <p><code>Cookie</code> 字段可以包含多个 Cookie，使用分号（<code>;</code>）分隔。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">GET /sample_page.html HTTP/<span class="number">1.1</span></span><br><span class="line">Host: www.example.org</span><br><span class="line">Cookie: yummy_cookie=choco; tasty_cookie=strawberry</span><br></pre></td></tr></table></figure>
 
 <h3 id="document-cookie"><a href="#document-cookie" class="headerlink" title="document.cookie"></a>document.cookie</h3><p>通过 <code>document.cookie</code> 属性可创建新的 <code>Cookie</code>，也可通过该属性访问==非 HttpOnly== 标记的 <code>Cookie</code>。</p>
-<p><img src="../images/20200927/Document%E8%8E%B7%E5%8F%96Cookie.png" alt="Document获取Cookie"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-16-yFjJPU.png" alt="Document获取Cookie"></p>
 <p>上图从 <code>document.cookie</code> 一次性读出多个 <code>Cookie</code>，它们之间使用分号分隔。必须手动还原，才能取出每一个 <code>Cookie</code> 的值。</p>
 <p>写入的时候，<code>Cookie</code> 的值必须写成 <code>key=value</code> 的形式。注意，等号两边不能有空格。另外，写入 <code>Cookie</code> 的时候，必须对分号、逗号和空格进行转义（它们都不允许作为 <code>Cookie</code> 的值），这可以用 <code>encodeURIComponent</code> 方法达到。比如，我们要存储一个对象到 <code>Cookie</code>中，可以通过下面代码实现：</p>
-<p><img src="../images/20200927/document.cookie%E8%AE%BE%E7%BD%AE.png" alt="document.cookie设置"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-21-ahuObS.png" alt="document.cookie设置"></p>
 <p>设置完成后，在浏览器查看：</p>
-<p><img src="../images/20200927/%E6%9F%A5%E7%9C%8B%E8%AE%BE%E7%BD%AE%E7%9A%84Cookie.png" alt="查看设置的Cookie"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-26-SjLqFk.png" alt="查看设置的Cookie"></p>
 <p>那要怎么才能读取到这次设置的 <code>Cookie</code> 呢？方法如下：</p>
-<p><img src="../images/20200927/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie_people.png" alt="读取设置的cookie_people"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-29-03gnBu.png" alt="读取设置的cookie_people"></p>
 <p>读取到的结果如下：</p>
-<p><img src="../images/20200927/%E8%AF%BB%E5%8F%96%E8%AE%BE%E7%BD%AE%E7%9A%84cookie.png" alt="读取设置的cookie"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-32-oXvzsY.png" alt="读取设置的cookie"></p>
 <blockquote>
 <p><code>document.cookie</code> 一次只能写入一个 <code>Cookie</code>，而且写入并不是覆盖，而是添加。</p>
 </blockquote>
@@ -1015,7 +1033,7 @@ module.exports = function (app) {
 <p>标记为 <code>Secure</code> 的 <code>Cookie</code> 只应通过被 <code>HTTPS</code> 协议加密过的请求发送给服务端，因此可以预防 <code>man-in-the-middle</code> 攻击者的攻击。但即便设置了 <code>Secure</code> 标记，敏感信息也不应该通过 <code>Cookie</code> 传输，因为 <code>Cookie</code> 有其固有的不安全性，<code>Secure</code> 标记也无法提供确实的安全保障, 例如，可以访问客户端硬盘的人可以读取它。</p>
 <p><code>JavaScript Document.cookie API</code> 无法访问带有 <code>HttpOnly</code> 属性的 <code>Cookie</code>；此类 <code>Cookie</code> 仅作用于服务器。例如，例如，持久化服务器端会话的 <code>Cookie</code> 不需要对 <code>JavaScript</code> 可用，而应具有 <code>HttpOnly</code> 属性。此预防措施有助于缓解跨站点脚本（<code>XSS</code>）攻击。</p>
 <h2 id="Cookie-的替代方案"><a href="#Cookie-的替代方案" class="headerlink" title="Cookie 的替代方案"></a>Cookie 的替代方案</h2><p>由于 <code>Cookie</code>  在使用上存在较多限制，近年来，随着技术的发展成熟，出现了几种可替代 <code>Cookie</code> 的方案，且已被大多数主流浏览器支持。</p>
-<p><img src="../images/20200927/Cookie%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88.png" alt="Cookie的替代方案"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-14-37-nGt5Fy.png" alt="Cookie的替代方案"></p>
 <ul>
 <li><strong>Web Storage、window.localStorage</strong> </li>
 </ul>
@@ -1048,6 +1066,8 @@ module.exports = function (app) {
     <title>JDK安装说明及环境变量的配置</title>
     <url>/yinyiwang/2021/02/22/2021-02-22-JDK%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<h2 id="JDK简介"><a href="#JDK简介" class="headerlink" title="JDK简介"></a>JDK简介</h2><p>JDK  —— Java Development ToolKit (Java 开发工具包)。JDK 是整个 Java 的核心，包括了 Java 运行环境（Java Runtime Envirnment），一堆 Java 工具（ javac/java/jdb 等）和 Java 基础的类库（即 Java API 包括 rt.jar）。</p>
+<a id="more"></a>
+
 <p>最主流的 JDK 是Sun公司发布的 JDK，除了 Sun 之外，还有很多公司和组织都开发了属于自己的 JDK，例如国外 IBM 公司开发了属于自己的 JDK，国内淘宝也开发了属于自己的 JDK，各个组织开发自己的 JDK 都是为了在某些方面得到一些提高，以适应自己的需求，比如 IBM 的 JDK 据说运行效率就比 SUN 的 JDK 高的多。但不管怎么说，我们还是需要先把基础的 Sun JDK 掌握好。</p>
 <p>JDK 是 Java 开发工具包，在其安装目录下面有六个文件夹、一些描述文件、一个 src 压缩文件。bin、include、lib、 jre 这四个文件夹起作用，demo、sample 是一些例子。可以看出来 JDK 包含 JRE，而 JRE 包含 JVM。</p>
 <ul>
@@ -1060,7 +1080,7 @@ module.exports = function (app) {
 <p>JDK 是提供给 Java 开发人员使用的，其中包含了 Java 的开发工具，也包括了 JRE。所以安装了 JDK，就不用在单独安装 JRE了。 其中的开发工具包括编译工具 ( javac.exe ) 打包工具 ( jar.exe ) 等</p>
 <p>在 JDK 的安装目录下有一个 jre 目录，里面有两个文件夹 bin 和 lib，在这里可以认为 bin 里的就是 jvm，lib 中则是 jvm 工作所需要的类库，而 jvm 和 lib 合起来就称为 jre。</p>
 <h2 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h2><p>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank" rel="noopener">Oracle官网</a>，找到最新版本的 JDK 进行下载</p>
-<p><img src="../images/20210223/Oracle%E5%AE%98%E7%BD%91.png" alt="Oracle官网"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-01-1nSTQ5.png" alt="Oracle官网"></p>
 <h2 id="关于环境变量（Environment-Variable）"><a href="#关于环境变量（Environment-Variable）" class="headerlink" title="关于环境变量（Environment Variable）"></a>关于环境变量（<em>Environment Variable</em>）</h2><ul>
 <li><p>变量</p>
 <p>  就是可以随意给其赋值的一个存储单元。</p>
@@ -1134,15 +1154,15 @@ module.exports = function (app) {
 <h2 id="window-下-JDK-环境变量的设置"><a href="#window-下-JDK-环境变量的设置" class="headerlink" title="window 下 JDK 环境变量的设置"></a>window 下 JDK 环境变量的设置</h2><ol>
 <li>安装完成后，右击”我的电脑”，点击”属性”，选择”高级系统设置”；</li>
 </ol>
-<p><img src="../images/20210223/step1.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-10-Jpnbtp.png" alt="img"></p>
 <ol start="2">
 <li>选择”高级”选项卡，点击”环境变量”；</li>
 </ol>
-<p><img src="../images/20210223/step2.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-13-0ySx99.png" alt="img"></p>
 <ol start="3">
 <li>然后就会出现如下图所示的画面：</li>
 </ol>
-<p><img src="../images/20210223/step3.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-19-T61m05.png" alt="img"></p>
 <p>在 “系统变量” 中设置 3 项属性，JAVA_HOME、PATH、CLASSPATH (大小写无所谓),若已存在则点击”编辑”，不存在则点击”新建”。</p>
 <blockquote>
 <p><strong>注意：</strong>如果使用 1.5 以上版本的 JDK，不用设置 CLASSPATH 环境变量，也可以正常编译和运行 Java 程序。</p>
@@ -1162,22 +1182,22 @@ module.exports = function (app) {
 <li><p>变量值：<strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong></p>
 </li>
 </ul>
-<h4 id="JAVA-HOME-设置"><a href="#JAVA-HOME-设置" class="headerlink" title="JAVA_HOME 设置"></a>JAVA_HOME 设置</h4><p><img src="../images/20210223/step4.png" alt="img"></p>
-<p><img src="../images/20210223/step5.png" alt="img"></p>
-<h4 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h4><p><img src="../images/20210223/step6.png" alt="img"></p>
-<p><img src="../images/20210223/step7.png" alt="img"></p>
+<h4 id="JAVA-HOME-设置"><a href="#JAVA-HOME-设置" class="headerlink" title="JAVA_HOME 设置"></a>JAVA_HOME 设置</h4><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-26-ldAxvZ.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-32-DkpB9w.png" alt="img"></p>
+<h4 id="PATH设置"><a href="#PATH设置" class="headerlink" title="PATH设置"></a>PATH设置</h4><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-38-bGLZmu.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-42-BegabF.png" alt="img"></p>
 <blockquote>
 <p><strong>注意：</strong>在 Windows10 中，Path 变量里是分条显示的，我们需要将 <strong>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</strong> 分开添加，否则无法识别：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin;</span><br><span class="line">%JAVA_HOME%\jre\bin;</span><br></pre></td></tr></table></figure>
 
-<p><img src="../images/20210223/step8.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-46-yZ0XlB.png" alt="img"></p>
 <p>更多内容可参考：<a href="https://www.runoob.com/w3cnote/windows10-java-setup.html" target="_blank" rel="noopener">Windows 10 配置Java 环境变量</a></p>
 </blockquote>
-<h4 id="CLASSPATH-设置"><a href="#CLASSPATH-设置" class="headerlink" title="CLASSPATH 设置"></a>CLASSPATH 设置</h4><p><img src="../images/20210223/step9.png" alt="img"></p>
+<h4 id="CLASSPATH-设置"><a href="#CLASSPATH-设置" class="headerlink" title="CLASSPATH 设置"></a>CLASSPATH 设置</h4><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-51-dipATw.png" alt="img"></p>
 <p>这是 Java 的环境配置，配置完成后，你可以启动 Eclipse 来编写代码，它会自动完成java环境的配置。</p>
 <h4 id="测试JDK是否安装成功"><a href="#测试JDK是否安装成功" class="headerlink" title="测试JDK是否安装成功"></a>测试JDK是否安装成功</h4><p>1、”开始”-&gt;”运行”，键入”cmd”；</p>
 <p>2、键入命令: <strong>java -version</strong>、<strong>java</strong>、<strong>javac</strong> 几个命令，出现以下信息，说明环境变量配置成功；</p>
-<p><img src="../images/20210223/step10.png" alt="img"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-11-55-f9iw18.png" alt="img"></p>
 <h2 id="MACOS-下设置-JDK-环境变量"><a href="#MACOS-下设置-JDK-环境变量" class="headerlink" title="MACOS 下设置 JDK 环境变量"></a>MACOS 下设置 JDK 环境变量</h2><ol>
 <li><p>打开终端，输入：</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
@@ -1198,11 +1218,11 @@ module.exports = function (app) {
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure>
 
 <p> 打开终端，输入命令<code>java -version</code>，如果一切正常，你会看到如下输出:</p>
-<p> <img src="../images/20210223/java-version.png" alt="iShot2021-02-23 09.31.21"></p>
+<p> <img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-12-00-9U4yuc.png" alt="iShot2021-02-23 09.31.21"></p>
 </li>
 </ol>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>细心的童鞋还可以在<code>JAVA_HOME</code>的<code>bin</code>目录下找到很多可执行文件：</p>
-<p><img src="../images/20210223/bin_lib.png" alt="iShot2021-02-23 09.33.34"></p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/20-12-06-t5xLhz.png" alt="iShot2021-02-23 09.33.34"></p>
 <ul>
 <li>java：这个可执行程序其实就是JVM，运行Java程序，就是启动JVM，然后让JVM执行指定的编译后的代码；</li>
 <li>javac：这是Java的编译器，它用于把Java源码文件（以<code>.java</code>后缀结尾）编译为Java字节码文件（以<code>.class</code>后缀结尾）；</li>
@@ -1222,9 +1242,11 @@ module.exports = function (app) {
   </entry>
   <entry>
     <title>NodeJS系列——揭开require方法的面纱</title>
-    <url>/yinyiwang/2020/11/21/NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/</url>
+    <url>/yinyiwang/2020/11/21/2020-11-21-NodeJS%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94%E6%8F%AD%E5%BC%80require%E6%96%B9%E6%B3%95%E7%9A%84%E9%9D%A2%E7%BA%B1/</url>
     <content><![CDATA[<p>在 <code>NodeJS</code> 中有一个方法是我们使用频率最高的，那就是 <code>require</code> 方法。<code>NodeJs</code> 遵循 CommonJS 规范，该规范的核心是通过 require来加载其他依赖的模块。</p>
 <p>但是，熟归熟，用归用，其中的原理是什么呢？今天就带大家揭开require的面纱，一睹真容。</p>
+<a id="more"></a>
+
 <h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><ol>
 <li><p>module.exports 或者 exports 是全局变量吗？</p>
 </li>
@@ -1368,6 +1390,8 @@ module.exports = function (app) {
     <content><![CDATA[<blockquote>
 <p>最近需要进行一组性能测试，用到了 <strong>JMeter</strong> 这个测试工具，简单记录下对它的了解以及安装过程。</p>
 </blockquote>
+<a id="more"></a>
+
 <h2 id="JMeter-简介"><a href="#JMeter-简介" class="headerlink" title="JMeter 简介"></a>JMeter 简介</h2><p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210301%20/15-00-08-fnMAIf.png" alt="image-20210226205547298"></p>
 <p>全名为 <strong>Apache JMeter</strong></p>
 <p><code>JMeter</code> 是一个软件，使负载测试或业绩为导向的业务（功能）测试不同的协议或技术。<br>它是 Apache 软件基金会的Stefano Mazzocchi JMeter 最初开发的。<br>它主要对 Apache JServ（现在称为如 Apache Tomcat 项目）的性能进行测试。<br>Apache 后来重新设计 JMeter 增强的图形用户界面和添加功能测试能力。</p>

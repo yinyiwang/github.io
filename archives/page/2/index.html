@@ -180,21 +180,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -242,7 +239,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/24/ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/24/2020-04-24-ES6%E8%BF%AD%E4%BB%A3%E5%99%A8/" itemprop="url">
             <span itemprop="name">ES6迭代器</span>
           </a>
       </div>
@@ -262,7 +259,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/22/%E8%87%B4%E5%AF%B9%E8%B1%A1/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/22/2020-04-22-%E8%87%B4%E5%AF%B9%E8%B1%A1/" itemprop="url">
             <span itemprop="name">致对象</span>
           </a>
       </div>
@@ -282,7 +279,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/21/ES6%E6%A8%A1%E5%9D%97/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/21/2020-04-21-ES6%E6%A8%A1%E5%9D%97/" itemprop="url">
             <span itemprop="name">ES6模块</span>
           </a>
       </div>
@@ -302,7 +299,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/20/ES6%E7%9A%84Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/20/2020-04-20-ES6%E7%9A%84Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" itemprop="url">
             <span itemprop="name">ES6的Module使用详解</span>
           </a>
       </div>
@@ -322,7 +319,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/20/Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/20/2020-04-20-Module%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" itemprop="url">
             <span itemprop="name">Module使用详解</span>
           </a>
       </div>
@@ -402,7 +399,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/09/%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/09/2020-04-09-%E8%A7%A3%E5%86%B3%E5%90%8C%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E7%94%9F%E6%88%90%E8%BF%87%E4%B8%AASSH%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="url">
             <span itemprop="name">解决同一台电脑生成过个SSH的问题</span>
           </a>
       </div>
@@ -422,7 +419,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/yinyiwang/2020/04/09/%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">
+          <a class="post-title-link" href="/yinyiwang/2020/04/09/2020-04-09-%E4%BD%BF%E7%94%A8Github%E5%92%8CHEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">
             <span itemprop="name">使用Github和HEXO搭建个人博客</span>
           </a>
       </div>
@@ -512,13 +509,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/yinyiwang/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/yinyiwang/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -631,12 +628,23 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
 
   
-<script src="/yinyiwang/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
 
 
 
@@ -646,6 +654,27 @@
 
 
 
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 <script>
