@@ -1368,7 +1368,7 @@ module.exports = function (app) {
     <content><![CDATA[<blockquote>
 <p>最近需要进行一组性能测试，用到了 <strong>JMeter</strong> 这个测试工具，简单记录下对它的了解以及安装过程。</p>
 </blockquote>
-<h2 id="JMeter-简介"><a href="#JMeter-简介" class="headerlink" title="JMeter 简介"></a>JMeter 简介</h2><p><img src="../images/20210226/image-20210226205547298.png" alt="image-20210226205547298"></p>
+<h2 id="JMeter-简介"><a href="#JMeter-简介" class="headerlink" title="JMeter 简介"></a>JMeter 简介</h2><p><img src="20210226_jmeter%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/image-20210226205547298.png" alt="image-20210226205547298"></p>
 <p>全名为 <strong>Apache JMeter</strong></p>
 <p><code>JMeter</code> 是一个软件，使负载测试或业绩为导向的业务（功能）测试不同的协议或技术。<br>它是 Apache 软件基金会的Stefano Mazzocchi JMeter 最初开发的。<br>它主要对 Apache JServ（现在称为如 Apache Tomcat 项目）的性能进行测试。<br>Apache 后来重新设计 JMeter 增强的图形用户界面和添加功能测试能力。</p>
 <h2 id="JMeter-的作用"><a href="#JMeter-的作用" class="headerlink" title="JMeter 的作用"></a>JMeter 的作用</h2><p>Apache JMeter 是100%纯 JAVA 桌面应用程序，被设计为用于测试客户端/服务端结构的软件(例如 web 应用程序)。<br>JMeter 可以用来测试静态和动态资源的性能，例如：静态文件，Java Servlet,CGI Scripts,Java Object,数据库和 FTP 服务器等等。<br>JMeter 可用于模拟大量负载来测试一台服务器，网络或者对象的健壮性或者分析不同负载下的整体性能。     </p>
