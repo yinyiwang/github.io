@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/yinyiwang/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/yinyiwang/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/yinyiwang/images/favicon.ico">
+  <link rel="mask-icon" href="/yinyiwang/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/yinyiwang/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/yinyiwang/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yinyiwang.github.io","root":"/yinyiwang/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言记得刚找工作那会，几种数据类型是必问题，当时的答案一般都是七种——字符串（String）、数字(Number)、布尔(Boolean)、数组(Array)、对象(Object)、空（Null）、未定义（Undefined），时至今日，某些网络教程上还是这样的分类：  其实，随着 ECMAScript 的发展和完善，在 ES6(2015) 和 ES11(2020) 中，又分别增加了 Symbol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 中的 Symbol 是什么？">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2021/07/05/ES6-%E4%B8%AD%E7%9A%84-Symbol-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/index.html">
+<meta property="og:site_name" content="前端三昧">
+<meta property="og:description" content="前言记得刚找工作那会，几种数据类型是必问题，当时的答案一般都是七种——字符串（String）、数字(Number)、布尔(Boolean)、数组(Array)、对象(Object)、空（Null）、未定义（Undefined），时至今日，某些网络教程上还是这样的分类：  其实，随着 ECMAScript 的发展和完善，在 ES6(2015) 和 ES11(2020) 中，又分别增加了 Symbol">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/17-53-24-Fpqfvk.png">
+<meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/18-02-52-ySP1Bs.png">
+<meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/18-23-03-qoG5UA.jpeg">
+<meta property="article:published_time" content="2021-07-05T10:29:33.000Z">
+<meta property="article:modified_time" content="2021-07-05T10:30:52.126Z">
+<meta property="article:author" content="隐逸王">
+<meta property="article:tag" content="Symbol">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/17-53-24-Fpqfvk.png">
+
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2021/07/05/ES6-%E4%B8%AD%E7%9A%84-Symbol-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style><style>
+#needsharebutton-float {
+  bottom: 88px;
+  cursor: pointer;
+  left: -8px;
+  position: fixed;
+  z-index: 9999;
+}
+#needsharebutton-float .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 4px;
+  padding: 0 10px 0 14px;
+}
+</style>
+  <title>ES6 中的 Symbol 是什么？ | 前端三昧</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://your-url" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/yinyiwang/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端三昧</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/yinyiwang/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/yinyiwang/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/yinyiwang/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/yinyiwang/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/yinyiwang/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/yinyiwang/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/07/05/ES6-%E4%B8%AD%E7%9A%84-Symbol-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
+      <meta itemprop="name" content="隐逸王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端三昧">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES6 中的 Symbol 是什么？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-05 18:29:33 / 修改时间：18:30:52" itemprop="dateCreated datePublished" datetime="2021-07-05T18:29:33+08:00">2021-07-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>记得刚找工作那会，几种数据类型是必问题，当时的答案一般都是七种——字符串（String）、数字(Number)、布尔(Boolean)、数组(Array)、对象(Object)、空（Null）、未定义（Undefined），时至今日，某些网络教程上还是这样的分类：</p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/17-53-24-Fpqfvk.png" alt="不完整的分类"></p>
+<p>其实，随着 ECMAScript 的发展和完善，在 ES6(2015) 和 ES11(2020) 中，又分别增加了 Symbol 和 BigInt 两种类型，所以，完整的分类应该是下面这样的：</p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/18-02-52-ySP1Bs.png" alt="完整的数据类型"></p>
+<p>今天，我们就来看看 Symbol 到底是什么类型，为何要引入这样一个类型。</p>
+<a id="more"></a>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们都应该有个清晰的认识：任何新技术或者新概念的出现，必然是为了解决某一痛点的。</p>
+<p>想想吧，我们为了起一个漂亮的、符合语义规则的属性名而绞尽脑汁时的痛苦，还要承受属性名可能冲突的折磨，那是一段不堪回首的往事！</p>
+<p>而 Symbol 的出现正是为了拯救我们的头发，让它们不至于牺牲在这些琐碎的小事上，它们每一根都是那么珍贵，它们的归宿应该在更具价值的地方！</p>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210624%20/18-23-03-qoG5UA.jpeg" alt="头发证的会掉完"></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>symbol 是一种基本数据类型。Symbol() 函数会返回 symbol 类型的值，该类型具有静态属性和静态方法。它的静态属性会暴露几个内建的成员对象；它的静态方法会暴露全局的 symbol 注册，且类似于内建对象类，但作为构造函数来说它并不完整，因为它不支持语法：”<code>new Symbol()</code>“。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>直接使用 <code>Symbol()</code> 创建新的 symbol 类型，并用一个可选的字符串作为其描述。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Symbol</span>([description])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>description     (可选)    字符串类型。对symbol的描述，可用于调试但不是访问symbol本身。请注意，即使传入两个相同的字符串，得到的 symbol 也不相等。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> symbol1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> symbol2 = <span class="built_in">Symbol</span>(<span class="number">42</span>);</span><br><span class="line"><span class="keyword">const</span> symbol3 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> symbol1);</span><br><span class="line"><span class="comment">// expected output: "symbol"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(symbol2 === <span class="number">42</span>);</span><br><span class="line"><span class="comment">// expected output: false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(symbol3.toString());</span><br><span class="line"><span class="comment">// expected output: "Symbol(foo)"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>(<span class="string">'foo'</span>) === <span class="built_in">Symbol</span>(<span class="string">'foo'</span>));</span><br><span class="line"><span class="comment">// expected output: false</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面的代码创建了三个新的 symbol 类型。 注意，<code>Symbol(&quot;foo&quot;)</code>  不会强制将字符串 “foo” 转换成 symbol 类型。它每次都会创建一个新的 symbol 类型。</p>
+</blockquote>
+<p>下面带有 new 运算符的语法将抛出 TypeError 运算符的语法将抛出错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sym = <span class="keyword">new</span> <span class="built_in">Symbol</span>(); <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>正如歌词“每个人都有他的脾气”所说，Symbol 也有它自己的特性：</p>
+<ol>
+<li><strong>没有两个 Symbol 的值是相等的</strong>。就像“世上没有两片相同的叶子”一样，任何两个 Symbol 数据的值都不会相等。</li>
+<li><strong>Symbol 数据值可以作为对象属性名</strong>。高手一出手，就知有没有。这一下子就奠定了 Symbol 的江湖地位。要知道，在之前，对象的属性名是字符串的专属权利，就连数字也会被同化为字符串，可现在居然被 Symbol 虎口夺食，字符串大概也只能黯然伤神了吧。</li>
+</ol>
+<h2 id="用涂"><a href="#用涂" class="headerlink" title="用涂"></a>用涂</h2><p>根据 Symbol 的特性，它有以下通途。</p>
+<h3 id="命名冲突"><a href="#命名冲突" class="headerlink" title="命名冲突"></a>命名冲突</h3><p>JavaScript 内置了一个 symbol ，那就是 ES6 中的 Symbol.iterator。拥有 Symbol.iterator 函数的对象被称为 可迭代对象 ，就是说你可以在对象上使用 for/of 循环。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fibonacci = &#123;</span><br><span class="line">    [<span class="built_in">Symbol</span>.iterator]: <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> temp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">yield</span> b;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            temp = a;</span><br><span class="line">            a = a + b;</span><br><span class="line">            b = temp;</span><br><span class="line">            <span class="keyword">yield</span> b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prints every Fibonacci number less than 100</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> x <span class="keyword">of</span> fibonacci) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么这里要用 Symbol.iterator  而不是字符串？假设不用 Symbol.iterator ，可迭代对象需要有一个字符串属性名 ‘iterator’，就像下面这个可迭代对象的类：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span> (obj) &#123;</span><br><span class="line">        <span class="built_in">Object</span>.assign(<span class="keyword">this</span>, obj);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    iterator() &#123;</span><br><span class="line">        <span class="keyword">const</span> keys = <span class="built_in">Object</span>.keys(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= keys.length) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">yield</span> keys[i++];</span><br><span class="line">        &#125;)();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MyClass  的实例是可迭代对象，可以遍历对象上面的属性。但是上面的类有个潜在的缺陷，假设有个恶意用户给 MyClass 构造函数传了一个带有 iterator 属性的对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> MyClass(&#123; <span class="attr">iterator</span>: <span class="string">'not a function'</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样你在 obj 上使用 for/of 的话，JavaScript 会抛出 TypeError: obj is not iterable 异常。</p>
+<p>可以看出，传入对象的  iterator 函数覆盖了类的  iterator 属性。</p>
+<p>这有点类似原型污染的安全问题，无脑复制用户数据会对一些特殊属性，比如 <strong>proto</strong> 和 constructor 带来问题。</p>
+<p>这里的核心在于，symbol 让对象的内部数据和用户数据井水不犯河水。</p>
+<p>由于 sysmbol 无法在  JSON 里表示，因此不用担心给 Express API 传入带有不合适的 Symbol.iterator 属性的数据。另外，对于那种混合了内置函数和用户数据的对象，你可以用 symbol 来确保用户数据不会跟内置属性冲突。</p>
+<h3 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h3><p>由于任何两个 symbol 都是不相等的，在 JavaScript 里可以很方便地用来模拟私有属性。symbol`  不会出现在 Object.keys() 的结果中，因此除非你明确地 export 一个 symbol，或者用 Object.getOwnPropertySymbols() 函数获取，否则其他代码无法访问这个属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getObj</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> symbol = <span class="built_in">Symbol</span>(<span class="string">'test'</span>);</span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">    obj[symbol] = <span class="string">'test'</span>;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = getObj();</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj); <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 除非有这个 symbol 的引用，否则无法访问该属性</span></span><br><span class="line">obj[<span class="built_in">Symbol</span>(<span class="string">'test'</span>)]; <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 getOwnPropertySymbols() 依然可以拿到 symbol 的引用</span></span><br><span class="line"><span class="keyword">const</span> [symbol] = <span class="built_in">Object</span>.getOwnPropertySymbols(obj);</span><br><span class="line">obj[symbol]; <span class="comment">// 'test'</span></span><br></pre></td></tr></table></figure>
+
+<p>还有一个原因是 symbol 不会出现在 <code>JSON.stringify()</code> 的结果里，确切地说是<code>JSON.stringify()</code>会忽略<code>symbol</code>属性名和属性值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> symbol = <span class="built_in">Symbol</span>(<span class="string">'test'</span>);</span><br><span class="line"><span class="keyword">const</span> obj = &#123; [symbol]: <span class="string">'test'</span>, <span class="attr">test</span>: symbol &#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify(obj); <span class="comment">// "&#123;&#125;"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>symbol 具有以下特性：</p>
+<ul>
+<li>每个 symbol 都是独一无二的。</li>
+<li>symbol 可用作对象名称。</li>
+</ul>
+<p>~</p>
+<p>~</p>
+<p>~ 本文完，感谢阅读！</p>
+<p>~</p>
+<blockquote>
+<p>学习有趣的知识，结识有趣的朋友，塑造有趣的灵魂！</p>
+<p>我是〖编程三昧〗的作者 <strong>隐逸王</strong>，我的公众号是『编程三昧』，欢迎关注，希望大家多多指教！</p>
+<p>你来，怀揣期望，我有墨香相迎！ 你归，无论得失，唯以余韵相赠！</p>
+<p>知识与技能并重，内力和外功兼修，理论和实践两手都要抓、两手都要硬！</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/yinyiwang/tags/Symbol/" rel="tag"># Symbol</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/yinyiwang/2021/07/05/CSS-%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%BB%E7%BB%93/" rel="prev" title="CSS 选择器总结">
+      <i class="fa fa-chevron-left"></i> CSS 选择器总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/yinyiwang/2021/07/05/Git-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" rel="next" title="Git 基本命令总结">
+      Git 基本命令总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">3.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">5.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用涂"><span class="nav-number">6.</span> <span class="nav-text">用涂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名冲突"><span class="nav-number">6.1.</span> <span class="nav-text">命名冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有属性"><span class="nav-number">6.2.</span> <span class="nav-text">私有属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">隐逸王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/yinyiwang/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/yinyiwang/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/yinyiwang/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yinyiwang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yinyiwang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1274545731@qq.com" title="E-Mail → mailto:1274545731@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/yinyiwang" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yinyiwang" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/2893570333750744" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;2893570333750744" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/558924ad643f" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;558924ad643f" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>简书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/qianduansanmei/" title="博客园 → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qianduansanmei&#x2F;" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>博客园</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">隐逸王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共67.2k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/yinyiwang/lib/anime.min.js"></script>
+  <script src="/yinyiwang/lib/velocity/velocity.min.js"></script>
+  <script src="/yinyiwang/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/yinyiwang/js/utils.js"></script>
+
+<script src="/yinyiwang/js/motion.js"></script>
+
+
+<script src="/yinyiwang/js/schemes/pisces.js"></script>
+
+
+<script src="/yinyiwang/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+<div id="needsharebutton-float">
+      <span class="btn">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </span>
+    </div>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+      flOptions = {};
+        flOptions.iconStyle = "box";
+        flOptions.boxForm = "vertical";
+        flOptions.position = "middleRight";
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
+      new needShareButton('#needsharebutton-float', flOptions);
+  </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0dafc87fa9a1c9ac348d',
+      clientSecret: '3fa722fe21fa90a79306e64d3993aee995b60f3b',
+      repo        : 'gitalk',
+      owner       : 'yinyiwang',
+      admin       : ['yinyiwang'],
+      id          : '55609e9cbca6aea5eca97cbc178542ce',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

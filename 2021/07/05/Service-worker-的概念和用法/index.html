@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/yinyiwang/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/yinyiwang/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/yinyiwang/images/favicon.ico">
+  <link rel="mask-icon" href="/yinyiwang/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/yinyiwang/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/yinyiwang/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yinyiwang.github.io","root":"/yinyiwang/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Service workers 本质上充当 Web 应用程序、浏览器与网络（可用时）之间的代理服务器。这个 API 旨在创建有效的离线体验，它会拦截网络请求并根据网络是否可用采取来适当的动作、更新来自服务器的的资源。它还提供入口以推送通知和访问后台同步 API。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Service worker 的概念和用法">
+<meta property="og:url" content="https://yinyiwang.github.io/yinyiwang/2021/07/05/Service-worker-%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="前端三昧">
+<meta property="og:description" content="Service workers 本质上充当 Web 应用程序、浏览器与网络（可用时）之间的代理服务器。这个 API 旨在创建有效的离线体验，它会拦截网络请求并根据网络是否可用采取来适当的动作、更新来自服务器的的资源。它还提供入口以推送通知和访问后台同步 API。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210604%20/19-27-12-XqBN9x.jpg">
+<meta property="og:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210604%20/19-26-03-txvEvM.png">
+<meta property="article:published_time" content="2021-07-05T10:40:12.000Z">
+<meta property="article:modified_time" content="2021-07-05T10:40:55.247Z">
+<meta property="article:author" content="隐逸王">
+<meta property="article:tag" content="service worker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210604%20/19-27-12-XqBN9x.jpg">
+
+<link rel="canonical" href="https://yinyiwang.github.io/yinyiwang/2021/07/05/Service-worker-%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%94%A8%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style><style>
+#needsharebutton-float {
+  bottom: 88px;
+  cursor: pointer;
+  left: -8px;
+  position: fixed;
+  z-index: 9999;
+}
+#needsharebutton-float .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 4px;
+  padding: 0 10px 0 14px;
+}
+</style>
+  <title>Service worker 的概念和用法 | 前端三昧</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://your-url" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/yinyiwang/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">前端三昧</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/yinyiwang/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/yinyiwang/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/yinyiwang/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/yinyiwang/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/yinyiwang/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/yinyiwang/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yinyiwang.github.io/yinyiwang/2021/07/05/Service-worker-%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/yinyiwang/images/avatar.gif">
+      <meta itemprop="name" content="隐逸王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端三昧">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Service worker 的概念和用法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-05 18:40:12 / 修改时间：18:40:55" itemprop="dateCreated datePublished" datetime="2021-07-05T18:40:12+08:00">2021-07-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/yinyiwang/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210604%20/19-27-12-XqBN9x.jpg" alt="查看源图像"></p>
+<p>Service workers 本质上充当 Web 应用程序、浏览器与网络（可用时）之间的代理服务器。这个 API 旨在创建有效的离线体验，它会拦截网络请求并根据网络是否可用采取来适当的动作、更新来自服务器的的资源。它还提供入口以推送通知和访问后台同步 API。</p>
+<a id="more"></a>
+
+<h2 id="Service-worker-的概念和用法"><a href="#Service-worker-的概念和用法" class="headerlink" title="Service worker 的概念和用法"></a>Service worker 的概念和用法</h2><p>Service worker 是一个注册在指定源和路径下的事件驱动 <code>worker</code>。它采用 JavaScript 控制关联的页面或者网站，拦截并修改访问和资源请求，细粒度地缓存资源。你可以完全控制应用在特定情形（最常见的情形是网络不可用）下的表现。</p>
+<p>Service worker 运行在<code>worker</code>上下文，因此它不能访问 DOM。相对于驱动应用的主 JavaScript 线程，它运行在其他线程中，所以不会造成阻塞。它设计为完全异步，同步API（如 <code>XHR</code> 和 <code>localStorage</code>）不能在 service worker 中使用。</p>
+<p>出于安全考量，Service workers 只能由 <strong>HTTPS</strong> 承载，毕竟修改网络请求的能力暴露给中间人攻击会非常危险。在 Firefox 浏览器的用户隐私模式，Service Worke不可用。</p>
+<blockquote>
+<p><strong>注意：</strong>Service workers可以更细致地控制每一件事情，支持当操作出错时终止操作</p>
+</blockquote>
+<blockquote>
+<p><strong>注意：</strong>Service workers大量使用 <code>Promise</code>，因为通常它们会等待响应后继续，并根据响应返回一个成功或者失败的操作。Promise 非常适合这种场景。</p>
+</blockquote>
+<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>使用  <code>ServiceWorkerContainer.register()</code> 方法首次注册 service worker。如果注册成功，service worker 就会被下载到客户端并尝试安装或激活（见下文），这将作用于整个域内用户可访问的 URL，或者其特定子集。</p>
+<h3 id="下载、安装和激活"><a href="#下载、安装和激活" class="headerlink" title="下载、安装和激活"></a>下载、安装和激活</h3><p>此时，你的服务工作者( service worker )将遵守以下生命周期：</p>
+<ol>
+<li>下载</li>
+<li>安装</li>
+<li>激活</li>
+</ol>
+<p>用户首次访问 service worker 控制的网站或页面时，service worker 会立刻被下载。</p>
+<p>之后，在以下情况将会触发更新:</p>
+<ul>
+<li>一个前往作用域内页面的导航</li>
+<li>在 service worker 上的一个事件被触发并且过去 24 小时没有被下载</li>
+</ul>
+<p>无论它与现有 service worker 不同（字节对比），还是第一次在页面或网站遇到 service worker，如果下载的文件是新的，安装就会尝试进行。</p>
+<p>如果这是首次启用 service worker，页面会首先尝试安装，安装成功后它会被激活。</p>
+<p>如果现有 service worker 已启用，新版本会在后台安装，但不会被激活，这个时序称为 worker in waiting。直到所有已加载的页面不再使用旧的 service worker 才会激活新的 service worker。只要页面不再依赖旧的 service worker，新的 service worker 会被激活（成为active worker）。</p>
+<p>你可以监听 <code>InstallEvent</code>，事件触发时的标准行为是准备 service worker 用于使用，例如使用内建的 storage API 来创建缓存，并且放置应用离线时所需资源。</p>
+<p>还有一个 activate 事件，触发时可以清理旧缓存和旧的 service worker 关联的东西。</p>
+<p>Servcie worker 可以通过  <code>FetchEvent</code> 事件去响应请求。通过使用  <code>FetchEvent.respondWith</code> 方法，你可以任意修改对于这些请求的响应。</p>
+<p><strong>注意</strong>: 因为 <code>oninstall</code> 和 <code>onactivate</code> 完成前需要一些时间，service worker 标准提供一个 <code>waitUntil</code> 方法，当 <code>oninstall</code> 或者 <code>onactivate</code> 触发时被调用，接受一个 promise。在这个 promise 被成功 resolve 以前，功能性事件不会分发到 service worker。</p>
+<h2 id="其他使用场景"><a href="#其他使用场景" class="headerlink" title="其他使用场景"></a>其他使用场景</h2><p>Service workers 也可以用来做这些事情：</p>
+<ul>
+<li>后台数据同步</li>
+<li>响应来自其它源的资源请求</li>
+<li>集中接收计算成本高的数据更新，比如地理位置和陀螺仪信息，这样多个页面就可以利用同一组数据</li>
+<li>在客户端进行 CoffeeScript，LESS，CJS/AMD 等模块编译和依赖管理（用于开发目的）</li>
+<li>后台服务钩子</li>
+<li>自定义模板用于特定URL模式</li>
+<li>性能增强，比如预取用户可能需要的资源，比如相册中的后面数张图片</li>
+</ul>
+<p>未来 service workers 能够用来做更多使web平台接近原生应用的事。 值得关注的是，其他标准也能并且将会使用 service worker，例如:</p>
+<ul>
+<li>后台同步：启动一个service worker即使没有用户访问特定站点，也可以更新缓存</li>
+<li>响应推送：启动一个service worker向用户发送一条信息通知新的内容可用</li>
+<li>对时间或日期作出响应</li>
+<li>进入地理围栏</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ul>
+<li><code>Cache</code></li>
+</ul>
+<p>表示用于 <code>Request</code>/<code>Response</code>对象对的存储，作为<code>ServiceWorker</code>生命周期的一部分被缓存。</p>
+<ul>
+<li><code>CacheStorage</code></li>
+</ul>
+<p>表示<code>Cache</code>对象的存储。提供一个所有命名缓存的主目录，<code>ServiceWorker</code>可以访问并维护名字字符串到<code>Cache</code>对象的映射。</p>
+<ul>
+<li><code>Client</code></li>
+</ul>
+<p>表示 service worker client 的作用域。一个 service worker client 可以是浏览器上下文的一个文档，也可以是一个由活动worker控制的<code>SharedWorker</code>。</p>
+<ul>
+<li><code>Clients</code></li>
+</ul>
+<p>表示一个<code>Client</code>对象容器，是访问当前源的活动service worker clients的主要途径。</p>
+<ul>
+<li><code>ExtendableEvent</code></li>
+</ul>
+<p>扩展被分发到 <code>ServiceWorkerGlobalScope</code> 的 <code>install</code> 和 <code>activate</code> 事件时序，作为 service worker 生命周期的一部分。这会确保任何功能型事件（如<code>FetchEvent</code>）不被分发到 <code>ServiceWorker</code>，直到它更新了数据库架构、删除过期缓存项等等以后。</p>
+<ul>
+<li><code>ExtendableMessageEvent</code></li>
+</ul>
+<p>在 <code>ServiceWorker</code> 上触发的消息事件的事件对象（当在 <code>ServiceWorkerGlobalScope</code> 上从另一个上下文接收到通道消息时）——延长了此类事件的生命周期。</p>
+<ul>
+<li><code>FetchEvent</code></li>
+</ul>
+<p>传递给 <code>ServiceWorkerGlobalScope.onfetch</code> 处理函数的参数，<code>FetchEvent</code> 代表一个在 <code>ServiceWorker</code> 的 <code>ServiceWorkerGlobalScope</code> 中分发的请求动作。它包含关于请求和响应的结果信息，并且提供 <code>FetchEvent.respondWith()</code> 方法，这个方法允许我们提供任意的响应返回到控制页面。</p>
+<ul>
+<li><code>InstallEvent</code></li>
+</ul>
+<p>传递给 <code>oninstall</code> 处理函数的参数，<code>InstallEvent</code> 接口代表一个在 <code>ServiceWorker</code> 的<code>ServiceWorkerGlobalScope</code> 中分发的安装动作，作为 <code>ExtendableEvent</code> 的子事件，它保证诸如 <code>FetchEvent</code> 的功能性事件在安装过程中不会被分发。</p>
+<ul>
+<li><code>NavigationPreloadManager</code></li>
+</ul>
+<p>提供使用 Service Worker 管理资源预加载的方法。</p>
+<ul>
+<li><code>Navigator.serviceWorker</code></li>
+</ul>
+<p>返回一个 <code>ServiceWorkerContainer</code> 对象，可以提供入口用于注册、删除、更新以及与在相关 document 中 <code>ServiceWorker</code> 通信的对象。</p>
+<ul>
+<li><code>NotificationEvent</code></li>
+</ul>
+<p>传递给<code>onnotificationclick</code> 处理函数的参数，<code>NotificationEvent</code> 接口代表在 <code>ServiceWorker</code> 里 <code>ServiceWorkerGlobalScope</code> 中分发的单击事件通知。</p>
+<ul>
+<li><code>ServiceWorker</code></li>
+</ul>
+<p>表示一个service worker。多个浏览的上下文(例如pages,workers等等)都能通过相同的ServiceWorker 对象相关联。</p>
+<ul>
+<li><code>ServiceWorkerContainer</code></li>
+</ul>
+<p>提供一个在网络生态中把 service worker 作为一个整体的对象，包括辅助注册，反注册以及更新服务工作者，并且访问 service worker 的状态以及他们的注册信息。</p>
+<ul>
+<li><code>ServiceWorkerGlobalScope</code></li>
+</ul>
+<p>表示 service worker 的全局执行上下文。</p>
+<ul>
+<li><code>ServiceWorkerMessageEvent</code> </li>
+</ul>
+<p>包含关于一个发送给以 <code>navigator.serviceWorker</code> 为目标的事件信息。</p>
+<ul>
+<li><code>ServiceWorkerRegistration</code></li>
+</ul>
+<p>表示service worker的注册。</p>
+<ul>
+<li><code>ServiceWorkerState</code> </li>
+</ul>
+<p>与它自己的 <code>ServiceWorker</code> 的状态相关联。</p>
+<ul>
+<li><code>SyncEvent</code> </li>
+</ul>
+<p>传递给同步函数的参数，SyncEvent 接口代表在 ServiceWorker 里<code>ServiceWorkerGlobalScope</code> 分发的同步动作。</p>
+<ul>
+<li><code>SyncManager</code> </li>
+</ul>
+<p>提供一个接口用于注册和返回<code>SyncRegistration</code>对象。</p>
+<ul>
+<li><code>WindowClient</code></li>
+</ul>
+<p>表示在浏览器上下文中记录的service worker客户端的作用域，被活动的工作者控制。是 <code>Client</code> 对象的特殊类型，包含一些附加的方法和可用的属性。</p>
+<blockquote>
+<p>学习有趣的知识，结识有趣的朋友，塑造有趣的灵魂！</p>
+<p>大家好！我是〖编程三昧〗的作者 <strong>隐逸王</strong>，我的公众号是『编程三昧』，欢迎关注，希望大家多多指教！</p>
+</blockquote>
+<p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210604%20/19-26-03-txvEvM.png" alt="扫码_搜索联合传播样式-白色版"></p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/yinyiwang/tags/service-worker/" rel="tag"># service worker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/yinyiwang/2021/07/05/Proxy-%E5%AF%B9%E8%B1%A1%E7%AE%80%E4%BB%8B/" rel="prev" title="Proxy 对象简介">
+      <i class="fa fa-chevron-left"></i> Proxy 对象简介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/yinyiwang/2021/07/05/setTimeout%EF%BC%8C%E8%AF%B7%E5%8E%9F%E8%B0%85%E6%88%91%E4%B8%80%E7%9B%B4%E4%BB%A5%E6%9D%A5%E5%AF%B9%E4%BD%A0%E7%9A%84%E5%BF%BD%E8%A7%86-%E3%80%92%EF%B8%BF%E3%80%92/" rel="next" title="setTimeout，请原谅我一直以来对你的忽视(〒︿〒)">
+      setTimeout，请原谅我一直以来对你的忽视(〒︿〒) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-worker-的概念和用法"><span class="nav-number">1.</span> <span class="nav-text">Service worker 的概念和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册"><span class="nav-number">1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载、安装和激活"><span class="nav-number">1.2.</span> <span class="nav-text">下载、安装和激活</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他使用场景"><span class="nav-number">2.</span> <span class="nav-text">其他使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">3.</span> <span class="nav-text">接口</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">隐逸王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/yinyiwang/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/yinyiwang/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/yinyiwang/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yinyiwang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yinyiwang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1274545731@qq.com" title="E-Mail → mailto:1274545731@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/yinyiwang" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yinyiwang" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/2893570333750744" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;2893570333750744" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/558924ad643f" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;558924ad643f" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>简书</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/qianduansanmei/" title="博客园 → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qianduansanmei&#x2F;" rel="noopener" target="_blank"><i class="fa fa-tag fa-fw"></i>博客园</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">隐逸王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共67.2k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/yinyiwang/lib/anime.min.js"></script>
+  <script src="/yinyiwang/lib/velocity/velocity.min.js"></script>
+  <script src="/yinyiwang/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/yinyiwang/js/utils.js"></script>
+
+<script src="/yinyiwang/js/motion.js"></script>
+
+
+<script src="/yinyiwang/js/schemes/pisces.js"></script>
+
+
+<script src="/yinyiwang/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/yinyiwang/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/yinyiwang/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+<div id="needsharebutton-float">
+      <span class="btn">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </span>
+    </div>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+      flOptions = {};
+        flOptions.iconStyle = "box";
+        flOptions.boxForm = "vertical";
+        flOptions.position = "middleRight";
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Evernote";
+      new needShareButton('#needsharebutton-float', flOptions);
+  </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0dafc87fa9a1c9ac348d',
+      clientSecret: '3fa722fe21fa90a79306e64d3993aee995b60f3b',
+      repo        : 'gitalk',
+      owner       : 'yinyiwang',
+      admin       : ['yinyiwang'],
+      id          : 'bb158cbda6409d2a2a00a0b5421d4e50',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
