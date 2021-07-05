@@ -1618,7 +1618,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - 定时器</category>
       </categories>
       <tags>
         <tag>JavaScript</tag>
@@ -1776,7 +1776,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>-ES6</category>
+        <category>JavaScript - ES6</category>
       </categories>
       <tags>
         <tag>迭代器</tag>
@@ -1845,7 +1845,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>CSS - 盒模型</category>
       </categories>
       <tags>
         <tag>盒模型</tag>
@@ -1920,7 +1920,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>CSS - CSS 变量</category>
       </categories>
       <tags>
         <tag>CSS 变量</tag>
@@ -2166,7 +2166,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>ES6</category>
+        <category>JavaScript - ES6</category>
       </categories>
       <tags>
         <tag>Symbol</tag>
@@ -2423,7 +2423,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>CSS - CSS 选择器</category>
       </categories>
       <tags>
         <tag>CSS 选择器</tag>
@@ -2540,8 +2540,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>ES6</category>
-        <category>JavaScript</category>
+        <category>JavaScript - ES6 - Proxy</category>
       </categories>
       <tags>
         <tag>Proxy</tag>
@@ -2789,7 +2788,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>开发工具 - Git</category>
       </categories>
       <tags>
         <tag>Git 命令</tag>
@@ -3009,7 +3008,7 @@ module.exports = function (app) {
 <p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210603%20/20-18-27-sHach8.png" alt=""></p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - websocket</category>
       </categories>
       <tags>
         <tag>websocket</tag>
@@ -3742,7 +3741,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - Ajax</category>
       </categories>
       <tags>
         <tag>AJAX</tag>
@@ -3885,7 +3884,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - 循环语句</category>
       </categories>
       <tags>
         <tag>for 循环</tag>
@@ -3948,7 +3947,7 @@ module.exports = function (app) {
 <p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210616%20/20-45-17-6ya6Kf.jpg" alt="mianshi"></p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - throttle - debounce</category>
       </categories>
       <tags>
         <tag>防抖节流</tag>
@@ -4005,7 +4004,7 @@ module.exports = function (app) {
 <p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210616%20/20-45-17-6ya6Kf.jpg" alt="mianshi"></p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - debounce</category>
       </categories>
       <tags>
         <tag>防抖函数</tag>
@@ -4090,7 +4089,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - Clipboard</category>
       </categories>
       <tags>
         <tag>剪切板</tag>
@@ -4153,7 +4152,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>编程</category>
+        <category>编程 - 代理模式</category>
       </categories>
       <tags>
         <tag>代理模式</tag>
@@ -4204,7 +4203,7 @@ module.exports = function (app) {
 <p><img src="https://gitee.com/yinyiwang/blogImages/raw/master/images/20210616%20/20-45-17-6ya6Kf.jpg" alt="mianshi"></p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - throttle</category>
       </categories>
       <tags>
         <tag>节流函数</tag>
@@ -4305,7 +4304,7 @@ module.exports = function (app) {
 </blockquote>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>JavaScript - 数组</category>
       </categories>
       <tags>
         <tag>数组 sort</tag>
